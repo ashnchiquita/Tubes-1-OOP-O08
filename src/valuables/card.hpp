@@ -2,8 +2,10 @@
 #define _CARD_HPP_
 
 #include "valuable.hpp"
+#include <string>
+using namespace std;
 
-class Card {
+class Card : public Valuable {
     protected:
         int num;                    // 1-13
         string color;               // G, B, Y, R
