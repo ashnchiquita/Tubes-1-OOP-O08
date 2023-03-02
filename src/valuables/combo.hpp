@@ -11,17 +11,17 @@ using namespace std;
 class Combo : public Valuable {
     protected:
         vector<Card> card;
-    public:
+    public: 
         float Value();
 
-        float Pair();
-        float TwoPair();
-        float ThreeOfAKind();
-        float Straight();
-        float Flush();
-        float FullHouse();
-        float FourOfAKind();
-        float StraightFlush();
+        float pair();
+        float twoPair();
+        float threeOfAKind();
+        float straight();
+        float flush();
+        float fullHouse();
+        float fourOfAKind();
+        float straightFlush();
 };
 
 #endif
