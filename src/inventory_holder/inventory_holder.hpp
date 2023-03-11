@@ -2,27 +2,32 @@
 #define INVENTORY_HOLDER_HPP
 
 #include <iostream>
-#include <string>
-using namespace std;
+#include <type_traits>
+#include <vector>
 
+#include "../valuables/card.hpp"
+
+template <typename T>
 class InventoryHolder {
-protected:
-    Card* bufferCard;
-public:
-    // ctor-cctor-dtor
-    InventoryHolder(); 
-    InventoryHolder(int cards);
-    InventoryHolder(const InventoryHolder& p);
-    ~InventoryHolder();
+ protected:
+  T bufferCard;
+  int inventoryLimit;
 
-    // services
-    void addCard();
-    void removeCard();
+ public:
+  // ctor-cctor-dtor
+  InventoryHolder();
+  InventoryHolder(int inventoryLimit);
 
-    // operators
-    InventoryHolder& operator+ (const InventoryHolder& holder);
-    InventoryHolder& operator- (const InventoryHolder& holder);
+  int getInventoryLimit();
+  void setInventoryLimit(int inventoryLimit);
+
+  // services
+  // void addCard();
+  // void removeCard();
+
+  // operators
+  virtual InventoryHolder& operator<<(const Card& card) = 0;
+  virtual InventoryHolder& operator>>(Card* card) = 0;
 };
-
 
 #endif

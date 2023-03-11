@@ -3,24 +3,22 @@
 
 #include <iostream>
 #include <string>
-#include "inventory_holder.hpp"
-#include "./valuables/card.hpp"
-using namespace std;
 
-class TableCard : public InventoryHolder {
-protected: 
-    Card* bufferCardRevealed;
-public:
-    // ctor-cctor-dtor
-    TableCard();       
-    TableCard(int cards);
-    TableCard(const TableCard& p);
-    ~TableCard();  
+#include "../valuables/card.hpp"
+#include "./inventory_holder.hpp"
 
-    // services
+class TableCard : public InventoryHolder <vector <Card> > {
+ public:
+  // ctor-cctor-dtor
+  TableCard();
+  TableCard(const TableCard& other);
+  TableCard& operator=(const TableCard& other);
 
+  TableCard& operator<<(const Card& card) override;
+  TableCard& operator>>(Card* card) override;
 
+  // services
+  Card* getAllCards();
 };
-
 
 #endif
