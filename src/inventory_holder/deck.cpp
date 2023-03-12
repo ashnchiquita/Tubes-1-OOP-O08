@@ -1,12 +1,13 @@
 #include "deck.hpp"
-
+#include <algorithm>
+#include <random>
 #include <vector>
 using namespace std;
 
 Deck::Deck() : InventoryHolder(52) {
   for (int i = 1; i <= 13; i++) {
     for (int j = 0; j < 4; j++) {
-      this->bufferCard.push(Card(i, static_cast<CardColor>(j)));
+      this->bufferCard.push_back(Card(i, static_cast<CardColor>(j)));
     }
   }
 }
@@ -17,10 +18,7 @@ Deck::Deck(const Deck& other) {
 };
 
 Deck& Deck::operator=(const Deck& other) {
-  while (!this->bufferCard.empty()) {
-    this->bufferCard.pop();
-  }
-
+  this->bufferCard.clear();
   this->inventoryLimit = other.inventoryLimit;
   this->bufferCard = other.bufferCard;
 
@@ -29,7 +27,7 @@ Deck& Deck::operator=(const Deck& other) {
 
 Deck& Deck::operator<<(const Card& card) {
   if (this->bufferCard.size() < this->getInventoryLimit()) {
-    this->bufferCard.push(card);
+    this->bufferCard.push_back(card);
   } else {
     cout << "Deck is full\n";
   }
@@ -41,27 +39,27 @@ Deck& Deck::operator>>(Card* card) {
   if (this->bufferCard.empty()) {
     cout << "Deck is empty\n";
   } else {
-    *card = this->bufferCard.top();
-    this->bufferCard.pop();
+    *card = this->bufferCard[this->bufferCard.size() - 1];
+    this->bufferCard.pop_back();
   }
 
   return *this;
 }
 
-Card Deck::getTop() const { return this->bufferCard.top(); }
+Card Deck::getTop() const { return this->bufferCard[this->bufferCard.size() - 1]; }
 
 void Deck::resetDeck() {
-  while (!this->bufferCard.empty()) {
-    this->bufferCard.pop();
-  }
+  this->bufferCard.clear();
 
   for (int i = 1; i <= 13; i++) {
     for (int j = 0; j < 4; j++) {
-      this->bufferCard.push(Card(i, static_cast<CardColor>(j)));
+      this->bufferCard.push_back(Card(i, static_cast<CardColor>(j)));
     }
   }
 };
 
-void Deck::shuffleDeck(){
+void Deck::shuffleDeck() {
     // TODO: IMPLEMENTASI RANDOMIZER
+    auto rng = default_random_engine {};
+    shuffle(this->bufferCard.begin(), this->bufferCard.end(), rng);
 };

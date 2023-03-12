@@ -32,3 +32,6 @@ build
 *.app
 
 .idea
+
+# OSX Finder
+.DS_Store

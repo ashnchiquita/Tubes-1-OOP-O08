@@ -8,9 +8,12 @@
 #include "./inventory_holder.hpp"
 
 class Player : public InventoryHolder<pair <Card, Card> > {
- protected:
+ private:
+  const int ID;
   string name;
   int point;
+  static int totalPlayer;
+    /* TODO: implement ability card */
   // int abilityCard;
 
  public:
@@ -23,6 +26,7 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   // services
   string getName() const;
   void setName(string name);
+  int getID() const;
 
   int getPoint() const;
   void setPoint(int point);
@@ -30,7 +34,11 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   // int getAbilityCard() const;
   // void setAbilityCard(int abilityCard);
 
+  Card getFirstCard();
+  Card getSecondCard();
   Card* getAllCards();
+  // resetCards();
+  void setCards(Card* card);
 
   // operator
   Player& operator<<(const Card& card) override;
@@ -38,6 +46,8 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   bool operator<(const Player& other);
   bool operator>(const Player& other);
   bool operator==(const Player& other);
+
+  void print();
 };
 
 #endif

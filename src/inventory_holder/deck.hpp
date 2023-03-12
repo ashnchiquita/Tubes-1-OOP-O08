@@ -3,14 +3,13 @@
 
 #include <algorithm>
 #include <iostream>
-#include <stack>
 
 #include "../valuables/card.hpp"
 #include "./inventory_holder.hpp"
 using namespace std;
 
-class Deck : public InventoryHolder< stack<Card> > {
- public:
+class Deck : public InventoryHolder<vector <Card> > {
+public:
   // General Methods
   Deck();  // ctor
   Deck(const Deck& other);
