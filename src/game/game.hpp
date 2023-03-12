@@ -1,7 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "playerslist.hpp"
+#include "../playerslist/playerslist.hpp"
 
 class Game {
     private:
