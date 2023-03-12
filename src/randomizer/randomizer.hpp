@@ -2,13 +2,14 @@
 #ifndef RANDOMIZER_H
 #define RANDOMIZER_H
 
+//ini jadinya gimana kemaren?
 class randomizer{
 public:
     template<typename T>
-    void randomize(T* array);
+    void shuffle(T* array);
     
     template<typename T>
-    T getRandom(T* array);
+    T pickRandom(T* array);
 };
 
 #endif
