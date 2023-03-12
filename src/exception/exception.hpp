@@ -6,40 +6,51 @@
 
 class Exception{
     protected:
-        int errorCode;
-        std::string errorMsg;
+        const std::string message;
     public:
-        virtual std::string getMsg() = 0;
+        virtual const std::string what() const throw() = 0;
 };
 
-class ArrayException : public Exception{
+class ArrayFull : public Exception{
     private:
-        std::string errorMsg[3] = {
-            "Index out of bounds",
-            "Array overflowed",
-            "Array empty"
-        };
+        const std::string message = "Array is full";
     public:
-        ArrayException(int);
-        std::string msg(){return errorMsg[errorCode];};
+        const std::string what() const throw() {return message;}
 };
 
-class CommandException : public Exception{
+class ArrayEmpty : public Exception{
     private:
-        std::string errorMsg[2] = {
-            "Invalid ability",
-            "Ability not available"
-        };
+        const std::string message = "Array is Empty";
     public:
-        CommandException(int);
-        std::string msg(){return errorMsg[errorCode];};
+        const std::string what() const throw() {return message;}
+};
+
+class ArrayIndexInvalid : public Exception{
+    private:
+        const std::string message = "Array index is invalid";
+    public:
+        const std::string what() const throw() {return message;}
+};
+
+class CommandNotAvailable : public Exception{
+    private:
+        const std::string message = "Ability not available";
+    public:
+        const std::string what() const throw() {return message;}
+};
+
+class CommandInvalid : public Exception{
+    private:
+        const std::string message = "Ability is invalid";
+    public:
+        const std::string what() const throw() {return message;}
 };
 
 class InputException : public Exception{
     private:
-        std::string errorMsg = "Invalid input";
+        const std::string message = "Invalid input";
     public:
-        std::string msg(){return errorMsg;};
+        const std::string what() const throw() {return message;};
 };
 
 #endif
