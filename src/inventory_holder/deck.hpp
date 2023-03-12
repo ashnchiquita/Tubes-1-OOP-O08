@@ -1,25 +1,27 @@
 #ifndef DECK_HPP
 #define DECK_HPP
 
+#include <algorithm>
 #include <iostream>
-#include <string>
 
-#include "inventory_holder.hpp"
-#include "./valuables/card.hpp"
+#include "../valuables/card.hpp"
+#include "./inventory_holder.hpp"
 using namespace std;
 
-class deck : public InventoryHolder {
+class Deck : public InventoryHolder<vector <Card> > {
 public:
-    // General Methods
-    deck();                     // ctor
-    deck(int cards);
-    deck(const deck& p);        // cctor
-    ~deck();                    // dtor
+  // General Methods
+  Deck();  // ctor
+  Deck(const Deck& other);
+  Deck& operator=(const Deck& other);
 
-    // Methods
-    void resetDeck();
+  Deck& operator<<(const Card& card) override;
+  Deck& operator>>(Card* card) override;
 
+  // Methods
+  Card getTop() const;
+  void resetDeck();
+  void shuffleDeck();
 };
-
 
 #endif

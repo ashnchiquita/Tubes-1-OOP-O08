@@ -3,38 +3,51 @@
 
 #include <iostream>
 #include <string>
-#include "inventory_holder.hpp"
-#include "./valuables/card.hpp"
 
-using namespace std;
+#include "../valuables/card.hpp"
+#include "./inventory_holder.hpp"
 
-class Player : public InventoryHolder {
-protected: 
-    string name;
-    int point;
-    int ability_card;
-public:
-    // ctor-cctor-dtor
-    Player();              
-    Player(string name, int point, int ability_card);
-    Player(const Player& p);
-    ~Player();      
+class Player : public InventoryHolder<pair <Card, Card> > {
+ private:
+  const int ID;
+  string name;
+  int point;
+  static int totalPlayer;
+    /* TODO: implement ability card */
+  // int abilityCard;
 
-    // services
-    string getName() const;
-    void setName(string name);
+ public:
+  // ctor-cctor-dtor
+  Player();
+  Player(string name, int point);
+  Player(const Player& other);
+  Player& operator=(const Player& other);
 
-    int getPoint() const;
-    void setPoint(int point);
+  // services
+  string getName() const;
+  void setName(string name);
+  int getID() const;
 
-    Card getAbilityCard() const;
-    void setAbilityCard() const;
+  int getPoint() const;
+  void setPoint(int point);
 
-    // operator
-    Player& operator< (const Player& holder);
-    Player& operator> (const Player& holder);
-    Player& operator== (const Player& holder);
+  // int getAbilityCard() const;
+  // void setAbilityCard(int abilityCard);
+
+  Card getFirstCard();
+  Card getSecondCard();
+  Card* getAllCards();
+  // resetCards();
+  void setCards(Card* card);
+
+  // operator
+  Player& operator<<(const Card& card) override;
+  Player& operator>>(Card* card) override;
+  bool operator<(const Player& other);
+  bool operator>(const Player& other);
+  bool operator==(const Player& other);
+
+  void print();
 };
-
 
 #endif
