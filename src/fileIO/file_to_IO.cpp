@@ -17,6 +17,10 @@ string FileIO::getTestPath(){
   return FileIO::testPath;
 }
 
+// e.g, file.txt: 
+// M 6
+// M 7
+// K 1
 // hasil: vektor <M6, M7, K1>
 vector<string> FileIO::colorCodeFromSentence(const string& filename) {
   vector<string> colorCodes;
