@@ -109,5 +109,9 @@ int main() {
   }
   cout << "=====================\n";
 
+
+  cout << "PRINT ABILITY\n";
+  player1.displayAbility();
+  
   return 0;
 }

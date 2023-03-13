@@ -51,6 +51,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "map": "cpp",
+        "utility": "cpp"
     }
 }

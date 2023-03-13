@@ -9,101 +9,111 @@ using namespace std;
 /* TODO: set ability -> off
 try catch & restoring ability */
 
-AbilityCommand::AbilityCommand() {}
+AbilityCommand::AbilityCommand(Game* currentGame) : Command(currentGame) {}
+Reroll::Reroll(Game* currentGame) : AbilityCommand(currentGame) {}
+Quadruple::Quadruple(Game* currentGame) : AbilityCommand(currentGame) {}
+Quarter::Quarter(Game* currentGame) : AbilityCommand(currentGame) {}
+ReverseDirection::ReverseDirection(Game* currentGame) : AbilityCommand(currentGame) {}
+SwapCard::SwapCard(Game* currentGame) : AbilityCommand(currentGame) {}
+SwitchCard::SwitchCard(Game* currentGame) : AbilityCommand(currentGame) {}
+AbilityLess::AbilityLess(Game* currentGame) : AbilityCommand(currentGame) {}
 
-void Reroll::execute(Game& currGame) {
+void Reroll::execute() {
     // Pemain membuang kedua kartu yang ada di tangannya dan mengambil ulang dua kartu baru
-    // currGame.getCurrPlayerRef().setCards(getTwoFromDeck());
+    Card leftCard, rightCard;
+    this->game->mainDeck >> &leftCard;
+    this->game->mainDeck >> &rightCard;
+    // Setting both cards on player
+    this->game->getCurrPlayerRef().setCard(0, leftCard);
+    this->game->getCurrPlayerRef().setCard(1, rightCard);
 }
 
-void Quadruple::execute(Game& currGame) {
+void Quadruple::execute() {
     // Pemain akan menaikkan total poin hadiah pada permainan menjadi empat kali lipat
+    long int point = this->game->getGamePoint();
+    this->game->multiplyGamePoint(4);
 
-    long int point = currGame.getGamePoint();
     cout << "Quadruple" << endl;
-    currGame.multiplyGamePoint(4);
     // cout << currGame.getCurrPlayer().name << "melakukan QUADRUPLE!" << endl;
     // cout << "Poin hadiah naik dari " << point << " menjadi curr.gamePoint!";
-}
 
-void Quarter::execute(Game& currGame) {
+}
+void Quarter::execute() {
     // Pemain akan menurunkan total poin hadiah pada permainan menjadi seperempat nilai awal.
-    long int point = currGame.getGamePoint();
+    long int point = this->game->getGamePoint();
+    this->game->multiplyGamePoint(0.25);
 
     cout << "Quarter" << endl;
-    // try
-    currGame.multiplyGamePoint(0.25);
-    // cout << currGame.getCurrPlayer().name << "melakukan QUARTER!" << endl;
-
-    // catch(err){
-    //     cout << "Sayangnya poin hadiah sudah bernilai " << curr.gamePoint << ". Poin hadiah tidak berubah.. Giliran dilanjut!"
-    // }
-    // cout << "Poin hadiah turun dari " << point << " menjadi curr.gamePoint!";
-    
+    // /* TODO: try catch 
 }
 
-void ReverseDirection::execute(Game& currGame) {
+void SwapCard::execute() {
+    // Menukar kartu pemain lain
+
+    PlayersList optionList;
+    // Picking Options
+    int firstOption, secondOption;
+    Player firstPlayer, secondPlayer;
+    // optionList = this->getPlayersList() - optionList[0];
+    optionList.print();
+    cin >> firstOption;
+    // firstPlayer = optionList[firstOption];
+    // optionList = this->getPlayersList() - optionList[firstOption];
+    optionList.print();
+    cin >> secondOption;
+    // secondPlayer = optionList[secondOption];
+
+    int firstCard, secondCard;
+    cin >> firstCard;
+    cin >> secondCard;
+
+    // Swapping Cards
+    Card tempCard;
+    tempCard = firstPlayer.getCard(firstCard-1);
+    firstPlayer.setCard(firstCard-1, secondPlayer.getCard(secondCard-1));
+    secondPlayer.setCard(secondCard-1, tempCard);
+}
+
+void ReverseDirection::execute() {
     // Memutar arah giliran eksekusi perintah oleh pemain
-    currGame.getPlayersListRef().reversePlayers(currGame.getTurnCountInARound());
+    this->game->getPlayersListRef().reversePlayers(this->game->getTurnCountInARound());
 }
 
-void SwapCard::execute(Game& currGame) {
-    // Menukar satu kartu pemain lain dengan satu kartu pemain yang lain.
-    // Player player1, player2;
-    // Card card1, card2;
-    // PlayersList exPlayer;
-    
-    // exPlayer.addPlayer(currGame.getCurrPlayer());
-    // cout << Silahkan pilih pemain yang kartunya ingin anda tukar: << endl;
-    // cout << (currGame.getPlayersList() - exPlayer);
-    // cin << player1;
-    // exPlayer.addPlayer(player1);
-    // insert dirinya ke player1
-
-    // cout << Silahkan pilih pemain yang kartunya ingin anda tukar: << endl;
-    // printAllPlayers() - dirinya - player1
-    // cin << player2
-
-    // cout << "Silakan pilih kartu kanan/kiri" << player1 << endl;
-    // cin << option1;
-
-    // cout << "Silakan pilih kartu kanan/kiri" << player2 << endl;
-    // cin << option2;
-
-    // Card1 = option == 1 ? player1.getFirstCard() : player1.getSecondCard();
-    // Card2 = option == 1 ? player2.getFirstCard() : player2.getSecondCard();
-
-    // player1.setKiri(Card2)
-    // player2.setKiri(Card1)
-}
-
-void SwitchCard::execute(Game& currGame) {
+void SwitchCard::execute() {
     // Pemain akan menukar kartu main deck miliknya dengan kartu main deck milik pemain lain
 
-    // Player targetPlayer
-    // cin << targetPlayer                  // mau card siapa?
-    // temp1 = getCurrPlayer().getAllCards()
-    // temp2 = targetPlayer.getAllCards()
+    PlayersList optionList;
+    // Picking Options
+    int option;
+    Player targetPlayer;
+    // optionList = this->getPlayersList() - optionList[0];
+    optionList.print();
+    cin >> option;
+    // targetPlayer = optionList[option];
 
-    // currentPlayer.setCards()             // tapi ini ga oop hm
-    // targetPlayer.setCards()
-    
+    // Swapping Cards
+    Card firstCard, secondCard;
+    firstCard = targetPlayer.getCard(0);
+    secondCard = targetPlayer.getCard(1);
 
-    // int idx11 = rand() % 7;
-    // int idx21 = rand() % 7;
-    // int idx12 = rand() % 7;
-    // int idx22 = rand() % 7;
-
-    // InventoryHolder temp = pc1[idx11];
-    // pc1[idx11] = pc2[idx21];
-    // pc2[idx21] = temp;
-
-    // InventoryHolder temp = pc1[idx12];
-    // pc1[idx12] = pc2[idx22];
-    // pc2[idx22] = temp;
-    //nuker 2 kartu diri sendiri dgn pemain lain
+    targetPlayer.setCard(0, this->game->getCurrPlayerRef().getCard(0));
+    targetPlayer.setCard(1, this->game->getCurrPlayerRef().getCard(1));
+    this->game->getCurrPlayerRef().setCard(0, firstCard);
+    this->game->getCurrPlayerRef().setCard(1, secondCard);
 }
 
-void Abilityless::execute(Game& currGame) {
-    // set ability card false
+void AbilityLess::execute() {
+    // Mematikan kemampuan lawan
+
+    PlayersList optionList;
+    // Picking Options
+    int option;
+    Player targetPlayer;
+    // optionList = this->getPlayersList() - optionList[0];
+    // optionList.print();
+    cin >> option;
+    // targetPlayer = optionList[option];
+
+    // Set Ability Nonactive
+    this->game->targetPlayer.setAbilityCardStatus(false);
 }

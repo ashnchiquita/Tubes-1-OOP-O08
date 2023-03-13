@@ -59,7 +59,6 @@ void Deck::resetDeck() {
 };
 
 void Deck::shuffleDeck() {
-    // TODO: IMPLEMENTASI RANDOMIZER
-    auto rng = default_random_engine {};
+    auto rng = default_random_engine();
     shuffle(this->bufferCard.begin(), this->bufferCard.end(), rng);
 };

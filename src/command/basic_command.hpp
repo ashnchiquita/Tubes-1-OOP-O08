@@ -5,22 +5,26 @@
 
 class BasicCommand : public Command {
     public:
-        virtual void execute(Game& currGame) = 0;
+        BasicCommand(Game*);
+        virtual void execute() = 0;
 };
 
 class Double : public BasicCommand{
     public:
-        void execute(Game& currGame);
+        Double(Game*);
+        void execute();
 };
 
 class Half : public BasicCommand{
     public:
-        void execute(Game& currGame);
+        Half(Game*);
+        void execute();
 };
 
 class Next : public BasicCommand{
     public:
-        void execute(Game& currGame);
+        Next(Game*);
+        void execute();
 };
 
 #endif

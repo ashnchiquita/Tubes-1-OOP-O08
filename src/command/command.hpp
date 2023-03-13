@@ -7,9 +7,11 @@
 using namespace std;
 
 class Command {
+    protected:
+        Game* game;
     public:
-        Command();
-        virtual void execute(Game& currGame) = 0;
+        Command(Game*);
+        virtual void execute() = 0;
 };
 
 #endif

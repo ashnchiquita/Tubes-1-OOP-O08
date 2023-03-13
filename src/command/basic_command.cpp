@@ -2,21 +2,26 @@
 #include "basic_command.hpp"
 using namespace std;
 
-void Double::execute(Game& currGame) {
-    long int point = currGame.getGamePoint();
+BasicCommand::BasicCommand(Game* currentGame) : Command(currentGame) {}
+Double::Double(Game* currentGame) : BasicCommand(currentGame) {}
+Half::Half(Game* currentGame) : BasicCommand(currentGame) {}
+Next::Next(Game* currentGame) : BasicCommand(currentGame) {}
+
+void Double::execute() {
+    long int point = this->game->getGamePoint();
     
     cout << "Double" << endl;
-    currGame.multiplyGamePoint(2);
+    this->game->multiplyGamePoint(2);
     // cout << currGame.getCurrPlayer().name << "melakukan DOUBLE!" << endl;
     // cout << "Poin hadiah naik dari " << point << " menjadi curr.gamePoint!";
 }
 
-void Half::execute(Game& currGame) {
-    long int point = currGame.getGamePoint();
+void Half::execute() {
+    long int point = this->game->getGamePoint();
 
     cout << "Half" << endl;
     // try
-    currGame.multiplyGamePoint(0.5);
+    this->game->multiplyGamePoint(0.5);
     // cout << currGame.getCurrPlayer().name << "melakukan HALF!" << endl;
 
     // catch(err){
@@ -26,7 +31,7 @@ void Half::execute(Game& currGame) {
     
 }
 
-void Next::execute(Game& currGame) {
+void Next::execute() {
     cout << "Next" << endl;
     // cout << "Giliran dilanjut ke pemain selanjutnya."
 }

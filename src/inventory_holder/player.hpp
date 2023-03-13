@@ -7,14 +7,17 @@
 #include "../valuables/card.hpp"
 #include "./inventory_holder.hpp"
 
+enum class AbilityType {NULLABILITY, REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS};
+
 class Player : public InventoryHolder<pair <Card, Card> > {
  private:
   const int ID;
   string name;
   int point;
   static int totalPlayer;
-    /* TODO: implement ability card */
-  // int abilityCard;
+  /* TODO: implement ability card */
+  AbilityType abilityCard;
+  bool abilityStatus;
 
  public:
   // ctor-cctor-dtor
@@ -31,8 +34,12 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   int getPoint() const;
   void setPoint(int point);
 
-  // int getAbilityCard() const;
-  // void setAbilityCard(int abilityCard);
+  // Ability Card
+  AbilityType getType() const;
+  void setAbilityType(AbilityType type);
+  bool getAbilityCardStatus() const;
+  void setAbilityCardStatus(bool status);
+  void displayAbility();
 
   // IDX 0 for LeftCard, IDX 1 for RightCard
   Card getCard(int idx);
@@ -45,7 +52,7 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   // operator
   Player& operator<<(const Card& card) override;
   Player& operator>>(Card* card) override;
-  
+
   bool operator<(const Player& other);
   bool operator>(const Player& other);
   bool operator==(const Player& other);

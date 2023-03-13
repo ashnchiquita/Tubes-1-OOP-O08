@@ -7,44 +7,51 @@ using namespace std;
 
 class AbilityCommand : public Command {
     public:
-        AbilityCommand();
-        virtual void execute(Game& currGame) = 0;
+        AbilityCommand(Game*);
+        virtual void execute() = 0;
 };
 
 class Reroll : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        Reroll(Game*);
+        void execute();
 };
 
 class Quadruple : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        Quadruple(Game*);
+        void execute();
 };
 
 class Quarter : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        Quarter(Game*);
+        void execute();
 };
 
 class ReverseDirection : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        ReverseDirection(Game*);
+        void execute();
 
 };
 
 class SwapCard : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        SwapCard(Game*);
+        void execute();
 };
 
 class SwitchCard : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        SwitchCard(Game*);
+        void execute();
 };
 
 class Abilityless : public AbilityCommand {
     public:
-        void execute(Game& currGame);
+        Abilityless(Game*);
+        void execute();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include <map>
 using namespace std;
 
 int Player::totalPlayer = 0;
@@ -7,14 +8,14 @@ Player::Player() : InventoryHolder(2), ID(totalPlayer + 1) {
   this->name = "";
   this->point = 0;
   Player::totalPlayer++;
-  // this->abilityCard = 0;
+  this->abilityCard = AbilityType::NULLABILITY;
 }
 
 Player::Player(string name, int point) : InventoryHolder(2), ID(totalPlayer + 1) {
   this->name = name;
   this->point = point;
   Player::totalPlayer++;
-  // this->abilityCard = abilityCard;
+  this->abilityCard = abilityCard;
 }
 
 Player::Player(const Player& other) : ID(other.ID) {
@@ -24,7 +25,7 @@ Player::Player(const Player& other) : ID(other.ID) {
 
   this->name = other.name;
   this->point = other.point;
-  // this->abilityCard = other.abilityCard;
+  this->abilityCard = other.abilityCard;
 }
 
 Player& Player::operator=(const Player& other){
@@ -35,7 +36,7 @@ Player& Player::operator=(const Player& other){
   this->name = other.name;
   this->point = other.point;
   // this->ID = other.ID;
-  // this->abilityCard = other.abilityCard;
+  this->abilityCard = other.abilityCard;
 
   return *this;
 }
@@ -48,10 +49,19 @@ int Player::getID() const {
 int Player::getPoint() const { return this->point; }
 void Player::setPoint(int point) { this->point = point; }
 
-// int Player::getAbilityCard() const { return this->abilityCard; }
-// void Player::setAbilityCard(int abilityCard) {
-//   this->abilityCard = abilityCard;
-// }
+/* ABILITY CARD */
+AbilityType Player::getType() const {
+  return this->abilityCard;
+}
+void Player::setAbilityType(AbilityType type) {
+  this->abilityCard = type;
+}
+bool Player::getAbilityCardStatus() const {
+  return this->abilityStatus;
+}
+void Player::setAbilityCardStatus(bool status) {
+  this->abilityStatus = status;
+}
 
 Card Player::getCard(int idx) {
   if (idx == 0){
@@ -119,8 +129,21 @@ void Player::print() {
   cout << "Name: " << this->name << endl;
   cout << "Point: " << this->point << endl;
 
-  /* TODO: implement ability card & hand card print */
-  /* cout << "Ability: " << this->abilityCard << endl;
-  cout << "Cards: " << this->card << endl; */
+  /* TODO: implement ability hand card print */
+  cout << "Ability: "; displayAbility();
+  // cout << "Cards: " <<  << endl;
   
+}
+
+void Player::displayAbility() {
+  map<AbilityType, string> typeMap;
+    typeMap[AbilityType::REROLL] = "reroll";
+    typeMap[AbilityType::QUADRUPLE] = "quadruple";
+    typeMap[AbilityType::QUARTER] = "quarter";
+    typeMap[AbilityType::REVERSE] = "reverse";
+    typeMap[AbilityType::SWAP] = "swap";
+    typeMap[AbilityType::SWITCH] = "switch";
+    typeMap[AbilityType::ABILITYLESS] = "abilityless";
+
+    cout << "Kartu " << typeMap[this->abilityCard] << endl;
 }
