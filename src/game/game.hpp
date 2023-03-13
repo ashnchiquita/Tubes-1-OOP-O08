@@ -5,13 +5,13 @@
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/table_card.hpp"
 
+
 class Game {
     protected:
         int roundCount;
         int turnCountInARound;
         long int gamePoint;
         PlayersList playersList;
-        /* TODO : insert deck */
         Deck mainDeck;
         TableCard mainTable;
 
@@ -28,30 +28,15 @@ class Game {
 
         /* TODO: implement end game & finishing */
         bool isFinished();
-        // void endGame();
+        void endGame();
         void printGameState();
         
         /* TODO: overload with const */
         Player& getCurrPlayerRef();
-
-        /* TODO: overload with const */
+        Deck& getDeck();
+        TableCard& getTableCard();
         PlayersList getPlayersList();
         PlayersList& getPlayersListRef();
-
-
-        /* Basic Command */
-        void Double();
-        void Half();
-        void Next();
-
-        /* Ability Command */
-        void Reroll();
-        void Quadruple();
-        void Quarter();
-        void ReverseDirection();
-        void SwapCard();
-        void SwitchCard();
-        void AbilityLess();
 };
 
 #endif

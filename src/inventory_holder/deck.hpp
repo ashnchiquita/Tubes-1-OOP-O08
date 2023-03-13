@@ -12,6 +12,7 @@ class Deck : public InventoryHolder<vector <Card> > {
 public:
   // General Methods
   Deck();  // ctor
+  Deck(string filename);
   Deck(const Deck& other);
   Deck& operator=(const Deck& other);
 

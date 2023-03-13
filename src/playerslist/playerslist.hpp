@@ -22,15 +22,17 @@ class PlayersList {
         // vector<Player>::iterator highCard();
         
         PlayersList operator-(const PlayersList& other);
-        // PlayersList operator-(const Player& other);
-        
-        /* TODO: overload using const */
-        Player& getCurrPlayer();
+        PlayersList operator-(const Player& other);
 
-        /* TODO: bisa ga PlayersList[]?*/
+        Player& getCurrPlayer();
+        Player& getPlayerAt(int i);
 
         void reversePlayers(int turnCount);
         void reset();
+        int getSize();
+
+        PlayersList getNextRound(int turnCount);
+        PlayersList getRemainingTurns(int turnCount);
 
         /* TODO: implement winner searching */
         // bool hasWinner();

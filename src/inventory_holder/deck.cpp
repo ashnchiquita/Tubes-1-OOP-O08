@@ -1,7 +1,11 @@
 #include "deck.hpp"
+
 #include <algorithm>
+#include <fstream>
+#include <iostream>
 #include <random>
 #include <vector>
+#include <string> 
 using namespace std;
 
 Deck::Deck() : InventoryHolder(52) {
@@ -11,6 +15,17 @@ Deck::Deck() : InventoryHolder(52) {
     }
   }
 }
+
+Deck::Deck(string filename) {
+  // ifstream configFile(filename);
+  // string cardLine, token;
+  // Card card;
+
+  // while(getline(configFile, cardLine)){
+  //   // cout << cardLine << endl;
+  //   int pos = cardLine.rfind(" ");
+  // }
+};
 
 Deck::Deck(const Deck& other) {
   this->inventoryLimit = other.inventoryLimit;

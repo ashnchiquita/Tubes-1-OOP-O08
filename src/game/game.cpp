@@ -2,26 +2,24 @@
 #include <iostream>
 #include <vector>
 #include "game.hpp"
+#include "../exception/game_exception.hpp"
 #include "../command/command.hpp"
 #include "../command/basic_command.hpp"
 #include "../command/ability_command.hpp"
+#include "../input_handler/input_handler.hpp"
 
 using namespace std;
 
 Game::Game() {
     string name;
-    int card;
     cout << "halo selamat dtg" << endl;
     this->roundCount = 0;
     this->turnCountInARound = 0;
     this->gamePoint = 64;
     for (int i = 0; i < 7; i++) {
-        /* try catch */
-        cin >> name >> card;
-        this->playersList.addPlayer(Player(name, card));
+        getline(cin, name);
+        this->playersList.addPlayer(Player(name, 0));
     }
-
-    /* TODO: Deck initialization */
 }
 
 int Game::getRoundCount() {
@@ -36,9 +34,17 @@ long int Game::getGamePoint() {
     return this->gamePoint;
 }
 
+Deck& Game::getDeck() {
+    return this->mainDeck;
+}
+
+TableCard& Game::getTableCard() {
+    return this->mainTable;
+}
+
 void Game::multiplyGamePoint(float multiplier) {
     if (this->gamePoint * multiplier < 1) {
-        // TODO: throw exc
+        throw(GameMultiplierException());
     } else {
         this->gamePoint = (long int) (this->gamePoint * multiplier);
     }
@@ -46,10 +52,27 @@ void Game::multiplyGamePoint(float multiplier) {
 
 void Game::runTurn() {
     string cmd;
+    string validCmd[9] = {"DOUBLE", "HALF", "NEXT", "REROLL", "QUADRUPLE", "REVERSE", "SWAP", "SWTIC" "ABILITYLESS"};
     cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
-    cout << "Insert command: ";
-    /* TODO: try catch */
-    cin >> cmd;
+    
+    bool valid = 0;
+    do
+    {
+        try
+        {
+            InputHandler<string> commandHandler;
+            commandHandler.setInput("Insert command: ", validCmd, 9);
+            cmd = commandHandler.getInput();
+        }
+        catch(Exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
+    } while (!valid);
+    
+    
+    cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
 
     Command * command;
     if (cmd == string("DOUBLE")) {
@@ -70,7 +93,9 @@ void Game::runTurn() {
         command = new SwitchCard(this);
     } else if (cmd == string("ABILITYLESS")) {
         command = new Abilityless(this);
-    } 
+    }
+
+    command->execute();
 
     this->playersList.changeTurn();
     this->turnCountInARound = (this->turnCountInARound + 1) % 7;
@@ -107,12 +132,12 @@ bool Game::isComplete() {
     return this->roundCount == 6 && this->turnCountInARound == 0;
 }
 
-/* TODO: implement */
-// void Game::endGame() {
-//     (*this->playersList.highCard()).addPoint(this->gamePoint);
+void Game::endGame() {
+    
+//     ().addPoint(this->gamePoint);
 //     cout << "the winner is" << endl;
 //     (*this->playersList.highCard()).print();
-// }
+}
 
 void Game::printGameState() {
     cout << "Game Point : " << this->gamePoint << endl;

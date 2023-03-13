@@ -5,7 +5,9 @@ int main(int argc, const char** argv) {
     Game g;
     do {
         g.runGame();
-        g.resetGame();
+        if (!g.isFinished()) {
+            g.resetGame();
+        }
     } while (!g.isFinished());
     
     return 0;
