@@ -34,15 +34,18 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   // int getAbilityCard() const;
   // void setAbilityCard(int abilityCard);
 
-  Card getFirstCard();
-  Card getSecondCard();
+  // IDX 0 for LeftCard, IDX 1 for RightCard
+  Card getCard(int idx);
+  void setCard(int idx, Card card);
+
   Card* getAllCards();
   // resetCards();
-  void setCards(Card* card);
+  // void setCards(Card* card);
 
   // operator
   Player& operator<<(const Card& card) override;
   Player& operator>>(Card* card) override;
+  
   bool operator<(const Player& other);
   bool operator>(const Player& other);
   bool operator==(const Player& other);

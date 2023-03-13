@@ -20,6 +20,7 @@ public:
 
   // Methods
   Card getTop() const;
+  // Card* getTwo() const;
   void resetDeck();
   void shuffleDeck();
 };

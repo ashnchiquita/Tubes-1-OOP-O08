@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include "../playerslist/playerslist.hpp"
+#include "../inventory_holder/deck.hpp"
 
 class Game {
     private:
@@ -10,7 +11,7 @@ class Game {
         long int gamePoint;
         PlayersList playersList;
         /* TODO : insert deck */
-        // Deck mainDeck
+        Deck mainDeck;
 
     public:
         Game();
@@ -34,6 +35,20 @@ class Game {
         /* TODO: overload with const */
         PlayersList getPlayersList();
         PlayersList& getPlayersListRef();
+
+        /* Basic Command */
+        void Double();
+        void Half();
+        void Next();
+
+        /* Ability Command */
+        void Reroll();
+        void Quadruple();
+        void Quarter();
+        void ReverseDirection();
+        void SwapCard();
+        void SwitchCard();
+        void AbilityLess();
 };
 
 #endif

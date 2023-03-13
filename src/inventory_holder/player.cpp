@@ -53,11 +53,20 @@ void Player::setPoint(int point) { this->point = point; }
 //   this->abilityCard = abilityCard;
 // }
 
-Card Player::getFirstCard() {
-  return this->bufferCard.first;
+Card Player::getCard(int idx) {
+  if (idx == 0){
+    return this->bufferCard.first;
+  } else if ( idx == 1){
+    return this->bufferCard.second;
+  }
 }
-Card Player::getSecondCard() { 
-  return this->bufferCard.second;
+
+void Player::setCard(int idx, Card card) {
+  if (idx == 0){
+    bufferCard.first = card;
+  } else if ( idx == 1){
+    bufferCard.second = card;
+  }
 }
 
 Card* Player::getAllCards() {
@@ -65,11 +74,6 @@ Card* Player::getAllCards() {
   output[0] = this->bufferCard.first;
   output[1] = this->bufferCard.second;
   return output;
-}
-
-void Player::setCards(Card* card) {
-  this->bufferCard.first = card[0];
-  this->bufferCard.second = card[1];
 }
 
 Player& Player::operator<<(const Card& card) {
