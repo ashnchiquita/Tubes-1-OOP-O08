@@ -7,9 +7,18 @@
 #include "../valuables/card.hpp"
 #include "./inventory_holder.hpp"
 
-enum class AbilityType {NULLABILITY, REROLL, QUADRUPLE, QUARTER, REVERSE, SWAP, SWITCH, ABILITYLESS};
+enum class AbilityType {
+  NULLABILITY,
+  REROLL,
+  QUADRUPLE,
+  QUARTER,
+  REVERSE,
+  SWAP,
+  SWITCH,
+  ABILITYLESS
+};
 
-class Player : public InventoryHolder<pair <Card, Card> > {
+class Player : public InventoryHolder<pair<Card, Card> > {
  private:
   const int ID;
   string name;
@@ -45,7 +54,7 @@ class Player : public InventoryHolder<pair <Card, Card> > {
   Card getCard(int idx);
   void setCard(int idx, Card card);
 
-  Card* getAllCards();
+  Card* getAllCards() const;
   // resetCards();
   // void setCards(Card* card);
 

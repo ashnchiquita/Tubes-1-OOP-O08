@@ -1,152 +1,227 @@
-#include <string>
-#include <iostream>
-#include <vector>
 #include "game.hpp"
+
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "../command/ability_command.cpp"
+#include "../command/basic_command.cpp"
+#include "../command/command.cpp"
 #include "../exception/game_exception.hpp"
-#include "../command/command.hpp"
-#include "../command/basic_command.hpp"
-#include "../command/ability_command.hpp"
-#include "../input_handler/input_handler.hpp"
+#include "../input_handler/input_handler.cpp"
+#include "../inventory_holder/deck.cpp"
+#include "../inventory_holder/inventory_holder.cpp"
+#include "../inventory_holder/player.cpp"
+#include "../inventory_holder/table_card.cpp"
+#include "../playerslist/playerslist.cpp"
+#include "../valuables/card.cpp"
+#include "../valuables/combo.cpp"
 
 using namespace std;
 
 Game::Game() {
-    string name;
-    cout << "halo selamat dtg" << endl;
-    this->roundCount = 0;
-    this->turnCountInARound = 0;
-    this->gamePoint = 64;
-    for (int i = 0; i < 7; i++) {
-        getline(cin, name);
-        this->playersList.addPlayer(Player(name, 0));
-    }
+  string name;
+  cout << "halo selamat dtg" << endl;
+  this->roundCount = 0;
+  this->turnCountInARound = 0;
+  this->gamePoint = 64;
+  for (int i = 0; i < 7; i++) {
+    getline(cin, name);
+    this->playersList.addPlayer(Player(name, 0));
+  }
 }
 
-int Game::getRoundCount() {
-    return this->roundCount;
-}
+int Game::getRoundCount() { return this->roundCount; }
 
-int Game::getTurnCountInARound() {
-    return this->turnCountInARound;
-}
+int Game::getTurnCountInARound() { return this->turnCountInARound; }
 
-long int Game::getGamePoint() {
-    return this->gamePoint;
-}
+long int Game::getGamePoint() { return this->gamePoint; }
 
-Deck& Game::getDeck() {
-    return this->mainDeck;
-}
+Deck& Game::getDeck() { return this->mainDeck; }
 
-TableCard& Game::getTableCard() {
-    return this->mainTable;
-}
+TableCard& Game::getTableCard() { return this->mainTable; }
 
 void Game::multiplyGamePoint(float multiplier) {
-    if (this->gamePoint * multiplier < 1) {
-        throw(GameMultiplierException());
-    } else {
-        this->gamePoint = (long int) (this->gamePoint * multiplier);
-    }
+  if (this->gamePoint * multiplier < 1) {
+    throw(GameMultiplierException());
+  } else {
+    this->gamePoint = (long int)(this->gamePoint * multiplier);
+  }
 }
 
 void Game::runTurn() {
-    string cmd;
-    string validCmd[9] = {"DOUBLE", "HALF", "NEXT", "REROLL", "QUADRUPLE", "REVERSE", "SWAP", "SWTIC" "ABILITYLESS"};
-    cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
-    
-    bool valid = 0;
-    do
-    {
-        try
-        {
-            InputHandler<string> commandHandler;
-            commandHandler.setInput("Insert command: ", validCmd, 9);
-            cmd = commandHandler.getInput();
-        }
-        catch(Exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
-    } while (!valid);
-    
-    
-    cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
+  string cmd;
+  string validCmd[9] = {"DOUBLE",
+                        "HALF",
+                        "NEXT",
+                        "REROLL",
+                        "QUADRUPLE",
+                        "REVERSE",
+                        "SWAP",
+                        "SWTIC"
+                        "ABILITYLESS"};
+  cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
 
-    Command * command;
-    if (cmd == string("DOUBLE")) {
-        command = new Double(this);
-    } else if (cmd == string("HALF")) {
-        command = new Half(this);
-    } else if (cmd == string("NEXT")) {
-        command = new Next(this);
-    } else if (cmd == string("REROLL")) {
-        command = new Reroll(this);
-    } else if (cmd == string("QUADRUPLE")) {
-        command = new Quadruple(this);
-    } else if (cmd == string("REVERSE")) {
-        command = new ReverseDirection(this);
-    } else if (cmd == string("SWAP")) {
-        command = new SwapCard(this);
-    } else if (cmd == string("SWITCH")) {
-        command = new SwitchCard(this);
-    } else if (cmd == string("ABILITYLESS")) {
-        command = new Abilityless(this);
+  bool valid = 0;
+  do {
+    try {
+      InputHandler<string> commandHandler;
+      commandHandler.setInput("Insert command: ", validCmd, 9);
+      cmd = commandHandler.getInput();
+    } catch (Exception& e) {
+      std::cerr << e.what() << '\n';
     }
 
-    command->execute();
+  } while (!valid);
 
+  cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
+
+  Command* command;
+  if (cmd == string("DOUBLE")) {
+    command = new Double(this);
+  } else if (cmd == string("HALF")) {
+    command = new Half(this);
+  } else if (cmd == string("NEXT")) {
+    command = new Next(this);
+  } else if (cmd == string("REROLL")) {
+    command = new Reroll(this);
+  } else if (cmd == string("QUADRUPLE")) {
+    command = new Quadruple(this);
+  } else if (cmd == string("REVERSE")) {
+    command = new ReverseDirection(this);
+  } else if (cmd == string("SWAP")) {
+    command = new SwapCard(this);
+  } else if (cmd == string("SWITCH")) {
+    command = new SwitchCard(this);
+  } else if (cmd == string("ABILITYLESS")) {
+    command = new Abilityless(this);
+  }
+
+  command->execute();
+
+  this->playersList.changeTurn();
+  this->turnCountInARound = (this->turnCountInARound + 1) % 7;
+  if (this->turnCountInARound == 0) {
+    this->roundCount++;
     this->playersList.changeTurn();
-    this->turnCountInARound = (this->turnCountInARound + 1) % 7;
-    if (this->turnCountInARound == 0) {
-        this->roundCount++;
-        this->playersList.changeTurn();
-    }
+  }
 }
 
 void Game::runGame() {
-    // Deck is shuffled when game started
-    this->mainDeck.shuffleDeck();
+  // Deck is shuffled when game started
+  this->mainDeck.shuffleDeck();
 
-    do {
-        printGameState();
-        runTurn();
-    } while (!this->isComplete());
-    /* TODO: uncomment after implementation */
-    // this->endGame();
+  do {
+    printGameState();
+    runTurn();
+  } while (!this->isComplete());
+  /* TODO: uncomment after implementation */
+  // this->endGame();
 }
 
 void Game::resetGame() {
-    cout << "game di reset" << endl;
-    this->roundCount = 0;
-    this->turnCountInARound = 0;
-    this->gamePoint = 64;
-    this->playersList.reset();
-    /* TODO: Deck configuration */
-    this->mainDeck.resetDeck();
-    this->mainDeck.shuffleDeck();
+  cout << "game di reset" << endl;
+  this->roundCount = 0;
+  this->turnCountInARound = 0;
+  this->gamePoint = 64;
+  this->playersList.reset();
+  /* TODO: Deck configuration */
+  this->mainDeck.resetDeck();
+  this->mainDeck.shuffleDeck();
 }
 
 bool Game::isComplete() {
-    return this->roundCount == 6 && this->turnCountInARound == 0;
+  return this->roundCount == 6 && this->turnCountInARound == 0;
 }
 
 void Game::endGame() {
-    
-//     ().addPoint(this->gamePoint);
-//     cout << "the winner is" << endl;
-//     (*this->playersList.highCard()).print();
+  Card* tableCard = new Card[5];
+  Card** playerHands = new Card*[this->playersList.getSize()];
+  Card* combinedCards = new Card[5];
+  tableCard = this->mainTable.getAllCards();
+
+  for (int i = 0; i < this->playersList.getSize(); i++) {
+    playerHands[i] = new Card[2];
+    playerHands[i] = this->playersList.getPlayerAt(i).getAllCards();
+  }
+
+  // Initialization
+  Player& const winningPlayer = this->playersList.getPlayerAt(0);
+  copy(tableCard, tableCard + 5, combinedCards);
+
+  Combo tempCombo(combinedCards, 5);
+  int highestCombo = tempCombo.value();
+
+  Card* maxComboCards = new Card[5];
+  copy(combinedCards, combinedCards + 5, maxComboCards);
+
+  // Find a player with the highest combo
+  // C(5, 4) * C(2, 1)
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (i != j) {
+        combinedCards[j] = tableCard[j];
+      }
+    }
+
+    for (int j = 0; j < this->playersList.getSize(); j++) {
+      combinedCards[i] = playerHands[j][0];
+      tempCombo = *(new Combo(combinedCards, 5));
+
+      if (tempCombo.value() > highestCombo) {
+        highestCombo = tempCombo.value();
+        winningPlayer = this->playersList.getPlayerAt(j);
+        copy(combinedCards, combinedCards + 5, maxComboCards);
+      }
+
+      combinedCards[i] = playerHands[j][1];
+      tempCombo = *(new Combo(combinedCards, 5));
+
+      if (tempCombo.value() > highestCombo) {
+        highestCombo = tempCombo.value();
+        winningPlayer = this->playersList.getPlayerAt(j);
+        copy(combinedCards, combinedCards + 5, maxComboCards);
+      }
+    }
+  }
+
+  // C(5, 3) * C(2, 2)
+  do {
+    for (int i = 0; i < this->playersList.getSize(); i++) {
+      copy(playerHands[i], playerHands[0] + 2, combinedCards);
+      copy(tableCard, tableCard + 3, combinedCards + 2);
+
+      tempCombo = *(new Combo(combinedCards, 5));
+
+      if (tempCombo.value() > highestCombo) {
+        highestCombo = tempCombo.value();
+        winningPlayer = this->playersList.getPlayerAt(i);
+        copy(combinedCards, combinedCards + 5, maxComboCards);
+      }
+    }
+  } while (next_permutation(tableCard, tableCard + 5));
+
+  // winningPlayer.addPoint(this->gamePoint);
+  cout << "The winner is ";
+  winningPlayer.print();
+
+  cout << "Winning combo: ";
+  for (int i = 0; i < 5; i++) {
+    maxComboCards[i].displayCard();
+  }
 }
 
 void Game::printGameState() {
-    cout << "Game Point : " << this->gamePoint << endl;
-    cout << "Round Count : " << this->roundCount << endl;
-    cout << "Turn Count : " << this->turnCountInARound << endl;
-    cout << "Players State" << endl;
-    this->playersList.print();
+  cout << "Game Point : " << this->gamePoint << endl;
+  cout << "Round Count : " << this->roundCount << endl;
+  cout << "Turn Count : " << this->turnCountInARound << endl;
+  cout << "Players State" << endl;
+  this->playersList.print();
 }
 
-Player& Game::getCurrPlayerRef() {
-    return this->playersList.getCurrPlayer();
-}
+Player& Game::getCurrPlayerRef() { return this->playersList.getCurrPlayer(); }
+
+PlayersList Game::getPlayersList() { return this->playersList; }
+
+PlayersList& Game::getPlayersListRef() { return this->playersList; }
