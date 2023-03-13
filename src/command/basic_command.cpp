@@ -12,26 +12,20 @@ void Double::execute() {
     
     cout << "Double" << endl;
     this->game->multiplyGamePoint(2);
-    // cout << currGame.getCurrPlayer().name << "melakukan DOUBLE!" << endl;
-    // cout << "Poin hadiah naik dari " << point << " menjadi curr.gamePoint!";
+    // Interface
+    cout << "Poin hadiah naik dari " << point << " menjadi " << this->game->getGamePoint() << endl;
 }
 
 void Half::execute() {
     long int point = this->game->getGamePoint();
 
     cout << "Half" << endl;
-    // try
     this->game->multiplyGamePoint(0.5);
-    // cout << currGame.getCurrPlayer().name << "melakukan HALF!" << endl;
-
-    // catch(err){
-    //     cout << "Sayangnya poin hadiah sudah bernilai " << curr.gamePoint << ". Poin hadiah tidak berubah.. Giliran dilanjut!"
-    // }
-    // cout << "Poin hadiah turun dari " << point << " menjadi curr.gamePoint!";
-    
+    // Interface
+    cout << "Poin hadiah turun dari " << point << " menjadi " << this->game->getGamePoint() << endl;
 }
 
 void Next::execute() {
     cout << "Next" << endl;
-    // cout << "Giliran dilanjut ke pemain selanjutnya."
+    cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
 }
