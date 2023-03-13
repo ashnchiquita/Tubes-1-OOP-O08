@@ -22,9 +22,12 @@ class PlayersList {
         // vector<Player>::iterator highCard();
         
         PlayersList operator-(const PlayersList& other);
+        // PlayersList operator-(const Player& other);
         
         /* TODO: overload using const */
         Player& getCurrPlayer();
+
+        /* TODO: bisa ga PlayersList[]?*/
 
         void reversePlayers(int turnCount);
         void reset();
