@@ -1,0 +1,3 @@
+/home/rma1403/Documents/Programming/projects/Tubes-1-OOP-O08/CMakeFiles/Tubes-1-OOP-O08.dir
+/home/rma1403/Documents/Programming/projects/Tubes-1-OOP-O08/CMakeFiles/edit_cache.dir
+/home/rma1403/Documents/Programming/projects/Tubes-1-OOP-O08/CMakeFiles/rebuild_cache.dir

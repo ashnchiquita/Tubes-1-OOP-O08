@@ -1,4 +1,8 @@
 #include "game.hpp"
+
+#include <iostream>
+#include <string>
+
 #include "../command/ability_command.hpp"
 #include "../command/basic_command.hpp"
 #include "../command/command.hpp"
@@ -11,8 +15,6 @@
 #include "../playerslist/playerslist.hpp"
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
-#include <iostream>
-#include <string>
 using namespace std;
 
 Game::Game() {
@@ -71,7 +73,7 @@ void Game::runTurn() {
   cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
 
   Command* command;
-  
+
   if (cmd == string("DOUBLE")) {
     command = new Double(this);
   } else if (cmd == string("HALF")) {
@@ -93,7 +95,8 @@ void Game::runTurn() {
       command = new Abilityless(this);
     }
   } else {
-    // TODO: throw exception untuk yang masukin command ability di ronde 0. tolong cek ya apa dia hrs di loop ap ngga
+    // TODO: throw exception untuk yang masukin command ability di ronde 0.
+    // tolong cek ya apa dia hrs di loop ap ngga
   }
 
   command->execute();
@@ -124,9 +127,7 @@ void Game::resetGame() {
   this->mainDeck.shuffleDeck();
 }
 
-bool Game::isFinished() {
-  return this->playersList.hasWinner();
-}
+bool Game::isFinished() { return this->playersList.hasWinner(); }
 
 void Game::givePoint() {
   Card* tableCard = new Card[5];
@@ -140,7 +141,7 @@ void Game::givePoint() {
   }
 
   // Initialization
-  Player& const winningPlayer = this->playersList.getPlayerAt(0);
+  Player& winningPlayer = this->playersList.getPlayerAt(0);
   copy(tableCard, tableCard + 5, combinedCards);
 
   Combo tempCombo(combinedCards, 5);

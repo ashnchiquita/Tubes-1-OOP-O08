@@ -4,11 +4,10 @@ project(Tubes-1-OOP-O08)
 add_executable(Tubes-1-OOP-O08
     src/main.cpp
     src/valuables/card.cpp
-    src/valuables/card.cpp
+    src/valuables/combo.cpp
     src/randomizer/randomizer.cpp
     src/playerslist/playerslist.cpp
     src/inventory_holder/deck.cpp
-    src/inventory_holder/inventory_holder.cpp
     src/inventory_holder/player.cpp
     src/inventory_holder/table_card.cpp
     src/game/game.cpp

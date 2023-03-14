@@ -99,6 +99,8 @@ class Card : public Valuable {
    * Displays card to the screen
    */
   void displayCard();
+
+  bool operator<(const Card& other) { return this->getNum() < other.getNum(); }
 };
 
 #endif
