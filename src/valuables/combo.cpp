@@ -15,6 +15,10 @@ Combo::Combo(const Card* cardList, int listSize) {
   this->comboSize = listSize;
 
   int* countArr = new int[14];
+  for (int i = 0; i < 14; i++) {
+    countArr[i] = 0;
+  }
+
   int** colorArr = new int*[14];
   for (int i = 0; i < 14; i++) {
     colorArr[i] = new int[4];
@@ -27,7 +31,7 @@ Combo::Combo(const Card* cardList, int listSize) {
 
   int index = 0, count = 1;
   while (index != 5) {
-    for (int i = 0; i < 14; i++) {
+    for (int i = 1; i < 14; i++) {
       if (countArr[i] == count) {
         for (int j = 0; j < 4; j++) {
           if (colorArr[i][j] > 0) {
@@ -141,5 +145,6 @@ float Combo::value() {
   }
 
   return (cardValue / MAX_CARD_VALUE) +
-         this->cardList[this->comboSize - 1].value() * 10 + comboPriority * 100;
+         this->cardList[this->comboSize - 1].value() * 10 +
+         comboPriority * 1000;
 }
