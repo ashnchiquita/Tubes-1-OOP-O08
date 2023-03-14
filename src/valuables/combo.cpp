@@ -35,7 +35,7 @@ Combo::Combo(const Card* cardList, int listSize) {
       if (countArr[i] == count) {
         for (int j = 0; j < 4; j++) {
           if (colorArr[i][j] > 0) {
-            (this->cardList[index]) = {i, static_cast<CardColor>(j)};
+            (this->cardList[index]) = *(new Card(i, static_cast<CardColor>(j)));
             index++;
           }
         }
@@ -106,27 +106,26 @@ ComboType Combo::determineCombo() {
  * @returns Priority of the combo
  */
 int Combo::getComboPriority(ComboType type) {
-  switch (type) {
-    case ComboType::HIGH_CARD:
-      return 1;
-    case ComboType::PAIR:
-      return 2;
-    case ComboType::TWO_PAIR:
-      return 3;
-    case ComboType::THREE_OF_A_KIND:
-      return 4;
-    case ComboType::STRAIGHT:
-      return 5;
-    case ComboType::FLUSH:
-      return 6;
-    case ComboType::FULL_HOUSE:
-      return 7;
-    case ComboType::FOUR_OF_A_KIND:
-      return 8;
-    case ComboType::STRAIGHT_FLUSH:
-      return 9;
-    default:
-      return 0;
+  if (type == ComboType::HIGH_CARD) {
+    return 1; 
+  } else if (type == ComboType::PAIR) {
+    return 2; 
+  } else if (type == ComboType::TWO_PAIR) {
+    return 3; 
+  } else if (type == ComboType::THREE_OF_A_KIND) {
+    return 4; 
+  } else if (type == ComboType::STRAIGHT) {
+    return 5; 
+  } else if (type == ComboType::FLUSH) {
+    return 6; 
+  } else if (type == ComboType::FULL_HOUSE) {
+    return 7; 
+  } else if (type == ComboType::FOUR_OF_A_KIND) {
+    return 8; 
+  } else if (type == ComboType::STRAIGHT_FLUSH) {
+    return 9; 
+  } else {
+    return 0;
   }
 }
 
