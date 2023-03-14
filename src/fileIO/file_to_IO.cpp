@@ -53,6 +53,7 @@ vector<Card> FileIO::colorCodeFromSentence(const string& filename) {
     cerr << "Exception: " << e.what() << endl;
     // handling empty vector
     colorCodes.clear();
+    // TODO: Throw file exception 
   }
 
   return colorCodes;

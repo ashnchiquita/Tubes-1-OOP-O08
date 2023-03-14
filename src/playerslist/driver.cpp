@@ -22,7 +22,13 @@ int main() {
     // tc = 0
     p.changeTurn();
     // tc = 1
-    // p.changeTurn();
+    p.changeTurn();
+    p.changeTurn();
+    p.changeTurn();
+    p.changeTurn();
+    p.changeTurn();
+    p.changeTurn();
+    
     // tc = 2
     cout << "==================== CHANGE p TURN ====================" << endl;
     p.print();
@@ -73,8 +79,11 @@ int main() {
     
     cout << endl << endl;
     cout << "==================== copy LEADERBOARD ====================" << endl;
-    copy.getLeaderboard().printSequenceOrder();
+    copy.getLeaderboard().printSequencePoints();
     
+    cout << "diff" << endl;
+    (copy - Player("1",pow(2, 30))).print();
+    copy.print();
     return 0;
 }
 

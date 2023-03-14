@@ -15,6 +15,7 @@ class Deck : public InventoryHolder<vector<Card> > {
   Deck();  // ctor
   Deck(vector<Card>);
   Deck(const Deck& other);
+  Deck& operator=(const vector<Card>);
   Deck& operator=(const Deck& other);
 
   Deck& operator<<(const Card& card) override;

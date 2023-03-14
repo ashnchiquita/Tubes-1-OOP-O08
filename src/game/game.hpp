@@ -15,23 +15,21 @@ class Game {
 
  public:
   Game();
-  long int getGamePoint();
-  void multiplyGamePoint(float multiplier);
-  void runTurn();
-  void runGame();
-  void resetGame();
-
-  /* TODO: implement end game & finishing */
-  bool isFinished();
-  void givePoint();
-  void printGameState();
-
-  /* TODO: overload with const */
+  long int getGamePoint() const;
   Player& getCurrPlayerRef();
   Deck& getDeck();
   TableCard& getTableCard();
   PlayersList getPlayersList();
   PlayersList& getPlayersListRef();
+
+  void multiplyGamePoint(float multiplier);
+  void runTurn();
+  void runGame();
+  void resetGame();
+
+  bool isFinished();
+  void givePoint();
+  void printGameState();
 };
 
 #endif

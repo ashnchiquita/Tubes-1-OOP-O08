@@ -27,6 +27,16 @@ Deck::Deck(const Deck& other) {
   this->bufferCard = other.bufferCard;
 };
 
+Deck& Deck::operator=(const vector<Card> cardArray) {
+  this->bufferCard.clear();
+  this->inventoryLimit = 52;
+  for (int i = 0; i < 52; i++) {
+    *this << cardArray[i];
+  }
+
+  return *this;
+}
+
 Deck& Deck::operator=(const Deck& other) {
   this->bufferCard.clear();
   this->inventoryLimit = other.inventoryLimit;

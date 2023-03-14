@@ -15,22 +15,48 @@
 #include "../playerslist/playerslist.hpp"
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
+
 using namespace std;
 
 Game::Game() {
   string name;
+  string filename;
   Card temp;
   string option[2] = {"y", "n"};
   // Opening
-  cout << "halo selamat dtg" << endl;
+  cout << "p cape aku cok" << endl;
+
   // Input Source
-  cout << "Apakah mau input dari file? [y/n]" << endl;
-  inputHandler<string> optionPicker;
+  InputHandler<string> optionPicker;
+  bool valid = false;
+  
+  do {
+    try {
+      optionPicker.setInput("Apakah mau input dari file? [y/n]", option, 2);
+      string choice = optionPicker.getInput();
+
+      if (choice == "y"){
+        // Filename
+        cout << "Masukkan filename: ";
+        cin << filename;
+
+        // Get mainDeck
+        FileIO fileHandler;
+        mainDeck = fileHandler.colorCodeFromSentence(filename);
+      }
+      valid = true;
+
+    } catch(Exception& e) {
+      cout << e.what() << endl;
+    }
+  } while (!valid);
 
   this->gamePoint = 64;
+
   for (int i = 0; i < 7; i++) {
     cout << "Enter your name: " << endl;
     getline(cin, name);
+    // Players get Cards
     this->playersList.addPlayer(Player(name, 0));
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
@@ -39,7 +65,7 @@ Game::Game() {
   }
 }
 
-long int Game::getGamePoint() { return this->gamePoint; }
+long int Game::getGamePoint() const { return this->gamePoint; }
 
 Deck& Game::getDeck() { return this->mainDeck; }
 
@@ -47,11 +73,13 @@ TableCard& Game::getTableCard() { return this->mainTable; }
 
 void Game::multiplyGamePoint(float multiplier) {
   if (this->gamePoint * multiplier < 1) {
-    throw(GameMultiplierException());
+    throw GameMultiplierException();
   } else {
-    this->gamePoint = (long int)(this->gamePoint * multiplier);
+    this->gamePoint = this->gamePoint * ((long int) multiplier);
   }
 }
+
+// TANDANYA CHI
 
 void Game::runTurn() {
   string cmd;
@@ -67,7 +95,7 @@ void Game::runTurn() {
 
   cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
 
-  bool valid = 0;
+  bool valid = false;
   do {
     try {
       InputHandler<string> commandHandler;

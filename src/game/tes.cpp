@@ -55,10 +55,11 @@ int main() {
     A a('x');
     Tes t = Tes(1,a);
 
-    A b = t.getA();
+    A& b = t.getA();
     
     b.setZ('z');
     b.print();
+    cout << "ngik" << endl;
     t.print();
     t.getA().setZ('0');
     t.print();

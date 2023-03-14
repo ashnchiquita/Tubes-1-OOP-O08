@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <math.h>
+#include <vector>
 
 #include "../inventory_holder/player.hpp"
 
@@ -26,6 +27,7 @@ class PlayersList {
         void print();
         void printSequence();
         void printSequenceOrder();
+        void printSequencePoints();
         
         PlayersList operator-(const Player& other);
 
@@ -48,6 +50,7 @@ class PlayersList {
         PlayersList getLeaderboard() const;
 
         bool restrictCommand() const;
+        Player& findPlayer(const Player& other);
 };
 
 #endif

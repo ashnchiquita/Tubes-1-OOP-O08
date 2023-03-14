@@ -23,9 +23,10 @@ SwitchCard::SwitchCard(Game* currentGame) : AbilityCommand(currentGame) {}
 Abilityless::Abilityless(Game* currentGame) : AbilityCommand(currentGame) {}
 
 void AbilityCommand::turnOffAbility() {
-  this->game->getCurrentPlayerRef().setAbilitySt
+  this->game->getCurrPlayerRef().setAbilityCardStatus(false);
 }
 
+// AMAN
 void Reroll::execute() {
   // Pemain membuang kedua kartu yang ada di tangannya dan mengambil ulang dua
   // kartu baru
@@ -43,8 +44,11 @@ void Reroll::execute() {
   leftCard.displayCard();
   cout << "2.";
   rightCard.displayCard();
+
+  this->turnOffAbility();
 }
 
+// AMAN
 void Quadruple::execute() {
   // Pemain akan menaikkan total poin hadiah pada permainan menjadi empat kali
   // lipat
@@ -55,8 +59,11 @@ void Quadruple::execute() {
   // Interface
   cout << "Poin hadiah naik dari " << point << " menjadi "
        << this->game->getGamePoint() << "!";
+
+  this->turnOffAbility();
 }
 
+// AMAN
 void Quarter::execute() {
   // Pemain akan menurunkan total poin hadiah pada permainan menjadi seperempat
   // nilai awal.
@@ -66,6 +73,8 @@ void Quarter::execute() {
   // Interface
   cout << "Poin hadiah turun dari " << point << " menjadi "
        << this->game->getGamePoint() << "!";
+
+  this->turnOffAbility();
 }
 
 void SwapCard::execute() {
@@ -74,10 +83,9 @@ void SwapCard::execute() {
   PlayersList optionList;
   // Picking Options
   int firstOption, secondOption;
-  Player firstPlayer, secondPlayer;
   int firstCard, secondCard;
 
-  bool valid = 0;
+  bool valid = false;
   do {
     try {
       InputHandler<int> optionHandler;
@@ -87,16 +95,12 @@ void SwapCard::execute() {
       optionList.printSequenceOrder();
       optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
       firstOption = optionHandler.getInput() - 1;
-      // firstPlayer =
-      // this->game->getPlayersListRef().find(optionList.getPlayerAt(firstOption));
 
       // Select Second Player
-      optionList = this->game->getPlayersList() - firstPlayer;
+      optionList = this->game->getPlayersList() - this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption));
       optionList.printSequenceOrder();
       optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
       secondOption = optionHandler.getInput() - 1;
-      // secondPlayer =
-      // this->game->getPlayersListRef().find(optionList.getPlayerAt(secondOption));
 
       // Select Cards
       optionHandler.setInput("Masukan pilihan: ", 1, 2);
@@ -104,11 +108,14 @@ void SwapCard::execute() {
       optionHandler.setInput("Masukan pilihan: ", 1, 2);
       secondCard = optionHandler.getInput() - 1;
 
-      valid = 1;
+      valid = true;
     } catch (Exception& e) {
-      std::cerr << e.what() << '\n';
+      cout << e.what() << '\n';
     }
   } while (!valid);
+
+  Player& firstPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption));
+  Player& secondPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(secondOption));
 
   // Swapping Cards
   Card tempCard;
@@ -119,8 +126,11 @@ void SwapCard::execute() {
   // Interface
   cout << "Kartu " << firstPlayer.getName() << " telah tertukar dengan "
        << secondPlayer.getName() << "." << endl;
+
+  this->turnOffAbility();
 }
 
+// AMAN
 void ReverseDirection::execute() {
   // Memutar arah giliran eksekusi perintah oleh pemain
   this->game->getPlayersListRef().reversePlayers();
@@ -129,6 +139,8 @@ void ReverseDirection::execute() {
   this->game->getPlayersListRef().getRemainingTurns().printSequence();
   cout << "Urutan eksekusi giliran berikutnya: ";
   this->game->getPlayersListRef().getNextRound().printSequence();
+
+  this->turnOffAbility();
 }
 
 void SwitchCard::execute() {
@@ -137,8 +149,7 @@ void SwitchCard::execute() {
 
   PlayersList optionList;
   int option;
-  Player targetPlayer, currPlayer;
-  currPlayer = this->game->getCurrPlayerRef();
+  Player& currPlayer = this->game->getCurrPlayerRef();
 
   Card firstCard, secondCard;
   firstCard = currPlayer.getCard(0);
@@ -149,7 +160,7 @@ void SwitchCard::execute() {
   secondCard.displayCard();
 
   // Picking Options
-  bool valid = 0;
+  bool valid = false;
   do {
     try {
       cout << "Silahkan pilih pemain yang kartunya ingin Anda tukar" << endl;
@@ -159,18 +170,17 @@ void SwitchCard::execute() {
 
       InputHandler<int> optionHandler;
       optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
-
       option = optionHandler.getInput() - 1;
-      targetPlayer =
-          this->game->getPlayersListRef().find(optionList.getPlayerAt(option));
 
-      valid = 1;
+      valid = true;
     } catch (Exception& e) {
-      std::cerr << e.what() << '\n';
+      cout << e.what() << '\n';
     }
   } while (!valid);
 
   // Swapping Cards
+  Player& targetPlayer = 
+    this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
   targetPlayer.setCard(0, firstCard);
   targetPlayer.setCard(1, secondCard);
   currPlayer.setCard(0, targetPlayer.getCard(0));
@@ -182,6 +192,8 @@ void SwitchCard::execute() {
   cout << "Kartumu sekarang adalah:" << endl;
   currPlayer.getCard(0).displayCard();
   currPlayer.getCard(1).displayCard();
+
+  this->turnOffAbility();
 }
 
 void Abilityless::execute() {
@@ -190,11 +202,10 @@ void Abilityless::execute() {
   PlayersList optionList;
   // Picking Options
   int option;
-  Player targetPlayer;
   cout << this->game->getCurrPlayerRef().getName()
        << " akan mematikan kartu ability lawan!" << endl;
 
-  bool valid = 0;
+  bool valid = false;
   do {
     try {
       cout << "Silahkan pilih pemain yang kartunya ingin dimatikan" << endl;
@@ -206,14 +217,14 @@ void Abilityless::execute() {
       optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
 
       option = optionHandler.getInput() - 1;
-      targetPlayer =
-          this->game->getPlayersListRef().find(optionList.getPlayerAt(option));
 
-      valid = 1;
+      valid = true;
     } catch (Exception& e) {
-      std::cerr << e.what() << '\n';
+      cout << e.what() << '\n';
     }
   } while (!valid);
+
+  Player& targetPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
 
   if (!targetPlayer.getAbilityCardStatus()) {
     cout << "Kartu ability " << targetPlayer.getName()
@@ -225,4 +236,6 @@ void Abilityless::execute() {
     cout << "Kartu ability " << targetPlayer.getName() << "telah dimatikan."
          << endl;
   }
+
+  this->turnOffAbility();
 }

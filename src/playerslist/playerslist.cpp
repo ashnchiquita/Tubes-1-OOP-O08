@@ -1,4 +1,5 @@
 #include "playerslist.hpp"
+
 // #include "../exception/array_exception.hpp"
 
 void PlayersList::delFirstInsertLast() {
@@ -25,10 +26,10 @@ int PlayersList::getTurnCountInARound() const {
 
 void PlayersList::changeTurn() {
     this->delFirstInsertLast();
-    this->turnCountInARound = (this->turnCountInARound + 1) % 7;
-    if (this->turnCountInARound == 0 && this->roundCount != 0) {
+    if (this->turnCountInARound == 6) {
         this->changeRound();
-  }
+    }
+    this->turnCountInARound = (this->turnCountInARound + 1) % 7;
 }
 
 void PlayersList::changeRound() {
@@ -64,6 +65,19 @@ void PlayersList::printSequenceOrder() {
         int count = 1;
         for (i = this->list.begin(); i != this->list.end(); ++i) {
             cout << count << ". " << (*i).getName() << endl;
+            count++;
+        }
+    }
+}
+
+void PlayersList::printSequencePoints() {
+    if (this->getSize() == 0) {
+        cout << "Tidak ada Player" << endl;
+    } else {
+        vector<Player>::iterator i;
+        int count = 1;
+        for (i = this->list.begin(); i != this->list.end(); ++i) {
+            cout << count << ". " << (*i).getName() << ": " << (*i).getPoint() << endl;
             count++;
         }
     }
@@ -152,4 +166,9 @@ PlayersList PlayersList::getLeaderboard() const {
 
 bool  PlayersList::restrictCommand() const {
     return (this->roundCount < 1);
+}
+
+Player& PlayersList::findPlayer(const Player& other) {
+    vector<Player>::iterator res = find(this->list.begin(), this->list.end(), other);
+    return *res;
 }
