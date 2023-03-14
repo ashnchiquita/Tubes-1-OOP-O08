@@ -19,14 +19,23 @@ using namespace std;
 
 Game::Game() {
   string name;
+  Card temp;
+  string option[2] = {"y", "n"};
+  // Opening
   cout << "halo selamat dtg" << endl;
+  // Input Source
+  cout << "Apakah mau input dari file? [y/n]" << endl;
+  inputHandler<string> optionPicker;
+
   this->gamePoint = 64;
-  /* TODO: deck setup */
-  /* TODO: table card setup */
   for (int i = 0; i < 7; i++) {
+    cout << "Enter your name: " << endl;
     getline(cin, name);
     this->playersList.addPlayer(Player(name, 0));
-    /* TODO: players add card */
+    this->mainDeck >> &temp;
+    this->playersList.getPlayerAt(i) << temp;
+    this->mainDeck >> &temp;
+    this->playersList.getPlayerAt(i) << temp;
   }
 }
 
