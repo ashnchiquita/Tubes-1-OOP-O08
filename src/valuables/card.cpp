@@ -46,6 +46,17 @@ Card Card::operator=(const Card& other) {
 }
 
 /**
+ * Checks for equality of two cards
+ *
+ * @param other Other card
+ *
+ * @returns True if the cards are equal
+ */
+bool Card::operator==(const Card& other) {
+  return this->num == other.num && this->color == other.color;
+}
+
+/**
  * Calculates the value of the card
  *
  * @returns Value of the card

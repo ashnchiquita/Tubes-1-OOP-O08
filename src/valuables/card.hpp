@@ -45,6 +45,15 @@ class Card : public Valuable {
   Card operator=(const Card& other);
 
   /**
+   * Checks for equality of two cards
+   *
+   * @param other Other card
+   *
+   * @returns True if the cards are equal
+   */
+  bool operator==(const Card& other);
+
+  /**
    * Calculates the value of the card
    *
    * @returns Value of the card
