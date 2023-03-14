@@ -5,18 +5,19 @@
 #include <string>
 #include <vector>
 
-#include "../command/ability_command.cpp"
-#include "../command/basic_command.cpp"
-#include "../command/command.cpp"
+// jgn pake .cpp. kalo ada generic susah lagi
+#include "../command/ability_command.hpp"
+#include "../command/basic_command.hpp"
+#include "../command/command.hpp"
 #include "../exception/game_exception.hpp"
-#include "../input_handler/input_handler.cpp"
-#include "../inventory_holder/deck.cpp"
-#include "../inventory_holder/inventory_holder.cpp"
-#include "../inventory_holder/player.cpp"
-#include "../inventory_holder/table_card.cpp"
-#include "../playerslist/playerslist.cpp"
-#include "../valuables/card.cpp"
-#include "../valuables/combo.cpp"
+#include "../input_handler/input_handler.hpp"
+#include "../inventory_holder/deck.hpp"
+#include "../inventory_holder/inventory_holder.hpp"
+#include "../inventory_holder/player.hpp"
+#include "../inventory_holder/table_card.hpp"
+#include "../playerslist/playerslist.hpp"
+#include "../valuables/card.hpp"
+#include "../valuables/combo.hpp"
 
 using namespace std;
 
@@ -100,6 +101,8 @@ void Game::runTurn() {
 
   command->execute();
 
+  delete command;
+
   this->playersList.changeTurn();
   this->turnCountInARound = (this->turnCountInARound + 1) % 7;
   if (this->turnCountInARound == 0) {
@@ -125,7 +128,6 @@ void Game::resetGame() {
   this->roundCount = 0;
   this->turnCountInARound = 0;
   this->gamePoint = 64;
-  this->playersList.reset();
   /* TODO: Deck configuration */
   this->mainDeck.resetDeck();
   this->mainDeck.shuffleDeck();

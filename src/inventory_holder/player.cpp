@@ -5,7 +5,7 @@ using namespace std;
 
 int Player::totalPlayer = 0;
 
-Player::Player() : InventoryHolder(2), ID(totalPlayer + 1) {
+Player::Player() : InventoryHolder<pair<Card, Card> >(2) {
   this->name = "";
   this->point = 0;
   Player::totalPlayer++;
@@ -13,14 +13,14 @@ Player::Player() : InventoryHolder(2), ID(totalPlayer + 1) {
 }
 
 Player::Player(string name, int point)
-    : InventoryHolder(2), ID(totalPlayer + 1) {
+    : InventoryHolder<pair<Card, Card> >(2) {
   this->name = name;
   this->point = point;
   Player::totalPlayer++;
-  this->abilityCard = abilityCard;
+  this->abilityCard = AbilityType::NULLABILITY;
 }
 
-Player::Player(const Player& other) : ID(other.ID) {
+Player::Player(const Player& other) : InventoryHolder<pair<Card, Card> >(2) {
   this->inventoryLimit = other.inventoryLimit;
   this->bufferCard.first = other.bufferCard.first;
   this->bufferCard.second = other.bufferCard.second;
@@ -37,7 +37,6 @@ Player& Player::operator=(const Player& other) {
 
   this->name = other.name;
   this->point = other.point;
-  // this->ID = other.ID;
   this->abilityCard = other.abilityCard;
 
   return *this;
@@ -45,7 +44,6 @@ Player& Player::operator=(const Player& other) {
 
 string Player::getName() const { return this->name; }
 void Player::setName(string name) { this->name = name; }
-int Player::getID() const { return this->ID; }
 int Player::getPoint() const { return this->point; }
 void Player::setPoint(int point) { this->point = point; }
 
@@ -58,9 +56,9 @@ void Player::setAbilityCardStatus(bool status) { this->abilityStatus = status; }
 Card Player::getCard(int idx) {
   if (idx == 0) {
     return this->bufferCard.first;
-  } else if (idx == 1) {
+  } else { // idx == 1
     return this->bufferCard.second;
-  }
+  } // TODO : kalo mo pasang if 0 else if 1, pake else terus throw exception out of bounds
 }
 
 void Player::setCard(int idx, Card card) {
@@ -71,6 +69,7 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
+// TODO: kenapa ga pake reference ke card dia aja? kalo gini bakal memory leak
 Card* Player::getAllCards() const {
   Card* output = new Card[2];
   output[0] = this->bufferCard.first;
@@ -117,7 +116,6 @@ bool Player::operator==(const Player& other) {
 }
 
 void Player::print() {
-  cout << "ID: " << this->ID << endl;
   cout << "Name: " << this->name << endl;
   cout << "Point: " << this->point << endl;
 
@@ -136,6 +134,7 @@ void Player::displayAbility() {
   typeMap[AbilityType::SWAP] = "swap";
   typeMap[AbilityType::SWITCH] = "switch";
   typeMap[AbilityType::ABILITYLESS] = "abilityless";
+  typeMap[AbilityType::NULLABILITY] = "nullability";
 
   cout << "Kartu " << typeMap[this->abilityCard] << endl;
 }

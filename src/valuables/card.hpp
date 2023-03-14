@@ -2,7 +2,6 @@
 #define _CARD_HPP_
 
 #include "valuable.hpp"
-using namespace std;
 
 enum class CardColor { GREEN, BLUE, YELLOW, RED };
 

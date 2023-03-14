@@ -8,19 +8,18 @@
 #include "./inventory_holder.hpp"
 
 enum class AbilityType {
-  NULLABILITY,
   REROLL,
   QUADRUPLE,
   QUARTER,
   REVERSE,
   SWAP,
   SWITCH,
-  ABILITYLESS
+  ABILITYLESS,
+  NULLABILITY
 };
 
 class Player : public InventoryHolder<pair<Card, Card> > {
  private:
-  const int ID;
   string name;
   int point;
   static int totalPlayer;
@@ -38,10 +37,10 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   // services
   string getName() const;
   void setName(string name);
-  int getID() const;
 
   int getPoint() const;
   void setPoint(int point);
+  void addPoint(int point);
 
   // Ability Card
   AbilityType getType() const;
