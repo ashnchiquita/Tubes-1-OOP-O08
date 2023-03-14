@@ -1,12 +1,11 @@
 #ifndef PLAYERSLIST_HPP
 #define PLAYERSLIST_HPP
 
+#include "../inventory_holder/player.hpp"
 #include <iostream>
 #include <algorithm>
 #include <math.h>
 #include <vector>
-
-#include "../inventory_holder/player.hpp"
 
 using namespace std;
 
@@ -53,6 +52,7 @@ class PlayersList {
 
         bool restrictCommand() const;
         Player& findPlayer(const Player& other);
+        bool hasAbility() const;
 };
 
 #endif

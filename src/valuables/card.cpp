@@ -52,7 +52,7 @@ Card Card::operator=(const Card& other) {
  *
  * @returns True if the cards are equal
  */
-bool Card::operator==(const Card& other) {
+bool Card::operator==(const Card& other) const {
   return this->num == other.num && this->color == other.color;
 }
 

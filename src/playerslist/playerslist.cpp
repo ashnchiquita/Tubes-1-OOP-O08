@@ -1,6 +1,5 @@
 #include "playerslist.hpp"
-
-// #include "../exception/array_exception.hpp"
+#include "../exception/array_exception.hpp"
 
 void PlayersList::delFirstInsertLast() {
     this->list.push_back(this->list.front());
@@ -100,16 +99,16 @@ void PlayersList::reset() {
 }
 
 Player& PlayersList::getCurrPlayer() {
-    // if (this->list.size() == 0) {
-    //     throw ArrayIndexInvalid();
-    // }
+    if (this->list.size() == 0) {
+        throw ArrayIndexInvalidException();
+    }
     return this->list.front();
 }
 
 Player& PlayersList::getPlayerAt(int i) {
-    // if (i < 0 || i >= this->list.size()) {
-    //     throw ArrayIndexInvalid();
-    // }
+    if (i < 0 || i >= this->list.size()) {
+        throw ArrayIndexInvalidException();
+    }
     return this->list[i];
 }
 
@@ -128,6 +127,7 @@ int PlayersList::getSize() {
 PlayersList PlayersList::getNextRound() {
     PlayersList copy = *this;
     int remainingTurns = (8 - this->turnCountInARound) % 7;
+
     for (int i = 1; i <= remainingTurns; i++) {
         copy.delFirstInsertLast();
     }
@@ -174,9 +174,23 @@ bool PlayersList::restrictTable() const {
 
 Player& PlayersList::findPlayer(const Player& other) {
     vector<Player>::iterator res = find(this->list.begin(), this->list.end(), other);
-    return *res;
+    if (res != this->list.end()) {
+        return *res;
+    } else {
+        throw ArrayException();
+    }
 }
 
 bool PlayersList::isNewRound() const {
     return (this->roundCount != 0 && this->turnCountInARound == 0 );
+}
+
+bool PlayersList::hasAbility() const {
+    vector<Player>::const_iterator it;
+    for(it = this->list.begin(); it != this->list.end(); ++it) {
+        if ((*it).getAbilityCardStatus()) {
+            return true;
+        }
+    }
+    return false;
 }

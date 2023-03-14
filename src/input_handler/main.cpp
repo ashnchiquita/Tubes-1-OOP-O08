@@ -1,4 +1,4 @@
-#include "input_handler.cpp"
+#include "input_handler.hpp"
 
 int main() {
   do

@@ -5,7 +5,10 @@
 #include "../command/basic_command.hpp"
 #include "../command/command.hpp"
 #include "../exception/game_exception.hpp"
-#include "../input_handler/input_handler.hpp"
+#include "../exception/command_exception.hpp"
+
+#include "../input_handler/command_handler.hpp"
+
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/inventory_holder.hpp"
 #include "../inventory_holder/player.hpp"
@@ -22,33 +25,31 @@ Game::Game() {
   // Initialization
   string name, filename;
   Card temp;
-  string option[2] = {"y", "n"};
-  AbilityType abilityList[8] = {
+  AbilityType abilityList[7] = {
     AbilityType::REROLL, 
     AbilityType::QUADRUPLE, 
     AbilityType::QUARTER, 
     AbilityType::REVERSE, 
     AbilityType::SWAP, 
     AbilityType::SWITCH, 
-    AbilityType::ABILITYLESS, 
-    AbilityType::NULLABILITY };
+    AbilityType::ABILITYLESS };
   // Randomizer
   Randomizer r;
-  r.iterShuffle(abilityList, 8);
+  r.iterShuffle(abilityList, 7);
 
   // Opening
   cout << "p cape aku cok" << endl;
 
   // Input Source
-  InputHandler<string> optionPicker;
+  CommandHandler<string> optionPicker;
   bool valid = false;
   
   do {
     try {
-      optionPicker.setInput("Apakah mau input dari file? [y/n]", option, 2);
+      optionPicker.yesNoCommand("Apakah mau input dari file? [y/n]\n");
       string choice = optionPicker.getInput();
 
-      if (choice == "y"){
+      if (choice == "y" || choice == "Y"){
         // Filename
         cout << "Masukkan filename: ";
         cin >> filename;
@@ -67,6 +68,7 @@ Game::Game() {
   this->gamePoint = 64;
 
   // Config Player
+  cin.ignore();
   for (int i = 0; i < 7; i++) {
     cout << "Enter your name: " << endl;
     getline(cin, name);
@@ -91,40 +93,33 @@ void Game::multiplyGamePoint(float multiplier) {
   if (this->gamePoint * multiplier < 1) {
     throw GameMultiplierException();
   } else {
-    this->gamePoint = this->gamePoint * ((long int) multiplier);
+    this->gamePoint = (long int) (this->gamePoint * multiplier);
   }
 }
 
 
 void Game::runTurn() {
   string cmd;
-  string validCmd[9] = {"DOUBLE",
-                        "HALF",
-                        "NEXT",
-                        "REROLL",
-                        "QUADRUPLE",
-                        "REVERSE",
-                        "SWAP",
-                        "SWITCH"
-                        "ABILITYLESS"};
 
   cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
+  cout << "Your ability card: ";
+  this->getCurrPlayerRef().displayAbility();
 
+  Command* command;
+  CommandHandler<string> optionHandler;
   bool valid = false;
   do {
     try {
-      InputHandler<string> commandHandler;
-      commandHandler.setInput("Insert command: ", validCmd, 9);
-      cmd = commandHandler.getInput();
+      optionHandler.turnCommand("Insert command: ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().abilityString());
+      cmd = optionHandler.getInput();
+      valid = true;
     } catch (Exception& e) {
       cout << e.what() << '\n';
     }
 
   } while (!valid);
 
-  cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
-
-  Command* command;
+  // cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
 
   if (cmd == string("DOUBLE")) {
     command = new Double(this);
@@ -132,26 +127,28 @@ void Game::runTurn() {
     command = new Half(this);
   } else if (cmd == string("NEXT")) {
     command = new Next(this);
+  } else if (cmd == string("QUARTER")) {
+    command = new Quarter(this);
+  } else if (cmd == string("QUADRUPLE")) {
+    command = new Quadruple(this);
   } else if (cmd == string("REROLL")) {
     command = new Reroll(this);
-  } else if (!this->playersList.restrictCommand()) {
-    if (cmd == string("QUADRUPLE")) {
-      command = new Quadruple(this);
-    } else if (cmd == string("REVERSE")) {
-      command = new ReverseDirection(this);
-    } else if (cmd == string("SWAP")) {
-      command = new SwapCard(this);
-    } else if (cmd == string("SWITCH")) {
-      command = new SwitchCard(this);
-    } else if (cmd == string("ABILITYLESS")) {
-      command = new Abilityless(this);
-    }
-  } else {
-    // TODO: throw exception untuk yang masukin command ability di ronde 0.
-    // tolong cek ya apa dia hrs di loop ap ngga
+  } else if (cmd == string("REVERSE")) {
+    command = new ReverseDirection(this);
+  } else if (cmd == string("SWAP")) {
+    command = new SwapCard(this);
+  } else if (cmd == string("SWITCH")) {
+    command = new SwitchCard(this);
+  } else if (cmd == string("ABILITYLESS")) {
+    command = new Abilityless(this);
   }
 
-  command->execute();
+  try{
+    command->execute();
+  } catch (Exception& e){
+    cout << e.what() << endl;
+  }
+  
   delete command;
 
   this->playersList.changeTurn();
@@ -180,28 +177,26 @@ void Game::resetGame() {
   this->mainDeck.shuffleDeck();
 
   // Input Source
-  InputHandler<string> optionPicker;
+  CommandHandler<string> optionPicker;
   Card temp;
   string filename;
-  string option[2] = {"y", "n"};
-  AbilityType abilityList[8] = {
+  AbilityType abilityList[7] = {
     AbilityType::REROLL, 
     AbilityType::QUADRUPLE, 
     AbilityType::QUARTER, 
     AbilityType::REVERSE, 
     AbilityType::SWAP, 
     AbilityType::SWITCH, 
-    AbilityType::ABILITYLESS, 
-    AbilityType::NULLABILITY };
+    AbilityType::ABILITYLESS};
 
   // Randomizer
   Randomizer r;
-  r.iterShuffle(abilityList, 8);
+  r.iterShuffle(abilityList, 7);
 
   bool valid = false;
   do {
     try {
-      optionPicker.setInput("Apakah mau input dari file? [y/n]", option, 2);
+      optionPicker.yesNoCommand("Apakah mau input dari file? [y/n]");
       string choice = optionPicker.getInput();
 
       if (choice == "y"){
@@ -330,6 +325,7 @@ void Game::givePoint() {
 }
 
 void Game::printGameState() {
+  cout << "============= GAME STATE =============" << endl;
   cout << "Game Point : " << this->gamePoint << endl;
   cout << "Players Queue" << endl;
   this->playersList.print();

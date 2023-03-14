@@ -2,9 +2,6 @@
 #ifndef RANDOMIZER_H
 #define RANDOMIZER_H
 #include <random>
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
 
 //ini jadinya gimana kemaren?
 class Randomizer{

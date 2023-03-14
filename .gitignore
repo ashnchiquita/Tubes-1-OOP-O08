@@ -35,3 +35,7 @@ build
 
 # OSX Finder
 .DS_Store
+
+# CMake
+CMakeCache.txt
+CMakeFiles

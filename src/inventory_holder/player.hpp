@@ -23,9 +23,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   string name;
   long int point;
   static int totalPlayer;
-  /* TODO: implement ability card */
   AbilityType abilityCard;
-  // bool abilityStatus;
 
  public:
   // ctor-cctor-dtor
@@ -48,14 +46,13 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   bool getAbilityCardStatus() const;
   void setAbilityCardStatus(bool status);
   void displayAbility();
+  string abilityString() const;
 
   // IDX 0 for LeftCard, IDX 1 for RightCard
   Card getCard(int idx);
   void setCard(int idx, Card card);
 
   Card* getAllCards() const;
-  // resetCards();
-  // void setCards(Card* card);
 
   // operator
   Player& operator<<(const Card& card) override;

@@ -25,5 +25,12 @@ class InputOutOfRangeException : public InputException{
         const std::string what() const throw() {return message;}
 };
 
+class InputUnavailableException : public InputException{
+    private:
+        const std::string message = "Input is not available";
+    public:
+        const std::string what() const throw() {return message;}
+};
+
 
 #endif

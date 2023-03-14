@@ -99,8 +99,8 @@ Player& Player::operator>>(Card* card) {
     this->bufferCard.second = Card();
   } else if (this->bufferCard.first.isValidCard()) {
     *card = this->bufferCard.first;
-    this->bufferCard.first = Card(); // TODO:
-  } else { // TODO: pake exception
+    this->bufferCard.first = Card(); 
+  } else { 
     cout << "Player hand is empty\n";
   }
 
@@ -116,30 +116,34 @@ bool Player::operator>(const Player& other) const {
 }
 
 bool Player::operator==(const Player& other) const {
-  return this->point == other.point;
+  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name && this->abilityString() == other.abilityString();
 }
 
 void Player::print() {
   cout << "Name: " << this->name << endl;
   cout << "Point: " << this->point << endl;
-
  
   cout << "Ability: ";
-  displayAbility();
-  /* TODO: implement hand card print */
+  this->displayAbility();
+  cout << endl;
+  /* gausah TODO: implement hand card print */
   // cout << "Cards: " <<  << endl;
 }
 
 void Player::displayAbility() {
-  map<AbilityType, string> typeMap;
-  typeMap[AbilityType::REROLL] = "reroll";
-  typeMap[AbilityType::QUADRUPLE] = "quadruple";
-  typeMap[AbilityType::QUARTER] = "quarter";
-  typeMap[AbilityType::REVERSE] = "reverse";
-  typeMap[AbilityType::SWAP] = "swap";
-  typeMap[AbilityType::SWITCH] = "switch";
-  typeMap[AbilityType::ABILITYLESS] = "abilityless";
-  typeMap[AbilityType::NULLABILITY] = "nullability";
+  cout << "Kartu " << this->abilityString() << endl;
+}
 
-  cout << "Kartu " << typeMap[this->abilityCard] << endl;
+string Player::abilityString() const {
+  map<AbilityType, string> typeMap;
+  typeMap[AbilityType::REROLL] = "REROLL";
+  typeMap[AbilityType::QUADRUPLE] = "QUADRUPLE";
+  typeMap[AbilityType::QUARTER] = "QUARTER";
+  typeMap[AbilityType::REVERSE] = "REVERSE";
+  typeMap[AbilityType::SWAP] = "SWAP";
+  typeMap[AbilityType::SWITCH] = "SWITCH";
+  typeMap[AbilityType::ABILITYLESS] = "ABILITYLESS";
+  typeMap[AbilityType::NULLABILITY] = "NULLABILITY";
+
+  return typeMap[this->abilityCard];
 }

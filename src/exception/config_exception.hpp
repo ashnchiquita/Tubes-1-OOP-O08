@@ -4,7 +4,7 @@
 
 #include "exception.hpp"
 
-class ConfigException : Exception{
+class ConfigException : public Exception{
     protected:
         const std::string message = "Invalid Config operation";
     public:

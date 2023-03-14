@@ -51,7 +51,7 @@ class Card : public Valuable {
    *
    * @returns True if the cards are equal
    */
-  bool operator==(const Card& other);
+  bool operator==(const Card& other) const;
 
   /**
    * Calculates the value of the card

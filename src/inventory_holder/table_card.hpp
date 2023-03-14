@@ -25,3 +25,6 @@ class TableCard : public InventoryHolder <vector <Card> > {
 };
 
 #endif
+
+
+

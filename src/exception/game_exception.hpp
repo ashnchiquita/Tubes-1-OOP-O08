@@ -4,7 +4,7 @@
 
 #include "exception.hpp"
 
-class GameException : Exception{
+class GameException : public Exception{
     protected:
         const std::string message = "Invalid game operation";
     public:

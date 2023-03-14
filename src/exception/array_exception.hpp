@@ -4,28 +4,28 @@
 
 #include "exception.hpp"
 
-class ArrayException : Exception{
+class ArrayException : public Exception{
     protected:
         const std::string message = "Invalid array operation";
     public:
         virtual const std::string what() const throw() {return message;};
 };
 
-class ArrayFull : public ArrayException{
+class ArrayFullException : public ArrayException{
     private:
         const std::string message = "Array is full";
     public:
         const std::string what() const throw() {return message;}
 };
 
-class ArrayEmpty : public ArrayException{
+class ArrayEmptyException : public ArrayException{
     private:
         const std::string message = "Array is Empty";
     public:
         const std::string what() const throw() {return message;}
 };
 
-class ArrayIndexInvalid : public ArrayException{
+class ArrayIndexInvalidException : public ArrayException{
     private:
         const std::string message = "Array index is invalid";
     public:

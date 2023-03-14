@@ -70,6 +70,7 @@
         "__tree": "cpp",
         "iomanip": "cpp",
         "optional": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "filesystem": "cpp"
     }
 }

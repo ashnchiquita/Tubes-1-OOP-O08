@@ -17,6 +17,7 @@ void Double::execute() {
     cout << "Double" << endl;
     this->game->multiplyGamePoint(2);
     // Interface
+    cout << this->game->getCurrPlayerRef().getName() << " melakukan DOUBLE!" << endl;
     cout << "Poin hadiah naik dari " << point << " menjadi " << this->game->getGamePoint() << endl;
 }
 
@@ -26,10 +27,11 @@ void Half::execute() {
     cout << "Half" << endl;
     this->game->multiplyGamePoint(0.5);
     // Interface
+    cout << this->game->getCurrPlayerRef().getName() << " melakukan HALF!" << endl;
     cout << "Poin hadiah turun dari " << point << " menjadi " << this->game->getGamePoint() << endl;
 }
 
 void Next::execute() {
-    cout << "Next" << endl;
+    cout << this->game->getCurrPlayerRef().getName() << " melakukan NEXT!" << endl;
     cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
 }

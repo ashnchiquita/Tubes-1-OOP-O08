@@ -22,15 +22,13 @@ class InventoryHolder {
   int getInventoryLimit();
   void setInventoryLimit(int inventoryLimit);
 
-  // services
-  // void addCard();
-  // void removeCard();
-
   // operators
   virtual InventoryHolder& operator<<(const Card& card) = 0;
   virtual InventoryHolder& operator>>(Card* card) = 0;
   virtual void print() = 0;
 };
+
+
 
 template <typename T>
 InventoryHolder<T>::InventoryHolder() {

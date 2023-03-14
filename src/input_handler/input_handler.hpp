@@ -9,14 +9,22 @@ using namespace std;
 
 template <typename T>
 class InputHandler {
- private:
+ protected:
   T input;
 
  public:
+  InputHandler();
+  ~InputHandler();
   void setInput(string prompt, string validStrings[], int countValid);
   void setInput(string prompt, int minRange, int maxRange);
   T getInput() const;
 };
+
+template <typename T>
+InputHandler<T>::InputHandler() {}
+
+template <typename T>
+InputHandler<T>::~InputHandler() {}
 
 template <typename T>
 void InputHandler<T>::setInput(string prompt, string validStrings[],
@@ -36,7 +44,7 @@ void InputHandler<T>::setInput(string prompt, string validStrings[],
   }
 
   if (!isIn) {
-    throw InputOutOfRangeException();
+    throw InputUnavailableException();
   }
 
   this->input = temp;

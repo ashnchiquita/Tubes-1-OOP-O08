@@ -9,8 +9,8 @@
 
 using namespace std;
 
-string FileIO::configPath = "./config";
-string FileIO::testPath = "./tests";
+string FileIO::configPath = "../config/";
+string FileIO::testPath = "../tests/";
 
 // get folder config path
 string FileIO::getConfigPath() { return FileIO::configPath; }
@@ -26,7 +26,8 @@ string FileIO::getTestPath() { return FileIO::testPath; }
 vector<Card> FileIO::colorCodeFromSentence(const string& filename) {
   vector<Card> colorCodes;
   string line;
-  ifstream file(filename);
+  string path = configPath + filename;
+  ifstream file(path);
 
   if (file.is_open()) {
     while (getline(file, line)) {
