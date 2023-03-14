@@ -79,7 +79,6 @@ void Game::multiplyGamePoint(float multiplier) {
   }
 }
 
-// TANDANYA CHI
 
 void Game::runTurn() {
   string cmd;
@@ -90,7 +89,7 @@ void Game::runTurn() {
                         "QUADRUPLE",
                         "REVERSE",
                         "SWAP",
-                        "SWTIC"
+                        "SWITCH"
                         "ABILITYLESS"};
 
   cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
@@ -102,7 +101,7 @@ void Game::runTurn() {
       commandHandler.setInput("Insert command: ", validCmd, 9);
       cmd = commandHandler.getInput();
     } catch (Exception& e) {
-      std::cerr << e.what() << '\n';
+      cout << e.what() << '\n';
     }
 
   } while (!valid);
@@ -140,7 +139,10 @@ void Game::runTurn() {
   delete command;
 
   this->playersList.changeTurn();
-
+  
+  if () {
+    
+  }
   /* TODO: add table deck kalo nambah ronde */
 }
 
