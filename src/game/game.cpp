@@ -1,11 +1,4 @@
 #include "game.hpp"
-
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-
-// jgn pake .cpp. kalo ada generic susah lagi
 #include "../command/ability_command.hpp"
 #include "../command/basic_command.hpp"
 #include "../command/command.hpp"
@@ -18,24 +11,19 @@
 #include "../playerslist/playerslist.hpp"
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
-
+#include <iostream>
+#include <string>
 using namespace std;
 
 Game::Game() {
   string name;
   cout << "halo selamat dtg" << endl;
-  this->roundCount = 0;
-  this->turnCountInARound = 0;
   this->gamePoint = 64;
   for (int i = 0; i < 7; i++) {
     getline(cin, name);
     this->playersList.addPlayer(Player(name, 0));
   }
 }
-
-int Game::getRoundCount() { return this->roundCount; }
-
-int Game::getTurnCountInARound() { return this->turnCountInARound; }
 
 long int Game::getGamePoint() { return this->gamePoint; }
 
@@ -62,6 +50,7 @@ void Game::runTurn() {
                         "SWAP",
                         "SWTIC"
                         "ABILITYLESS"};
+
   cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
 
   bool valid = 0;
@@ -79,6 +68,7 @@ void Game::runTurn() {
   cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
 
   Command* command;
+  
   if (cmd == string("DOUBLE")) {
     command = new Double(this);
   } else if (cmd == string("HALF")) {
@@ -104,11 +94,6 @@ void Game::runTurn() {
   delete command;
 
   this->playersList.changeTurn();
-  this->turnCountInARound = (this->turnCountInARound + 1) % 7;
-  if (this->turnCountInARound == 0) {
-    this->roundCount++;
-    this->playersList.changeTurn();
-  }
 }
 
 void Game::runGame() {
@@ -118,23 +103,18 @@ void Game::runGame() {
   do {
     printGameState();
     runTurn();
-  } while (!this->isComplete());
+  } while (!this->playersList.isComplete());
   /* TODO: uncomment after implementation */
   // this->endGame();
 }
 
 void Game::resetGame() {
   cout << "game di reset" << endl;
-  this->roundCount = 0;
-  this->turnCountInARound = 0;
+  this->playersList.reset();
   this->gamePoint = 64;
   /* TODO: Deck configuration */
   this->mainDeck.resetDeck();
   this->mainDeck.shuffleDeck();
-}
-
-bool Game::isComplete() {
-  return this->roundCount == 6 && this->turnCountInARound == 0;
 }
 
 void Game::endGame() {
@@ -216,9 +196,7 @@ void Game::endGame() {
 
 void Game::printGameState() {
   cout << "Game Point : " << this->gamePoint << endl;
-  cout << "Round Count : " << this->roundCount << endl;
-  cout << "Turn Count : " << this->turnCountInARound << endl;
-  cout << "Players State" << endl;
+  cout << "Players Queue" << endl;
   this->playersList.print();
 }
 

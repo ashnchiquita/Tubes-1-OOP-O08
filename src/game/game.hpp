@@ -7,9 +7,7 @@
 #include "../valuables/combo.hpp"
 
 class Game {
- protected:
-  int roundCount;
-  int turnCountInARound;
+ private:
   long int gamePoint;
   PlayersList playersList;
   Deck mainDeck;
@@ -17,14 +15,11 @@ class Game {
 
  public:
   Game();
-  int getRoundCount();
-  int getTurnCountInARound();
   long int getGamePoint();
   void multiplyGamePoint(float multiplier);
   void runTurn();
   void runGame();
   void resetGame();
-  bool isComplete();
 
   /* TODO: implement end game & finishing */
   bool isFinished();

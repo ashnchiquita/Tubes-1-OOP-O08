@@ -1,89 +1,109 @@
 #include "playerslist.hpp"
-#include "../exception/array_exception.hpp"
+// #include "../exception/array_exception.hpp"
 
-PlayersList::PlayersList(){};
-void PlayersList::addPlayer(Player p) {
-    this->list.push_back(p);
-}
-void PlayersList::changeTurn() {
+void PlayersList::delFirstInsertLast() {
     this->list.push_back(this->list.front());
     this->list.erase(this->list.begin());
 }
 
+PlayersList::PlayersList(){
+    this->roundCount = 0;
+    this->turnCountInARound = 0;
+};
+
+void PlayersList::addPlayer(Player p) {
+    this->list.push_back(p);
+}
+
+int PlayersList::getRoundCount() const {
+    return this->roundCount;
+}
+
+int PlayersList::getTurnCountInARound() const {
+    return this->turnCountInARound;
+}
+
+void PlayersList::changeTurn() {
+    this->delFirstInsertLast();
+    this->turnCountInARound = (this->turnCountInARound + 1) % 7;
+    if (this->turnCountInARound == 0 && this->roundCount != 0) {
+        this->changeRound();
+  }
+}
+
 void PlayersList::changeRound() {
-    this->changeTurn();
+    this->delFirstInsertLast();
+    this->roundCount++;
 }
 
 void PlayersList::print() {
-    vector<Player>::iterator i;
-    int count = 0;
-    
-    for (i = this->list.begin(); i < this->list.end(); i++) {
-        count++;
-        cout << "----------" << count << "----------" << endl;
-        (*i).print();
+    cout << "Round Count: " << this->roundCount << endl;
+    cout << "Turn Count In A Round: " << this->turnCountInARound << endl;
+    cout << "Players Sequence: ";
+    this->printSequence();
+}
+
+void PlayersList::printSequence() {
+    if (this->getSize() == 0) {
+        cout << "-" << endl;
+    } else {
+        vector<Player>::iterator i = this->list.begin();
+        cout << (*i).getName();
+        for (i = this->list.begin() + 1; i < this->list.end(); ++i) {
+            cout << ", " << (*i).getName();
+        }
+        cout << endl;
     }
 }
 
-PlayersList PlayersList::operator-(const PlayersList& other) {
-    /* TODO: tolong ini jelek banget */
-    PlayersList diff;
-    vector<Player> thisSorted, otherSorted;
-    thisSorted = this->list;
-    otherSorted = other.list;
-    sort(thisSorted.begin(), thisSorted.end());
-    sort(otherSorted.begin(), otherSorted.end());
-
-    set_difference(
-    thisSorted.begin(), thisSorted.end(),
-    otherSorted.begin(), otherSorted.end(),
-    back_inserter(diff.list)
-    );
+void PlayersList::printSequenceOrder() {
+    if (this->getSize() == 0) {
+        cout << "Tidak ada Player" << endl;
+    } else {
+        vector<Player>::iterator i;
+        int count = 1;
+        for (i = this->list.begin(); i != this->list.end(); ++i) {
+            cout << count << ". " << (*i).getName() << endl;
+            count++;
+        }
+    }
 }
 
 PlayersList PlayersList::operator-(const Player& other) {
-    vector<Player>::iterator res = find(this->list.begin(),this->list.begin(), other);
-    if (res != this->list.end()) {
-        this->list.erase(res);
+    PlayersList diff = *this;
+    vector<Player>::iterator res = find(diff.list.begin(), diff.list.end(), other);
+
+    if (res != diff.list.end()) {
+        diff.list.erase(res);
     }
+
+    return diff;
 }
 
 void PlayersList::reset() {
-    sort(this->list.begin(), this->list.end(), [](const Player& p1, const Player& p2) 
-                                               {
-                                                    return p1.getID() < p2.getID();
-                                               });
+    this->roundCount = 0;
+    this->turnCountInARound = 0;
 }
 
-// Winner Evaluator
-// vector<Player>::iterator PlayersList::highCard() {
-//     vector<Player>::iterator i = this->pq.begin();
-//     vector<Player>::iterator maxel = i;
-    
-//     for (i = this->list.begin() + 1; i < this->list.end(); i++) {
-//         maxel = (*i).getCard() > (*maxel).getCard() ? i : maxel; 
-//     }
-//     return maxel;
-// }
-
 Player& PlayersList::getCurrPlayer() {
-    if (this->list.size() == 0) {
-        throw ArrayIndexInvalid();
-    }
+    // if (this->list.size() == 0) {
+    //     throw ArrayIndexInvalid();
+    // }
     return this->list.front();
 }
 
 Player& PlayersList::getPlayerAt(int i) {
-    if (i < 0 || i >= this->list.size()) {
-        throw ArrayIndexInvalid();
-    }
+    // if (i < 0 || i >= this->list.size()) {
+    //     throw ArrayIndexInvalid();
+    // }
     return this->list[i];
 }
 
-void PlayersList::reversePlayers(int turnCount) {
+void PlayersList::reversePlayers() {
     reverse(this->list.begin(), this->list.end());
-    for (int i = 0; i < turnCount - 1; i++) {
-        this->changeTurn();
+    int addCount = (6 + this->turnCountInARound) % 7;
+    for (int i = 1; i <= addCount; i++) {
+        this->delFirstInsertLast();
     }
 }
 
@@ -91,17 +111,19 @@ int PlayersList::getSize() {
     return this->list.size();
 }
 
-PlayersList PlayersList::getNextRound(int turnCount) {
+PlayersList PlayersList::getNextRound() {
     PlayersList copy = *this;
-    int remainingTurns = 8 - turnCount;
+    int remainingTurns = (8 - this->turnCountInARound) % 7;
     for (int i = 1; i <= remainingTurns; i++) {
-        copy.changeTurn();
+        copy.delFirstInsertLast();
     }
+
+    return copy;
 }
 
-PlayersList PlayersList::getRemainingTurns(int turnCount) {
+PlayersList PlayersList::getRemainingTurns() {
     PlayersList copy = *this;
-    for (int i = 0; i < turnCount; i++) {
+    for (int i = 0; i < this->turnCountInARound; i++) {
         copy.list.pop_back();
     }
 
@@ -109,6 +131,21 @@ PlayersList PlayersList::getRemainingTurns(int turnCount) {
     return copy;
 }
 
+bool PlayersList::isComplete() {
+  return this->roundCount == 6 && this->turnCountInARound == 0;
+}
+
 /* TODO: implement winner searching */
-// bool hasWinner();
-// Player& findWinner();
+Player PlayersList::highestPoint() const {
+    return *(max_element(this->list.begin(), this->list.end()));
+}
+
+bool PlayersList::hasWinner() const {
+    return this->highestPoint().getPoint() >= pow(2,32);
+}
+
+PlayersList PlayersList::getLeaderboard() const {
+    PlayersList copy = *this;
+    sort(copy.list.begin(), copy.list.end(), greater<Player>());
+    return copy;
+}

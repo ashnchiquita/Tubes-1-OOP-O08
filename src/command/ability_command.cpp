@@ -74,14 +74,14 @@ void SwapCard::execute() {
             InputHandler<int> optionHandler;
             // Select First Player
             optionList = this->game->getPlayersList() - this->game->getCurrPlayerRef();
-            optionList.print();
+            optionList.printSequenceOrder();
             optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
             firstOption = optionHandler.getInput() - 1;
             // firstPlayer = this->game->getPlayersListRef().find(optionList.getPlayerAt(firstOption));
 
             // Select Second Player
             optionList = this->game->getPlayersList() - firstPlayer;
-            optionList.print();
+            optionList.printSequenceOrder();
             optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
             secondOption = optionHandler.getInput() - 1;
             // secondPlayer = this->game->getPlayersListRef().find(optionList.getPlayerAt(secondOption));
@@ -112,10 +112,12 @@ void SwapCard::execute() {
 
 void ReverseDirection::execute() {
     // Memutar arah giliran eksekusi perintah oleh pemain
-    this->game->getPlayersListRef().reversePlayers(this->game->getTurnCountInARound());
+    this->game->getPlayersListRef().reversePlayers();
     // Interface
-    cout << "Sisa urutan eksekusi giliran ini: "; this->game->getPlayersListRef().getRemainingTurns(this->game->getTurnCountInARound());
-    cout << "Urutan eksekusi giliran berikutnya: "; this->game->getPlayersListRef().getNextRound(this->game->getTurnCountInARound());
+    cout << "Sisa urutan eksekusi giliran ini: ";
+    this->game->getPlayersListRef().getRemainingTurns().printSequence();
+    cout << "Urutan eksekusi giliran berikutnya: ";
+    this->game->getPlayersListRef().getNextRound().printSequence();
 }
 
 void SwitchCard::execute() {
@@ -142,7 +144,7 @@ void SwitchCard::execute() {
         {
             cout << "Silahkan pilih pemain yang kartunya ingin Anda tukar" << endl;
             optionList = this->game->getPlayersList() - this->game->getCurrPlayerRef();
-            optionList.print();
+            optionList.printSequenceOrder();
 
             InputHandler<int> optionHandler;
             optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
@@ -189,7 +191,7 @@ void Abilityless::execute() {
         {
             cout << "Silahkan pilih pemain yang kartunya ingin dimatikan" << endl;
             optionList = this->game->getPlayersList() - this->game->getCurrPlayerRef();
-            optionList.print();
+            optionList.printSequenceOrder();
 
             InputHandler<int> optionHandler;
             optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());

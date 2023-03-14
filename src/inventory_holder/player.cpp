@@ -12,7 +12,7 @@ Player::Player() : InventoryHolder<pair<Card, Card> >(2) {
   this->abilityCard = AbilityType::NULLABILITY;
 }
 
-Player::Player(string name, int point)
+Player::Player(string name, long int point)
     : InventoryHolder<pair<Card, Card> >(2) {
   this->name = name;
   this->point = point;
@@ -44,8 +44,9 @@ Player& Player::operator=(const Player& other) {
 
 string Player::getName() const { return this->name; }
 void Player::setName(string name) { this->name = name; }
-int Player::getPoint() const { return this->point; }
-void Player::setPoint(int point) { this->point = point; }
+long int Player::getPoint() const { return this->point; }
+void Player::setPoint(long int point) { this->point = point; }
+void Player::addPoint(long int point) { this->point += point; };
 
 /* ABILITY CARD */
 AbilityType Player::getType() const { return this->abilityCard; }
@@ -103,11 +104,11 @@ Player& Player::operator>>(Card* card) {
   return *this;
 }
 
-bool Player::operator<(const Player& other) {
+bool Player::operator<(const Player& other) const {
   return this->point < other.point;
 }
 
-bool Player::operator>(const Player& other) {
+bool Player::operator>(const Player& other) const {
   return this->point > other.point;
 }
 

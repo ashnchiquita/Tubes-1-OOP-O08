@@ -21,7 +21,7 @@ enum class AbilityType {
 class Player : public InventoryHolder<pair<Card, Card> > {
  private:
   string name;
-  int point;
+  long int point;
   static int totalPlayer;
   /* TODO: implement ability card */
   AbilityType abilityCard;
@@ -30,7 +30,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
  public:
   // ctor-cctor-dtor
   Player();
-  Player(string name, int point);
+  Player(string name, long int point);
   Player(const Player& other);
   Player& operator=(const Player& other);
 
@@ -38,9 +38,9 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   string getName() const;
   void setName(string name);
 
-  int getPoint() const;
-  void setPoint(int point);
-  void addPoint(int point);
+  long int getPoint() const;
+  void setPoint(long int point);
+  void addPoint(long int point);
 
   // Ability Card
   AbilityType getType() const;
@@ -61,8 +61,8 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   Player& operator<<(const Card& card) override;
   Player& operator>>(Card* card) override;
 
-  bool operator<(const Player& other);
-  bool operator>(const Player& other);
+  bool operator<(const Player& other) const;
+  bool operator>(const Player& other) const;
   bool operator==(const Player& other);
 
   void print();

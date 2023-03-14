@@ -2,8 +2,9 @@
 #define PLAYERSLIST_HPP
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <math.h>
+
 #include "../inventory_holder/player.hpp"
 
 using namespace std;
@@ -11,32 +12,40 @@ using namespace std;
 class PlayersList {
     private:
         vector<Player> list;
+        int turnCountInARound, roundCount;
+
+        void delFirstInsertLast();
 
     public:
         PlayersList();
         void addPlayer(Player p);
+        int getRoundCount() const;
+        int getTurnCountInARound() const;
         void changeTurn();
         void changeRound();
         void print();
-
-        // vector<Player>::iterator highCard();
+        void printSequence();
+        void printSequenceOrder();
         
-        PlayersList operator-(const PlayersList& other);
         PlayersList operator-(const Player& other);
 
         Player& getCurrPlayer();
         Player& getPlayerAt(int i);
 
-        void reversePlayers(int turnCount);
+        void reversePlayers();
         void reset();
         int getSize();
 
-        PlayersList getNextRound(int turnCount);
-        PlayersList getRemainingTurns(int turnCount);
+        PlayersList getNextRound();
+        PlayersList getRemainingTurns();
 
         /* TODO: implement winner searching */
-        // bool hasWinner();
-        // Player& findWinner();
+        bool isComplete();
+
+        // setelah hadiah dikasih
+        Player highestPoint() const;
+        bool hasWinner() const;
+        PlayersList getLeaderboard() const;
 };
 
 #endif
