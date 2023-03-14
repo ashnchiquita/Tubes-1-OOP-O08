@@ -37,7 +37,6 @@ int main() {
   for (int i = 0; i < 10; i++) {
     Combo temp(cardList[i], 5);
     comboValues[i] = temp.value();
-    comboPrio[i] = temp.getComboPriority(temp.determineCombo());
   }
 
   // Print combos in descending order
