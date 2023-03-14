@@ -3,16 +3,17 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 #include "../valuables/card.hpp"
 #include "./inventory_holder.hpp"
 using namespace std;
 
-class Deck : public InventoryHolder<vector <Card> > {
-public:
+class Deck : public InventoryHolder<vector<Card> > {
+ public:
   // General Methods
   Deck();  // ctor
-  Deck(string filename);
+  Deck(vector<Card>);
   Deck(const Deck& other);
   Deck& operator=(const Deck& other);
 
