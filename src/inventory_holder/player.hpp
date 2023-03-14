@@ -25,7 +25,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   static int totalPlayer;
   /* TODO: implement ability card */
   AbilityType abilityCard;
-  bool abilityStatus;
+  // bool abilityStatus;
 
  public:
   // ctor-cctor-dtor
@@ -63,9 +63,9 @@ class Player : public InventoryHolder<pair<Card, Card> > {
 
   bool operator<(const Player& other) const;
   bool operator>(const Player& other) const;
-  bool operator==(const Player& other);
+  bool operator==(const Player& other) const;
 
-  void print();
+  void print() override;
 };
 
 #endif

@@ -19,9 +19,12 @@ Game::Game() {
   string name;
   cout << "halo selamat dtg" << endl;
   this->gamePoint = 64;
+  /* TODO: deck setup */
+  /* TODO: table card setup */
   for (int i = 0; i < 7; i++) {
     getline(cin, name);
     this->playersList.addPlayer(Player(name, 0));
+    /* TODO: players add card */
   }
 }
 
@@ -77,23 +80,28 @@ void Game::runTurn() {
     command = new Next(this);
   } else if (cmd == string("REROLL")) {
     command = new Reroll(this);
-  } else if (cmd == string("QUADRUPLE")) {
-    command = new Quadruple(this);
-  } else if (cmd == string("REVERSE")) {
-    command = new ReverseDirection(this);
-  } else if (cmd == string("SWAP")) {
-    command = new SwapCard(this);
-  } else if (cmd == string("SWITCH")) {
-    command = new SwitchCard(this);
-  } else if (cmd == string("ABILITYLESS")) {
-    command = new Abilityless(this);
+  } else if (!this->playersList.restrictCommand()) {
+    if (cmd == string("QUADRUPLE")) {
+      command = new Quadruple(this);
+    } else if (cmd == string("REVERSE")) {
+      command = new ReverseDirection(this);
+    } else if (cmd == string("SWAP")) {
+      command = new SwapCard(this);
+    } else if (cmd == string("SWITCH")) {
+      command = new SwitchCard(this);
+    } else if (cmd == string("ABILITYLESS")) {
+      command = new Abilityless(this);
+    }
+  } else {
+    // TODO: throw exception untuk yang masukin command ability di ronde 0. tolong cek ya apa dia hrs di loop ap ngga
   }
 
   command->execute();
-
   delete command;
 
   this->playersList.changeTurn();
+
+  /* TODO: add table deck kalo nambah ronde */
 }
 
 void Game::runGame() {
@@ -104,8 +112,7 @@ void Game::runGame() {
     printGameState();
     runTurn();
   } while (!this->playersList.isComplete());
-  /* TODO: uncomment after implementation */
-  // this->endGame();
+  this->givePoint();
 }
 
 void Game::resetGame() {
@@ -117,7 +124,11 @@ void Game::resetGame() {
   this->mainDeck.shuffleDeck();
 }
 
-void Game::endGame() {
+bool Game::isFinished() {
+  return this->playersList.hasWinner();
+}
+
+void Game::givePoint() {
   Card* tableCard = new Card[5];
   Card** playerHands = new Card*[this->playersList.getSize()];
   Card* combinedCards = new Card[5];
@@ -184,7 +195,7 @@ void Game::endGame() {
     }
   } while (next_permutation(tableCard, tableCard + 5));
 
-  // winningPlayer.addPoint(this->gamePoint);
+  winningPlayer.addPoint(this->gamePoint);
   cout << "The winner is ";
   winningPlayer.print();
 

@@ -1,5 +1,4 @@
 #include "player.hpp"
-
 #include <map>
 using namespace std;
 
@@ -51,8 +50,12 @@ void Player::addPoint(long int point) { this->point += point; };
 /* ABILITY CARD */
 AbilityType Player::getType() const { return this->abilityCard; }
 void Player::setAbilityType(AbilityType type) { this->abilityCard = type; }
-bool Player::getAbilityCardStatus() const { return this->abilityStatus; }
-void Player::setAbilityCardStatus(bool status) { this->abilityStatus = status; }
+bool Player::getAbilityCardStatus() const { return this->abilityCard != AbilityType::NULLABILITY; }
+void Player::setAbilityCardStatus(bool status) { 
+  if (!status) {
+    this->abilityCard = AbilityType::NULLABILITY;
+  }
+}
 
 Card Player::getCard(int idx) {
   if (idx == 0) {
@@ -70,7 +73,7 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
-// TODO: kenapa ga pake reference ke card dia aja? kalo gini bakal memory leak
+// TODO: kenapa ga pake reference ke card dia aja? kalo gini bakal memory leak, tp nanti aja
 Card* Player::getAllCards() const {
   Card* output = new Card[2];
   output[0] = this->bufferCard.first;
@@ -83,7 +86,7 @@ Player& Player::operator<<(const Card& card) {
     this->bufferCard.first = card;
   } else if (!this->bufferCard.second.isValidCard()) {
     this->bufferCard.second = card;
-  } else {
+  } else { // TODO: pake exception
     cout << "Player hand is full\n";
   }
 
@@ -96,8 +99,8 @@ Player& Player::operator>>(Card* card) {
     this->bufferCard.second = Card();
   } else if (this->bufferCard.first.isValidCard()) {
     *card = this->bufferCard.first;
-    this->bufferCard.first = Card();
-  } else {
+    this->bufferCard.first = Card(); // TODO:
+  } else { // TODO: pake exception
     cout << "Player hand is empty\n";
   }
 
@@ -112,7 +115,7 @@ bool Player::operator>(const Player& other) const {
   return this->point > other.point;
 }
 
-bool Player::operator==(const Player& other) {
+bool Player::operator==(const Player& other) const {
   return this->point == other.point;
 }
 
@@ -120,9 +123,10 @@ void Player::print() {
   cout << "Name: " << this->name << endl;
   cout << "Point: " << this->point << endl;
 
-  /* TODO: implement ability hand card print */
+ 
   cout << "Ability: ";
   displayAbility();
+  /* TODO: implement hand card print */
   // cout << "Cards: " <<  << endl;
 }
 

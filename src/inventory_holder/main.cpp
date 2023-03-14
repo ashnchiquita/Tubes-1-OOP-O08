@@ -1,26 +1,39 @@
 #include <algorithm>
 #include <iostream>
 
-#include "../valuables/card.cpp"
-#include "deck.cpp"
-#include "inventory_holder.cpp"
-#include "player.cpp"
-#include "table_card.cpp"
+#include "../valuables/card.hpp"
+#include "deck.hpp"
+#include "inventory_holder.hpp"
+#include "player.hpp"
+#include "table_card.hpp"
 using namespace std;
+// g++ -o main main.cpp ../valuables/card.cpp deck.cpp player.cpp table_card.cpp
 
 int main() {
   // DECK TESTING
   Deck deck;
-  cout << "PRINT DECK\n";
-  for (int i = 0; i < 52; i++) {
+  deck.print();
+  cout << "SHUFFLE\n";
+  deck.shuffleDeck();
+  deck.print();
+
+  cout << "TOOK CARD 1 BY 1\n";
+  int currSize = deck.getSize();
+  for (int i = 0; i < currSize; i++) {
     Card temp;
     deck >> &temp;
     temp.displayCard();
   }
+
+  deck.print();
+
   cout << "=====================\n";
 
   cout << "INSERT/DELETE DECK\n";
   deck.resetDeck();
+  cout << "SIZE: " << deck.getSize() << endl;
+  cout << "------ RESET DECK ------\n";
+  deck.print();
   Card card1;
   Card card2;
   deck >> &card1;
@@ -28,7 +41,7 @@ int main() {
   deck.getTop().displayCard();
   card1.displayCard();
   card2.displayCard();
-  deck << Card(1, CardColor::BLUE);
+  deck << Card(1, CardColor::BLUE); // try catch dulu, kartu harus unik
   deck.getTop().displayCard();
   cout << "=====================\n";
 
@@ -39,7 +52,7 @@ int main() {
   table << Card(11, CardColor::BLUE);
   table << Card(4, CardColor::BLUE);
   table << Card(1, CardColor::BLUE);
-  table << Card(2, CardColor::BLUE);
+  table << Card(2, CardColor::BLUE); // table jg hrs unik
 
   cout << "INSERT/DELETE TABLE CARD\n";
   for (int i = 0; i < 5; i++) {
@@ -79,9 +92,10 @@ int main() {
   player1 << Card(11, CardColor::RED);
   player1 << Card(10, CardColor::RED);
 
-  Card* testCombine = new Card[7];
+  Card* testCombine = new Card[7]; // TODO: combine buat kelas baru aja
   Card* playerHand = new Card[2];
   Card* tableCard = new Card[5];
+  // BREAKPOINT
   // Checks for mutation;
   cout << "BEFORE ASSIGNMENT\n";
   playerHand = player1.getAllCards();

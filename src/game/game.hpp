@@ -23,7 +23,7 @@ class Game {
 
   /* TODO: implement end game & finishing */
   bool isFinished();
-  void endGame();
+  void givePoint();
   void printGameState();
 
   /* TODO: overload with const */

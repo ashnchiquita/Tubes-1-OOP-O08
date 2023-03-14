@@ -18,9 +18,11 @@ public:
 
   Deck& operator<<(const Card& card) override;
   Deck& operator>>(Card* card) override;
+  void print() override;
 
   // Methods
   Card getTop() const;
+  int getSize() const;
   // Card* getTwo() const;
   void resetDeck();
   void shuffleDeck();

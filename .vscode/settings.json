@@ -65,6 +65,11 @@
         "memory_resource": "cpp",
         "numeric": "cpp",
         "fstream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "__node_handle": "cpp",
+        "__tree": "cpp",
+        "iomanip": "cpp",
+        "optional": "cpp",
+        "stack": "cpp"
     }
 }

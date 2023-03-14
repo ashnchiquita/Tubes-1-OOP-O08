@@ -46,6 +46,8 @@ class PlayersList {
         Player highestPoint() const;
         bool hasWinner() const;
         PlayersList getLeaderboard() const;
+
+        bool restrictCommand() const;
 };
 
 #endif

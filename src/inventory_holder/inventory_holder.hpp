@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../valuables/card.hpp"
+using namespace std;
 
 template <typename T>
 class InventoryHolder {
@@ -28,10 +29,8 @@ class InventoryHolder {
   // operators
   virtual InventoryHolder& operator<<(const Card& card) = 0;
   virtual InventoryHolder& operator>>(Card* card) = 0;
+  virtual void print() = 0;
 };
-
-#include "inventory_holder.hpp"
-using namespace std;
 
 template <typename T>
 InventoryHolder<T>::InventoryHolder() {

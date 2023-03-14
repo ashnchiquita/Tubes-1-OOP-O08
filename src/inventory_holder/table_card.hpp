@@ -19,6 +19,9 @@ class TableCard : public InventoryHolder <vector <Card> > {
 
   // services
   Card* getAllCards();
+  void print() override;
+
+  int getSize() const;
 };
 
 #endif

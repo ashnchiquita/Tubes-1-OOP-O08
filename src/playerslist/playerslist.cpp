@@ -149,3 +149,7 @@ PlayersList PlayersList::getLeaderboard() const {
     sort(copy.list.begin(), copy.list.end(), greater<Player>());
     return copy;
 }
+
+bool  PlayersList::restrictCommand() const {
+    return (this->roundCount < 1);
+}

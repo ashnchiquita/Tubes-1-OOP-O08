@@ -1,7 +1,7 @@
 #include "table_card.hpp"
 using namespace std;
 
-TableCard::TableCard() : InventoryHolder(5) {}
+TableCard::TableCard() : InventoryHolder<vector <Card> >(5) {}
 
 TableCard::TableCard(const TableCard& other) {
   this->inventoryLimit = other.inventoryLimit;
@@ -26,7 +26,7 @@ TableCard& TableCard::operator=(const TableCard& other) {
 TableCard& TableCard::operator<<(const Card& card) {
   if (this->bufferCard.size() < this->getInventoryLimit()) {
     this->bufferCard.push_back(card);
-  } else {
+  } else { // TODO: pake exception
     cout << "Table is full\n";
   }
 
@@ -37,7 +37,7 @@ TableCard& TableCard::operator>>(Card* card) {
   if (!this->bufferCard.empty()) {
     *card = this->bufferCard[this->bufferCard.size() - 1];
     this->bufferCard.pop_back();
-  } else {
+  } else { // TODO: pake exception
     cout << "Table is empty\n";
   }
 
@@ -51,3 +51,16 @@ Card* TableCard::getAllCards() {
   }
   return output;
 }
+
+void TableCard::print() {
+  if (this->bufferCard.size() == 0) {
+    cout << "Table Card kosong" << endl;
+  } else {
+    vector <Card>::iterator it;
+    for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it) {
+      (*it).displayCard();
+    }
+  }
+}
+
+int TableCard::getSize() const { return this->bufferCard.size(); }
