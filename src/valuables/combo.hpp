@@ -36,7 +36,7 @@ class Combo : public Valuable {
    *
    * @returns Type of combo
    */
-  ComboType determineCombo();
+  // ComboType determineCombo();
 
   /**
    * Get the priority of a combo
@@ -45,9 +45,11 @@ class Combo : public Valuable {
    *
    * @returns Priority of the combo
    */
-  int getComboPriority(ComboType type);
+  // int getComboPriority(ComboType type);
 
  public:
+  int getComboPriority(ComboType type);
+  ComboType determineCombo();
   // METHODS
 
   /**
@@ -69,6 +71,13 @@ class Combo : public Valuable {
    * @returns Value of the combo
    */
   float value();
+
+  void printCardList() {
+    for (int i = 0; i < 5; i++) {
+      std::cout << this->cardList[i].getNum() << " ";
+    }
+    std::cout << "\n";
+  }
 };
 
 #endif
