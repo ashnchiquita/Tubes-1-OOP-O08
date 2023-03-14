@@ -110,3 +110,5 @@ void Card::displayCard() {
 
   cout << "Kartu " << this->num << " warna " << colorMap[this->color] << '\n';
 }
+
+bool Card::operator<(const Card& other) const { return this->getNum() < other.getNum(); }

@@ -12,6 +12,14 @@ class ConfigException : Exception{
 };
 
 //ini buat input nomor yang gak valid (angka diisi huruf, kalo redundan hapus aja, pake yang invalid number)
+class ConfigFileException : public ConfigException{
+    private:
+        const std::string message = "Error opening file";
+    public:
+        const std::string what() const throw() {return message;}
+};
+
+//ini buat input nomor yang gak valid (angka diisi huruf, kalo redundan hapus aja, pake yang invalid number)
 class ConfigInvalidCharException : public ConfigException{
     private:
         const std::string message = "Unexpected char in config";

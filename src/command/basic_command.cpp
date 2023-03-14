@@ -3,9 +3,13 @@
 using namespace std;
 
 BasicCommand::BasicCommand(Game* currentGame) : Command(currentGame) {}
+BasicCommand::~BasicCommand() {}
 Double::Double(Game* currentGame) : BasicCommand(currentGame) {}
+Double::~Double() {}
 Half::Half(Game* currentGame) : BasicCommand(currentGame) {}
+Half::~Half() {}
 Next::Next(Game* currentGame) : BasicCommand(currentGame) {}
+Next::~Next() {}
 
 void Double::execute() {
     long int point = this->game->getGamePoint();

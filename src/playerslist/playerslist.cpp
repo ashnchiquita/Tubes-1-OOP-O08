@@ -164,11 +164,19 @@ PlayersList PlayersList::getLeaderboard() const {
     return copy;
 }
 
-bool  PlayersList::restrictCommand() const {
-    return (this->roundCount < 1);
+bool PlayersList::restrictCommand() const {
+    return this->roundCount < 1;
+}
+
+bool PlayersList::restrictTable() const {
+    return this->roundCount >= 5;
 }
 
 Player& PlayersList::findPlayer(const Player& other) {
     vector<Player>::iterator res = find(this->list.begin(), this->list.end(), other);
     return *res;
+}
+
+bool PlayersList::isNewRound() const {
+    return (this->roundCount != 0 && this->turnCountInARound == 0 );
 }

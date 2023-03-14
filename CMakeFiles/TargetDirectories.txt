@@ -1,3 +1,0 @@
-/Users/alishalistya/VSCode/Tubes-1-OOP-O08/CMakeFiles/Tubes-1-OOP-O08.dir
-/Users/alishalistya/VSCode/Tubes-1-OOP-O08/CMakeFiles/edit_cache.dir
-/Users/alishalistya/VSCode/Tubes-1-OOP-O08/CMakeFiles/rebuild_cache.dir

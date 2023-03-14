@@ -12,6 +12,7 @@ class Command {
     public:
         Command(Game*);
         virtual void execute() = 0;
+        virtual ~Command();
 };
 
 #endif

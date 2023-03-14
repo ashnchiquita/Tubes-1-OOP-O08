@@ -47,6 +47,8 @@ class PlayersList {
         // setelah hadiah dikasih
         Player highestPoint() const;
         bool hasWinner() const;
+        bool isNewRound() const;
+        bool restrictTable() const;
         PlayersList getLeaderboard() const;
 
         bool restrictCommand() const;

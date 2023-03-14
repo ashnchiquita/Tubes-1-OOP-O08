@@ -100,7 +100,7 @@ class Card : public Valuable {
    */
   void displayCard();
 
-  bool operator<(const Card& other) { return this->getNum() < other.getNum(); }
+  bool operator<(const Card& other) const;
 };
 
 #endif

@@ -13,14 +13,22 @@ using namespace std;
 try catch & restoring ability */
 
 AbilityCommand::AbilityCommand(Game* currentGame) : Command(currentGame) {}
+AbilityCommand::~AbilityCommand(){}
 Reroll::Reroll(Game* currentGame) : AbilityCommand(currentGame) {}
+Reroll::~Reroll(){}
 Quadruple::Quadruple(Game* currentGame) : AbilityCommand(currentGame) {}
+Quadruple::~Quadruple(){}
 Quarter::Quarter(Game* currentGame) : AbilityCommand(currentGame) {}
+Quarter::~Quarter(){}
 ReverseDirection::ReverseDirection(Game* currentGame)
     : AbilityCommand(currentGame) {}
+ReverseDirection::~ReverseDirection(){}
 SwapCard::SwapCard(Game* currentGame) : AbilityCommand(currentGame) {}
+SwapCard::~SwapCard(){}
 SwitchCard::SwitchCard(Game* currentGame) : AbilityCommand(currentGame) {}
+SwitchCard::~SwitchCard(){}
 Abilityless::Abilityless(Game* currentGame) : AbilityCommand(currentGame) {}
+Abilityless::~Abilityless() {}
 
 void AbilityCommand::turnOffAbility() {
   this->game->getCurrPlayerRef().setAbilityCardStatus(false);

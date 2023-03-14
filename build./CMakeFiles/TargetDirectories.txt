@@ -1,0 +1,3 @@
+/Users/ashnchiquita/Documents/sem4/oop/tubes-1-recloned/Tubes-1-OOP-O08/build./CMakeFiles/Tubes-1-OOP-O08.dir
+/Users/ashnchiquita/Documents/sem4/oop/tubes-1-recloned/Tubes-1-OOP-O08/build./CMakeFiles/edit_cache.dir
+/Users/ashnchiquita/Documents/sem4/oop/tubes-1-recloned/Tubes-1-OOP-O08/build./CMakeFiles/rebuild_cache.dir

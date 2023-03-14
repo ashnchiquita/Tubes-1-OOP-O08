@@ -1,8 +1,6 @@
-#include "game.hpp"
-
 #include <iostream>
 #include <string>
-
+#include "game.hpp"
 #include "../command/ability_command.hpp"
 #include "../command/basic_command.hpp"
 #include "../command/command.hpp"
@@ -13,16 +11,31 @@
 #include "../inventory_holder/player.hpp"
 #include "../inventory_holder/table_card.hpp"
 #include "../playerslist/playerslist.hpp"
+#include "../randomizer/randomizer.hpp"
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
+#include "../input_handler/file_handler.hpp"
 
 using namespace std;
 
 Game::Game() {
-  string name;
-  string filename;
+  // Initialization
+  string name, filename;
   Card temp;
   string option[2] = {"y", "n"};
+  AbilityType abilityList[8] = {
+    AbilityType::REROLL, 
+    AbilityType::QUADRUPLE, 
+    AbilityType::QUARTER, 
+    AbilityType::REVERSE, 
+    AbilityType::SWAP, 
+    AbilityType::SWITCH, 
+    AbilityType::ABILITYLESS, 
+    AbilityType::NULLABILITY };
+  // Randomizer
+  Randomizer r;
+  r.iterShuffle(abilityList, 8);
+
   // Opening
   cout << "p cape aku cok" << endl;
 
@@ -38,7 +51,7 @@ Game::Game() {
       if (choice == "y"){
         // Filename
         cout << "Masukkan filename: ";
-        cin << filename;
+        cin >> filename;
 
         // Get mainDeck
         FileIO fileHandler;
@@ -53,6 +66,7 @@ Game::Game() {
 
   this->gamePoint = 64;
 
+  // Config Player
   for (int i = 0; i < 7; i++) {
     cout << "Enter your name: " << endl;
     getline(cin, name);
@@ -62,6 +76,8 @@ Game::Game() {
     this->playersList.getPlayerAt(i) << temp;
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
+    // Players get Ability
+    this->playersList.getPlayerAt(i).setAbilityType(abilityList[i]);
   }
 }
 
@@ -140,20 +156,19 @@ void Game::runTurn() {
 
   this->playersList.changeTurn();
   
-  if () {
-    
+  if (this->playersList.isNewRound() && !this->playersList.restrictTable()) {
+    Card temp;
+    this->mainDeck >> &temp;
+    this->mainTable << temp;
   }
-  /* TODO: add table deck kalo nambah ronde */
 }
 
 void Game::runGame() {
-  // Deck is shuffled when game started
-  this->mainDeck.shuffleDeck();
-
   do {
     printGameState();
     runTurn();
   } while (!this->playersList.isComplete());
+
   this->givePoint();
 }
 
@@ -161,9 +176,61 @@ void Game::resetGame() {
   cout << "game di reset" << endl;
   this->playersList.reset();
   this->gamePoint = 64;
-  /* TODO: Deck configuration */
   this->mainDeck.resetDeck();
   this->mainDeck.shuffleDeck();
+
+  // Input Source
+  InputHandler<string> optionPicker;
+  Card temp;
+  string filename;
+  string option[2] = {"y", "n"};
+  AbilityType abilityList[8] = {
+    AbilityType::REROLL, 
+    AbilityType::QUADRUPLE, 
+    AbilityType::QUARTER, 
+    AbilityType::REVERSE, 
+    AbilityType::SWAP, 
+    AbilityType::SWITCH, 
+    AbilityType::ABILITYLESS, 
+    AbilityType::NULLABILITY };
+
+  // Randomizer
+  Randomizer r;
+  r.iterShuffle(abilityList, 8);
+
+  bool valid = false;
+  do {
+    try {
+      optionPicker.setInput("Apakah mau input dari file? [y/n]", option, 2);
+      string choice = optionPicker.getInput();
+
+      if (choice == "y"){
+        // Filename
+        cout << "Masukkan filename: ";
+        cin >> filename;
+
+        // Get mainDeck
+        FileIO fileHandler;
+        mainDeck = fileHandler.colorCodeFromSentence(filename);
+      }
+      valid = true;
+
+    } catch(Exception& e) {
+      cout << e.what() << endl;
+    }
+  } while (!valid);
+
+
+  // Config Player
+  for (int i = 0; i < 7; i++) {
+    // Players get Cards
+    this->mainDeck >> &temp;
+    this->playersList.getPlayerAt(i) << temp;
+    this->mainDeck >> &temp;
+    this->playersList.getPlayerAt(i) << temp;
+    // Players get Ability
+    this->playersList.getPlayerAt(i).setAbilityType(abilityList[i]);
+  } 
 }
 
 bool Game::isFinished() { return this->playersList.hasWinner(); }
@@ -189,6 +256,8 @@ void Game::givePoint() {
   Card* maxComboCards = new Card[5];
   copy(combinedCards, combinedCards + 5, maxComboCards);
 
+  Combo * tempC;
+
   // Find a player with the highest combo
   // C(5, 4) * C(2, 1)
   for (int i = 0; i < 5; i++) {
@@ -200,22 +269,28 @@ void Game::givePoint() {
 
     for (int j = 0; j < this->playersList.getSize(); j++) {
       combinedCards[i] = playerHands[j][0];
-      tempCombo = *(new Combo(combinedCards, 5));
+      tempC = new Combo(combinedCards, 5);
+      tempCombo = *(tempC);
 
       if (tempCombo.value() > highestCombo) {
         highestCombo = tempCombo.value();
         winningPlayer = this->playersList.getPlayerAt(j);
         copy(combinedCards, combinedCards + 5, maxComboCards);
       }
+
+      delete tempC;
 
       combinedCards[i] = playerHands[j][1];
-      tempCombo = *(new Combo(combinedCards, 5));
+      tempC = new Combo(combinedCards, 5);
+      tempCombo = *(tempC);
 
       if (tempCombo.value() > highestCombo) {
         highestCombo = tempCombo.value();
         winningPlayer = this->playersList.getPlayerAt(j);
         copy(combinedCards, combinedCards + 5, maxComboCards);
       }
+
+      delete tempC;
     }
   }
 
@@ -236,13 +311,22 @@ void Game::givePoint() {
   } while (next_permutation(tableCard, tableCard + 5));
 
   winningPlayer.addPoint(this->gamePoint);
-  cout << "The winner is ";
-  winningPlayer.print();
+  // cout << "The winner is ";
+  // winningPlayer.print();
 
-  cout << "Winning combo: ";
-  for (int i = 0; i < 5; i++) {
-    maxComboCards[i].displayCard();
+  // cout << "Winning combo: ";
+  // for (int i = 0; i < 5; i++) {
+  //   maxComboCards[i].displayCard();
+  // }
+
+  for (int i = 0; i < this->playersList.getSize(); i++) {
+    delete playerHands[i];
   }
+
+  delete [] playerHands;
+  delete [] tableCard;
+  delete [] combinedCards;
+  delete [] maxComboCards;
 }
 
 void Game::printGameState() {
