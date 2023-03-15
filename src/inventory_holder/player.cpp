@@ -1,4 +1,5 @@
 #include "player.hpp"
+
 #include <map>
 using namespace std;
 
@@ -8,7 +9,13 @@ Player::Player() : InventoryHolder<pair<Card, Card> >(2) {
   this->name = "";
   this->point = 0;
   Player::totalPlayer++;
-  this->abilityCard = AbilityType::NULLABILITY;
+}
+
+Player::Player(string name)
+    : InventoryHolder<pair<Card, Card> >(2) {
+  this->name = name;
+  this->point = 0;
+  Player::totalPlayer++;
 }
 
 Player::Player(string name, long int point)
@@ -16,7 +23,6 @@ Player::Player(string name, long int point)
   this->name = name;
   this->point = point;
   Player::totalPlayer++;
-  this->abilityCard = AbilityType::NULLABILITY;
 }
 
 Player::Player(const Player& other) : InventoryHolder<pair<Card, Card> >(2) {
@@ -48,14 +54,7 @@ void Player::setPoint(long int point) { this->point = point; }
 void Player::addPoint(long int point) { this->point += point; };
 
 /* ABILITY CARD */
-AbilityType Player::getType() const { return this->abilityCard; }
-void Player::setAbilityType(AbilityType type) { this->abilityCard = type; }
-bool Player::getAbilityCardStatus() const { return this->abilityCard != AbilityType::NULLABILITY; }
-void Player::setAbilityCardStatus(bool status) { 
-  if (!status) {
-    this->abilityCard = AbilityType::NULLABILITY;
-  }
-}
+AbilityCard& Player::getAbility() { return this->abilityCard; }
 
 Card Player::getCard(int idx) {
   if (idx == 0) {
@@ -73,7 +72,6 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
-// TODO: kenapa ga pake reference ke card dia aja? kalo gini bakal memory leak, tp nanti aja
 Card* Player::getAllCards() const {
   Card* output = new Card[2];
   output[0] = this->bufferCard.first;
@@ -116,7 +114,7 @@ bool Player::operator>(const Player& other) const {
 }
 
 bool Player::operator==(const Player& other) const {
-  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name && this->abilityString() == other.abilityString();
+  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name && this->abilityCard == other.abilityCard;
 }
 
 void Player::print() {
@@ -124,26 +122,11 @@ void Player::print() {
   cout << "Point: " << this->point << endl;
  
   cout << "Ability: ";
-  this->displayAbility();
+  this->getAbility().displayAbility();
   cout << endl;
-  /* gausah TODO: implement hand card print */
-  // cout << "Cards: " <<  << endl;
-}
-
-void Player::displayAbility() {
-  cout << "Kartu " << this->abilityString() << endl;
-}
-
-string Player::abilityString() const {
-  map<AbilityType, string> typeMap;
-  typeMap[AbilityType::REROLL] = "REROLL";
-  typeMap[AbilityType::QUADRUPLE] = "QUADRUPLE";
-  typeMap[AbilityType::QUARTER] = "QUARTER";
-  typeMap[AbilityType::REVERSE] = "REVERSE";
-  typeMap[AbilityType::SWAP] = "SWAP";
-  typeMap[AbilityType::SWITCH] = "SWITCH";
-  typeMap[AbilityType::ABILITYLESS] = "ABILITYLESS";
-  typeMap[AbilityType::NULLABILITY] = "NULLABILITY";
-
-  return typeMap[this->abilityCard];
+  cout << "Cards: ";
+  this->bufferCard.first.displayCard();
+  cout << ", ";
+  this->bufferCard.second.displayCard();
+  cout << endl;
 }

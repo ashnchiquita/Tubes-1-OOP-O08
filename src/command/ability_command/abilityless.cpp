@@ -43,13 +43,13 @@ void Abilityless::execute() {
 
     Player& targetPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
     
-    if (!targetPlayer.getAbilityCardStatus()) {
+    if (!targetPlayer.getAbility().getAbilityCardStatus()) {
       cout << "Kartu ability " << targetPlayer.getName()
           << " telah dipakai sebelumnya." << endl;
       cout << "Yah, sayang penggunaan kartu ini sia-sia." << endl;
     } else {
       // Set Ability Nonactive
-      targetPlayer.setAbilityCardStatus(false);
+      targetPlayer.getAbility().setAbilityCardStatus(false);
       cout << "Kartu ability " << targetPlayer.getName() << " telah dimatikan."
           << endl;
     }

@@ -98,7 +98,7 @@ Game::Game() {
     this->playersList.getPlayerAt(i) << temp;
 
     // Players get Ability
-    this->playersList.getPlayerAt(i).setAbilityType(abilityList[i]);
+    this->playersList.getPlayerAt(i).getAbility().giveAbility(abilityList[i]);
   }
 }
 
@@ -127,14 +127,14 @@ void Game::runTurn() {
 
   cout << endl << "Sekarang giliran " << this->getCurrPlayerRef().getName() << "!" << endl;
   cout << "Kartu ability " << this->getCurrPlayerRef().getName() << ": ";
-  this->getCurrPlayerRef().displayAbility();
+  this->getCurrPlayerRef().getAbility().displayAbility();
 
   Command* command;
   CommandHandler<string> optionHandler;
   bool valid = false;
   do {
     try {
-      optionHandler.turnCommand("Masukkan command\n> ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().abilityString());
+      optionHandler.turnCommand("Masukkan command\n> ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().abilityString());
       cmd = optionHandler.getInput();
       valid = true;
     } catch (Exception& e) {
@@ -241,13 +241,15 @@ void Game::resetGame() {
 
   // Config Player
   for (int i = 0; i < 7; i++) {
+
     // Players get Cards
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
+
     // Players get Ability
-    this->playersList.getPlayerAt(i).setAbilityType(abilityList[i]);
+    this->playersList.getPlayerAt(i).getAbility().giveAbility(abilityList[i]);
   } 
 }
 

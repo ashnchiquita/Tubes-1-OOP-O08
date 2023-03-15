@@ -5,29 +5,20 @@
 #include <string>
 
 #include "../valuables/card.hpp"
+#include "../valuables/ability_card.hpp"
 #include "./inventory_holder.hpp"
-
-enum class AbilityType {
-  REROLL,
-  QUADRUPLE,
-  QUARTER,
-  REVERSE,
-  SWAP,
-  SWITCH,
-  ABILITYLESS,
-  NULLABILITY
-};
 
 class Player : public InventoryHolder<pair<Card, Card> > {
  private:
   string name;
   long int point;
   static int totalPlayer;
-  AbilityType abilityCard;
+  AbilityCard abilityCard;
 
  public:
   // ctor-cctor-dtor
   Player();
+  Player(string name);
   Player(string name, long int point);
   Player(const Player& other);
   Player& operator=(const Player& other);
@@ -41,12 +32,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   void addPoint(long int point);
 
   // Ability Card
-  AbilityType getType() const;
-  void setAbilityType(AbilityType type);
-  bool getAbilityCardStatus() const;
-  void setAbilityCardStatus(bool status);
-  void displayAbility();
-  string abilityString() const;
+  AbilityCard& getAbility();
 
   // IDX 0 for LeftCard, IDX 1 for RightCard
   Card getCard(int idx);
