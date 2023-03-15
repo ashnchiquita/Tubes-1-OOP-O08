@@ -1,9 +1,10 @@
 
 #ifndef RANDOMIZER_H
 #define RANDOMIZER_H
-#include <random>
 
-//ini jadinya gimana kemaren?
+#include <random>
+using namespace std;
+
 class Randomizer{
 public:
     template<typename T>
@@ -22,17 +23,17 @@ public:
 
 template<typename T>
 void Randomizer::iterShuffle(T array[], int n) {
-    std::random_device seed;
-    std::mt19937 g(seed());
-    std::shuffle(&array[0], &array[n], g);
+    random_device seed;
+    mt19937 g(seed());
+    shuffle(&array[0], &array[n], g);
 }
 
 
 template<typename T>
 void Randomizer::iterShuffle(T* array) {
-    std::random_device seed;
-    std::mt19937 g(seed());
-    std::shuffle(array->begin(), array->end(), g);
+    random_device seed;
+    mt19937 g(seed());
+    shuffle(array->begin(), array->end(), g);
 }
 
 template<typename T>

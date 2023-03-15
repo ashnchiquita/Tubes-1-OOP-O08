@@ -1,8 +1,8 @@
-#include "../card.hpp"
+#include "card.hpp"
 
 #include <iostream>
 
-#include "../valuable.hpp"
+#include "valuable.hpp"
 using namespace std;
 
 int main() {

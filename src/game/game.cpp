@@ -1,14 +1,21 @@
-#include <iostream>
-#include <string>
 #include "game.hpp"
-#include "../command/ability_command.hpp"
-#include "../command/basic_command.hpp"
 #include "../command/command.hpp"
+#include "../command/ability_command/ability_command.hpp"
+#include "../command/ability_command/abilityless.hpp"
+#include "../command/ability_command/quadruple.hpp"
+#include "../command/ability_command/quarter.hpp"
+#include "../command/ability_command/reroll.hpp"
+#include "../command/ability_command/reverse_direction.hpp"
+#include "../command/ability_command/swap_card.hpp"
+#include "../command/ability_command/switch_card.hpp"
+#include "../command/basic_command/basic_command.hpp"
+#include "../command/basic_command/double.hpp"
+#include "../command/basic_command/half.hpp"
+#include "../command/basic_command/next.hpp"
 #include "../exception/game_exception.hpp"
 #include "../exception/command_exception.hpp"
-
+#include "../valuables/combo.hpp"
 #include "../input_handler/command_handler.hpp"
-
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/inventory_holder.hpp"
 #include "../inventory_holder/player.hpp"
@@ -19,6 +26,8 @@
 #include "../valuables/combo.hpp"
 #include "../input_handler/file_handler.hpp"
 
+#include <iostream>
+#include <string>
 using namespace std;
 
 Game::Game() {
@@ -33,12 +42,17 @@ Game::Game() {
     AbilityType::SWAP, 
     AbilityType::SWITCH, 
     AbilityType::ABILITYLESS };
+  
   // Randomizer
   Randomizer r;
   r.iterShuffle(abilityList, 7);
 
-  // Opening
-  cout << "p cape aku cok" << endl;
+  // Opening /* TODO: ASCII ART */
+  cout << "~ , ` - . `* Welcome To *' - . `. ~" << endl;
+  cout << "             A S C I I " << endl;
+  cout << "               A R T   " << endl << endl;
+  // kata akumah pake foto upin ipin oleng
+  cout << "Created by group * ~ ' . * ♡ OOPin 1pin ♡ * . ' ~ * (Kode O08)" << endl << endl;
 
   // Input Source
   CommandHandler<string> optionPicker;
@@ -46,20 +60,21 @@ Game::Game() {
   
   do {
     try {
-      optionPicker.yesNoCommand("Apakah mau input dari file? [y/n]\n");
+      optionPicker.yesNoCommand("Apakah ingin memasukkan konfigurasi deck dari file? [y/n]\n");
       string choice = optionPicker.getInput();
 
       if (choice == "y" || choice == "Y"){
         // Filename
-        cout << "Masukkan filename: ";
+        cout << endl << "Pastikan file konfigurasi deck berada di folder config." << endl;
+        cout << "Masukkan nama file: ";
         cin >> filename;
 
         // Get mainDeck
-        FileIO fileHandler;
+        FileHandler fileHandler;
         mainDeck = fileHandler.colorCodeFromSentence(filename);
       }
-      valid = true;
 
+      valid = true;
     } catch(Exception& e) {
       cout << e.what() << endl;
     }
@@ -69,6 +84,7 @@ Game::Game() {
 
   // Config Player
   cin.ignore();
+
   for (int i = 0; i < 7; i++) {
     cout << "Enter your name: " << endl;
     getline(cin, name);
@@ -196,16 +212,17 @@ void Game::resetGame() {
   bool valid = false;
   do {
     try {
-      optionPicker.yesNoCommand("Apakah mau input dari file? [y/n]");
+      optionPicker.yesNoCommand("Apakah ingin memasukkan konfigurasi deck dari file? [y/n]\n");
       string choice = optionPicker.getInput();
 
-      if (choice == "y"){
+      if (choice == "y" || choice == "Y"){
         // Filename
-        cout << "Masukkan filename: ";
+        cout << endl << "Pastikan file konfigurasi deck berada di folder config." << endl;
+        cout << "Masukkan nama file: ";
         cin >> filename;
 
         // Get mainDeck
-        FileIO fileHandler;
+        FileHandler fileHandler;
         mainDeck = fileHandler.colorCodeFromSentence(filename);
       }
       valid = true;
@@ -214,7 +231,6 @@ void Game::resetGame() {
       cout << e.what() << endl;
     }
   } while (!valid);
-
 
   // Config Player
   for (int i = 0; i < 7; i++) {

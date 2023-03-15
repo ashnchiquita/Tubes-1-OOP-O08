@@ -1,29 +1,26 @@
 #include "file_handler.hpp"
-
-//#include <filesystem>
-#include <fstream>
-#include <sstream>
-
 #include "../valuables/card.hpp"
 #include "../exception/config_exception.hpp"
 
+#include <fstream>
+#include <sstream>
 using namespace std;
 
-string FileIO::configPath = "../config/";
-string FileIO::testPath = "../tests/";
+string FileHandler::configPath = "../config/";
+string FileHandler::testPath = "../tests/";
 
 // get folder config path
-string FileIO::getConfigPath() { return FileIO::configPath; }
+string FileHandler::getConfigPath() { return FileHandler::configPath; }
 
 // get tests config path
-string FileIO::getTestPath() { return FileIO::testPath; }
+string FileHandler::getTestPath() { return FileHandler::testPath; }
 
 // e.g, file.txt:
 // M 6
 // M 7
 // K 1
 // hasil: vektor <M6, M7, K1>
-vector<Card> FileIO::colorCodeFromSentence(const string& filename) {
+vector<Card> FileHandler::colorCodeFromSentence(const string& filename) {
   vector<Card> colorCodes;
   string line;
   string path = configPath + filename;

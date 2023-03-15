@@ -6,10 +6,24 @@ add_executable(Tubes-1-OOP-O08
     src/main.cpp
 
     # command
-    src/command/ability_command.cpp
-    src/command/basic_command.cpp
     src/command/command.cpp
 
+    # ability command
+    src/command/ability_command/ability_command.cpp
+    src/command/ability_command/abilityless.cpp
+    src/command/ability_command/quadruple.cpp
+    src/command/ability_command/quarter.cpp
+    src/command/ability_command/reroll.cpp
+    src/command/ability_command/reverse_direction.cpp
+    src/command/ability_command/swap_card.cpp
+    src/command/ability_command/switch_card.cpp
+    
+    # basic command
+    src/command/basic_command/basic_command.cpp
+    src/command/basic_command/double.cpp
+    src/command/basic_command/half.cpp
+    src/command/basic_command/next.cpp
+    
     # exception
     # -
 

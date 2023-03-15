@@ -4,7 +4,6 @@
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/table_card.hpp"
 #include "../playerslist/playerslist.hpp"
-#include "../valuables/combo.hpp"
 
 class Game {
  private:
@@ -15,6 +14,7 @@ class Game {
 
  public:
   Game();
+  
   long int getGamePoint() const;
   Player& getCurrPlayerRef();
   Deck& getDeck();

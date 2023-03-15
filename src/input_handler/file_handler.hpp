@@ -11,7 +11,7 @@
 #include "../inventory_holder/deck.hpp"
 #include "../valuables/card.hpp"
 
-class FileIO {
+class FileHandler {
  protected:
   static string configPath;
   static string testPath;

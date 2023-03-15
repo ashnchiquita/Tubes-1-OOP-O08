@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-  ifstream configFile("asumsi.txt");
+  ifstream configFile("config_deck.txt");
   string cardLine, token;
 
   while(getline(configFile, cardLine, ' ')){

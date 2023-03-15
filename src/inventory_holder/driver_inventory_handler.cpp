@@ -7,6 +7,7 @@
 #include "player.hpp"
 #include "table_card.hpp"
 using namespace std;
+
 // g++ -o main main.cpp ../valuables/card.cpp deck.cpp player.cpp table_card.cpp
 
 int main() {
@@ -92,10 +93,10 @@ int main() {
   player1 << Card(11, CardColor::RED);
   player1 << Card(10, CardColor::RED);
 
-  Card* testCombine = new Card[7]; // TODO: combine buat kelas baru aja
+  Card* testCombine = new Card[7];
   Card* playerHand = new Card[2];
   Card* tableCard = new Card[5];
-  // BREAKPOINT
+  
   // Checks for mutation;
   cout << "BEFORE ASSIGNMENT\n";
   playerHand = player1.getAllCards();
@@ -127,5 +128,9 @@ int main() {
   cout << "PRINT ABILITY\n";
   player1.displayAbility();
   
+  delete [] testCombine;
+  delete [] playerHand;
+  delete [] tableCard;
+
   return 0;
 }

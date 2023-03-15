@@ -1,12 +1,12 @@
-#include "../combo.hpp"
+#include "combo.hpp"
+#include "card.hpp"
+#include "valuable.hpp"
 
 #include <algorithm>
 #include <ctime>
 #include <iostream>
 #include <vector>
-
-#include "../card.hpp"
-#include "../valuable.hpp"
+#include <random>
 using namespace std;
 
 int main() {

@@ -1,7 +1,7 @@
-#include <iostream>
 #include "game/game.hpp"
 
-int main(int argc, const char** argv) {
+/* TODO: handle Y/N input untuk retry */
+int main() {
     Game g;
     do {
         g.runGame();
@@ -12,4 +12,3 @@ int main(int argc, const char** argv) {
     
     return 0;
 }
-// g++ -o main main.cpp game_draft.cpp playerslist.cpp player.cpp command.cpp
