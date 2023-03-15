@@ -9,6 +9,7 @@ Reroll::~Reroll() {}
 
 void Reroll::execute() {
   // Pemain membuang kedua kartu yang ada di tangannya dan mengambil ulang dua
+  cout << this->game->getCurrPlayerRef().getName() << " melakukan REROLL!" << endl;
   // kartu baru
   Card leftCard, rightCard;
   this->game->getDeck() >> &leftCard;
@@ -21,10 +22,10 @@ void Reroll::execute() {
   // Interface
   cout << this->game->getCurrPlayerRef().getName() << " melakukan REROLL!" << endl;
   cout << "Melakukan pembuangan kartu yang sedang dimiliki." << endl;
-  cout << "Kamu mendapatkan 2 kartu baru yaitu: " << endl;
-  cout << "1. ";
+  cout << this->game->getCurrPlayerRef().getName() << " mendapatkan 2 kartu baru yaitu: " << endl;
+  cout << "    1. ";
   leftCard.displayCard();
-  cout << "2. ";
+  cout << "    2. ";
   rightCard.displayCard();
 
   this->turnOffAbility();

@@ -16,7 +16,7 @@ void ReverseDirection::execute() {
   cout << this->game->getCurrPlayerRef().getName() << " melakukan REVERSE!" << endl;
   cout << "Sisa urutan eksekusi giliran ini: ";
   this->game->getPlayersListRef().getRemainingTurns().printSequence();
-  cout << "Urutan eksekusi giliran berikutnya: ";
+  cout << "Urutan eksekusi giliran selanjutnya: ";
   this->game->getPlayersListRef().getNextRound().printSequence();
 
   this->turnOffAbility();

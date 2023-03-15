@@ -22,15 +22,17 @@ void SwapCard::execute() {
     try {
       InputHandler<int> optionHandler;
       // Select First Player
+      cout << "Silakan pilih pemain yang kartunya ingin ditukar: " << endl;
       optionList = this->game->getPlayersList() - this->game->getCurrPlayerRef();
       optionList.printSequenceOrder();
-      optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
+      optionHandler.setInput("> ", 1, optionList.getSize());
       firstOption = optionHandler.getInput() - 1;
 
       // Select Second Player
+      cout << "Silakan pilih pemain yang kartunya ingin ditukar: " << endl;
       optionList2 = optionList - this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption));
       optionList2.printSequenceOrder();
-      optionHandler.setInput("Masukan pilihan: ", 0, optionList2.getSize());
+      optionHandler.setInput("> ", 0, optionList2.getSize());
       secondOption = optionHandler.getInput() - 1;
 
       Player& secondPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(secondOption));
@@ -60,7 +62,6 @@ void SwapCard::execute() {
   firstPlayer.setCard(firstCard - 1, secondPlayer.getCard(secondCard - 1));
   firstPlayer.setCard(secondCard - 1, tempCard);
   
-
   // Interface
   cout << this->game->getCurrPlayerRef().getName() << " melakukan SWAPCARD!" << endl;
   cout << "Kartu " << firstPlayer.getName() << " telah tertukar dengan "

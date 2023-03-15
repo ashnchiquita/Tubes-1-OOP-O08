@@ -9,8 +9,6 @@ Half::~Half() {}
 
 void Half::execute() {
     long int point = this->game->getGamePoint();
-
-    cout << "Half" << endl;
     this->game->multiplyGamePoint(0.5);
     
     // Interface

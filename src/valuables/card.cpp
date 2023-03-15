@@ -103,12 +103,12 @@ bool Card::isValidCard() const { return this->num >= 1 && this->num <= 13; }
  */
 void Card::displayCard() {
   map<CardColor, string> colorMap;
-  colorMap[CardColor::GREEN] = "hijau";
-  colorMap[CardColor::BLUE] = "biru";
-  colorMap[CardColor::YELLOW] = "kuning";
-  colorMap[CardColor::RED] = "merah";
+  colorMap[CardColor::GREEN] = "Hijau";
+  colorMap[CardColor::BLUE] = "Biru";
+  colorMap[CardColor::YELLOW] = "Kuning";
+  colorMap[CardColor::RED] = "Merah";
 
-  cout << "Kartu " << this->num << " warna " << colorMap[this->color] << '\n';
+  cout << this->num << " " << colorMap[this->color] << '\n';
 }
 
 bool Card::operator<(const Card& other) const { return this->getNum() < other.getNum(); }

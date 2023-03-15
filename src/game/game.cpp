@@ -60,7 +60,7 @@ Game::Game() {
   
   do {
     try {
-      optionPicker.yesNoCommand("Apakah ingin memasukkan konfigurasi deck dari file? [y/n]\n");
+      optionPicker.yesNoCommand("\nApakah ingin memasukkan konfigurasi deck dari file? [y/n] ");
       string choice = optionPicker.getInput();
 
       if (choice == "y" || choice == "Y"){
@@ -86,14 +86,17 @@ Game::Game() {
   cin.ignore();
 
   for (int i = 0; i < 7; i++) {
-    cout << "Enter your name: " << endl;
+    // Insert name for players
+    cout << "Masukkan nama pemain " << (i + 1) << ": ";
     getline(cin, name);
+
     // Players get Cards
     this->playersList.addPlayer(Player(name, 0));
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
+
     // Players get Ability
     this->playersList.getPlayerAt(i).setAbilityType(abilityList[i]);
   }
@@ -101,9 +104,15 @@ Game::Game() {
 
 long int Game::getGamePoint() const { return this->gamePoint; }
 
+Player& Game::getCurrPlayerRef() { return this->playersList.getCurrPlayer(); }
+
 Deck& Game::getDeck() { return this->mainDeck; }
 
 TableCard& Game::getTableCard() { return this->mainTable; }
+
+PlayersList Game::getPlayersList() { return this->playersList; }
+
+PlayersList& Game::getPlayersListRef() { return this->playersList; }
 
 void Game::multiplyGamePoint(float multiplier) {
   if (this->gamePoint * multiplier < 1) {
@@ -113,12 +122,11 @@ void Game::multiplyGamePoint(float multiplier) {
   }
 }
 
-
 void Game::runTurn() {
   string cmd;
 
-  cout << "It's " << this->getCurrPlayerRef().getName() << "'s turn!" << endl;
-  cout << "Your ability card: ";
+  cout << endl << "Sekarang giliran " << this->getCurrPlayerRef().getName() << "!" << endl;
+  cout << "Kartu ability " << this->getCurrPlayerRef().getName() << ": ";
   this->getCurrPlayerRef().displayAbility();
 
   Command* command;
@@ -126,7 +134,7 @@ void Game::runTurn() {
   bool valid = false;
   do {
     try {
-      optionHandler.turnCommand("Insert command: ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().abilityString());
+      optionHandler.turnCommand("Masukkan command\n> ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().abilityString());
       cmd = optionHandler.getInput();
       valid = true;
     } catch (Exception& e) {
@@ -135,8 +143,7 @@ void Game::runTurn() {
 
   } while (!valid);
 
-  // cout << getCurrPlayerRef().getName() << "melakukan " << cmd << "!" << endl;
-
+  // Creating command
   if (cmd == string("DOUBLE")) {
     command = new Double(this);
   } else if (cmd == string("HALF")) {
@@ -186,7 +193,7 @@ void Game::runGame() {
 }
 
 void Game::resetGame() {
-  cout << "game di reset" << endl;
+  cout << endl << "Game di-reset..." << endl << endl;
   this->playersList.reset();
   this->gamePoint = 64;
   this->mainDeck.resetDeck();
@@ -212,7 +219,7 @@ void Game::resetGame() {
   bool valid = false;
   do {
     try {
-      optionPicker.yesNoCommand("Apakah ingin memasukkan konfigurasi deck dari file? [y/n]\n");
+      optionPicker.yesNoCommand("\nApakah ingin memasukkan konfigurasi deck dari file? [y/n] ");
       string choice = optionPicker.getInput();
 
       if (choice == "y" || choice == "Y"){
@@ -322,13 +329,13 @@ void Game::givePoint() {
   } while (next_permutation(tableCard, tableCard + 5));
 
   winningPlayer.addPoint(this->gamePoint);
-  // cout << "The winner is ";
-  // winningPlayer.print();
+  cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << endl;
+  winningPlayer.print();
 
-  // cout << "Winning combo: ";
-  // for (int i = 0; i < 5; i++) {
-  //   maxComboCards[i].displayCard();
-  // }
+  cout << "Combo " << winningPlayer.getName() << ": " << endl;
+  for (int i = 0; i < 5; i++) {
+    maxComboCards[i].displayCard();
+  }
 
   for (int i = 0; i < this->playersList.getSize(); i++) {
     delete playerHands[i];
@@ -345,10 +352,5 @@ void Game::printGameState() {
   cout << "Game Point : " << this->gamePoint << endl;
   cout << "Players Queue" << endl;
   this->playersList.print();
+  cout << "======================================" << endl;
 }
-
-Player& Game::getCurrPlayerRef() { return this->playersList.getCurrPlayer(); }
-
-PlayersList Game::getPlayersList() { return this->playersList; }
-
-PlayersList& Game::getPlayersListRef() { return this->playersList; }
