@@ -67,6 +67,7 @@ int TableCard::getSize() const { return this->bufferCard.size(); }
 
 void TableCard::ASCIITable(){
   vector <Card>::iterator it;
+  char space =' ';
     
   //   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it) {
   //     (*it).ASCIICard();
@@ -76,15 +77,15 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
-    (it)->displayCard(); cout<< "         ";
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
+    (it)->displayCard(); cout<< "        ";
   } printf("\n");
   
   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
     printf("┌─────────┐    ");
   } printf("\n");
 
@@ -92,8 +93,8 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
-    printf("│%d        │    ", (*it).getNum());
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
+    cout << "│"<< (*it).getNum() << string(1-(*it).getNum()/10, space)<<"       │    ";
   } printf("\n");
 
   for (int i = 0; i<2; i++){
@@ -101,7 +102,7 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
     printf("│         │    ");
     } printf("\n");
   }
@@ -110,7 +111,7 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
     printf("│    ♣    │    ");
   } printf("\n");
 
@@ -119,7 +120,7 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
     printf("│         │    ");
     } printf("\n");
   }
@@ -128,17 +129,15 @@ void TableCard::ASCIITable(){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
-    printf("│        %d│    ", (*it).getNum());
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
+    cout <<"│       "<<string(1-(*it).getNum()/10, space)<<(*it).getNum()<<"│    ";
   } printf("\n");
 
   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
-    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
     printf("└─────────┘    ");
   } printf("\n");
-
-  cout << "\033[0m";
 }

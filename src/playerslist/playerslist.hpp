@@ -38,7 +38,6 @@ class PlayersList {
 
         void reversePlayers();
         void afterReverse();
-        void recoverReverse();
         void reset();
         int getSize();
 

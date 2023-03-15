@@ -10,7 +10,7 @@ using namespace std;
 template <typename T>
 class CommandHandler : public InputHandler<T>{
     private:
-        static string commandStrings[10];
+        static string commandStrings[11];
         static string ynStrings[4];
     public:
         CommandHandler();
@@ -29,7 +29,7 @@ template <typename T>
 string CommandHandler<T>::ynStrings[4] = {"Y", "y", "N", "n"};
 
 template <typename T>
-string CommandHandler<T>::commandStrings[10] = {
+string CommandHandler<T>::commandStrings[11] = {
                         "DOUBLE",
                         "HALF",
                         "NEXT",
@@ -39,7 +39,8 @@ string CommandHandler<T>::commandStrings[10] = {
                         "REVERSE",
                         "SWAPCARD",
                         "SWITCH",
-                        "ABILITYLESS"
+                        "ABILITYLESS",
+                        "HELP"
                         };
 
 template <typename T>
@@ -54,19 +55,19 @@ void CommandHandler<T>::yesNoCommand(string prompt){
 
 template <typename T>
 void CommandHandler<T>::turnCommand(string prompt, bool constraints[2], string abilitytype){
-    this->setInput(prompt, commandStrings, 10);
+    this->setInput(prompt, commandStrings, 11);
 
     if (constraints[0]){
         if (this->input == abilitytype)
             if (!constraints[1]) throw CommandDisabledException(abilitytype);
             else return;
-        else if(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT"))
+        else if(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT") || this->input == string("HELP"))
             return;
         else
             throw CommandNotAvailableException(this->input);
     }
     else{
-        if (!(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT"))) {
+        if (!(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT") || this->input == string("HELP"))) {
             throw CommandRoundOneException();
         }
     }

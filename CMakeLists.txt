@@ -22,6 +22,7 @@ add_executable(Tubes-1-OOP-O08
     src/command/basic_command/basic_command.cpp
     src/command/basic_command/double.cpp
     src/command/basic_command/half.cpp
+    src/command/basic_command/help.cpp
     src/command/basic_command/next.cpp
     
     # exception

@@ -44,6 +44,9 @@ Combo::Combo(const Card* cardList, int listSize) {
     count++;
   }
 
+  // for(int i = 0; i < 14; i++) {
+  //   delete[] colorArr[i];
+  // }
   delete[] countArr;
   delete[] colorArr;
 }

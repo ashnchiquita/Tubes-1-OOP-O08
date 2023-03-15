@@ -8,6 +8,7 @@ using namespace std;
  * Class default constructor
  */
 Card::Card() {
+  cout << "--------- CALLING SETAN ----------" << endl;
   this->num = 0;
   this->color = CardColor::GREEN;
 }

@@ -26,13 +26,15 @@ vector<Card> FileHandler::colorCodeFromSentence(const string& filename) {
   string path = configPath + filename;
   ifstream file(path);
 
+  
+  int linecount = 0;
   if (file.is_open()) {
     while (getline(file, line)) {
+      linecount++;
 
       istringstream iss(line);
       string color, number;
       iss >> color >> number;
-      // colorCodes.push_back(color + number);
       CardColor warna;
       if (color == "M") {
         warna = CardColor::RED;
@@ -43,10 +45,21 @@ vector<Card> FileHandler::colorCodeFromSentence(const string& filename) {
       } else if (color == "K") {
         warna = CardColor::YELLOW;
       }
-      colorCodes.push_back(*(new Card(stoi(number), warna)));
+      else{
+        throw ConfigInvalidColorException();
+      }
+
+      try{
+        colorCodes.push_back(*(new Card(stoi(number), warna)));
+      }
+      catch(const std::exception& e){
+        throw ConfigInvalidNumberException();
+      }
+      
     }
     file.close();
-
+    if (linecount > 52) throw ConfigTooManyException();
+    else if (linecount < 52) throw ConfigNotEnoughException();
   }
   else {
     colorCodes.clear();

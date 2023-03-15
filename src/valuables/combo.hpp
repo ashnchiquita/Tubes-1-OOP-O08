@@ -69,6 +69,12 @@ class Combo : public Valuable {
    * @returns Value of the combo
    */
   float value();
+
+  // Combo& operator=(const Combo& other) {
+  //   delete[] this->cardList;
+  //   this->cardList = other.cardList;
+  //   this->comboSize = other.comboSize;
+  // }
 };
 
 #endif

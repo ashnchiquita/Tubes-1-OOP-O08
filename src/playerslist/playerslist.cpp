@@ -37,11 +37,13 @@ void PlayersList::changeTurn() {
 }
 
 void PlayersList::undoChangeTurn() {
+    cout << "-------- UNDOING CHANGE TURN ---------" << endl;
     this->turnCountInARound = (this->turnCountInARound + 6) % 7;
     if (this->turnCountInARound == 6) {
         this->undoChangeRound();
     }
     this->undoDelFirstInsertLast();
+    cout << "--------------------------------------" << endl;
 }
 
 void PlayersList::changeRound() {
@@ -61,7 +63,17 @@ void PlayersList::print() {
     cout << "| Round Count: " << this->roundCount << string(num-sizeof(this->roundCount)-15, space) << "|" << endl;
     cout << "| Turn Count In A Round: " << this->turnCountInARound << string(num-sizeof(this->turnCountInARound)-26, space) << "|" << endl;
     cout << "| Players Sequence: ";
-    this->printSequence();
+    if (this->getSize() == 0) {
+        cout << "-" << endl;
+    } else {
+        vector<Player>::iterator i = this->list.begin();
+        cout << (*i).getName();
+        for (i = this->list.begin() + 1; i < this->list.end(); ++i) {
+            cout << ", ";
+            (*i).print();
+        }
+        cout << endl;
+    }
 }
 
 void PlayersList::printSequence() {
@@ -142,13 +154,12 @@ void PlayersList::reversePlayers() {
 }
 
 void PlayersList::afterReverse() {
-    int changePos = 7 - this->turnCountInARound - 1;
+    cout << "-------- AFTER REVERSE ---------" << endl;
+    int changePos = (7 - this->turnCountInARound) % 7;
     iter_swap(this->list.begin(), this->list.begin() + changePos);
+    cout << "--------------------------------" << endl;
 }
 
-void PlayersList::recoverReverse() {
-
-}
 
 int PlayersList::getSize() {
     return this->list.size();
@@ -199,7 +210,7 @@ bool PlayersList::restrictCommand() const {
 }
 
 bool PlayersList::restrictTable() const {
-    return this->roundCount >= 5;
+    return this->roundCount > 5;
 }
 
 Player& PlayersList::findPlayer(const Player& other) {
