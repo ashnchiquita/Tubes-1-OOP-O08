@@ -32,7 +32,8 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   void addPoint(long int point);
 
   // Ability Card
-  AbilityCard& getAbility();
+  AbilityCard& getAbilityRef();
+  AbilityCard getAbility() const;
 
   // IDX 0 for LeftCard, IDX 1 for RightCard
   Card getCard(int idx);
@@ -49,6 +50,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   bool operator==(const Player& other) const;
 
   void print() override;
+  void PlayerASCII();
 };
 
 #endif

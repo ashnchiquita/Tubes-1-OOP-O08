@@ -3,6 +3,7 @@
 
 #include "input_handler.hpp"
 #include "../exception/command_exception.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -15,8 +16,9 @@ class CommandHandler : public InputHandler<T>{
         CommandHandler();
         ~CommandHandler();
         void yesNoCommand(string);
-        void turnCommand(string, bool, string);
+        void turnCommand(string, bool*, string);
 };
+
 template <typename T>
 CommandHandler<T>::CommandHandler() {}
 
@@ -35,7 +37,7 @@ string CommandHandler<T>::commandStrings[10] = {
                         "QUARTER",
                         "QUADRUPLE",
                         "REVERSE",
-                        "SWAP",
+                        "SWAPCARD",
                         "SWITCH",
                         "ABILITYLESS"
                         };
@@ -51,14 +53,17 @@ void CommandHandler<T>::yesNoCommand(string prompt){
 }
 
 template <typename T>
-void CommandHandler<T>::turnCommand(string prompt, bool validity, string abilitytype){
+void CommandHandler<T>::turnCommand(string prompt, bool constraints[2], string abilitytype){
     this->setInput(prompt, commandStrings, 10);
 
-    if (validity){
-        if(this->input == abilitytype || this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT"))
+    if (constraints[0]){
+        if (this->input == abilitytype)
+            if (!constraints[1]) throw CommandDisabledException(abilitytype);
+            else return;
+        else if(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT"))
             return;
         else
-            throw CommandNotAvailableException();
+            throw CommandNotAvailableException(this->input);
     }
     else{
         if (!(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT"))) {

@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.25.2/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.25.3/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.25.2/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.25.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/alishalistya/VSCode/Tubes-1-OOP-O08
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.25.2/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.25.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.25.2/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.25.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -129,53 +129,293 @@ Tubes-1-OOP-O08/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/build
 .PHONY : Tubes-1-OOP-O08/fast
 
-src/command/ability_command.o: src/command/ability_command.cpp.o
-.PHONY : src/command/ability_command.o
+src/command/ability_command/ability_command.o: src/command/ability_command/ability_command.cpp.o
+.PHONY : src/command/ability_command/ability_command.o
 
 # target to build an object file
-src/command/ability_command.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command.cpp.o
-.PHONY : src/command/ability_command.cpp.o
+src/command/ability_command/ability_command.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/ability_command.cpp.o
+.PHONY : src/command/ability_command/ability_command.cpp.o
 
-src/command/ability_command.i: src/command/ability_command.cpp.i
-.PHONY : src/command/ability_command.i
+src/command/ability_command/ability_command.i: src/command/ability_command/ability_command.cpp.i
+.PHONY : src/command/ability_command/ability_command.i
 
 # target to preprocess a source file
-src/command/ability_command.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command.cpp.i
-.PHONY : src/command/ability_command.cpp.i
+src/command/ability_command/ability_command.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/ability_command.cpp.i
+.PHONY : src/command/ability_command/ability_command.cpp.i
 
-src/command/ability_command.s: src/command/ability_command.cpp.s
-.PHONY : src/command/ability_command.s
+src/command/ability_command/ability_command.s: src/command/ability_command/ability_command.cpp.s
+.PHONY : src/command/ability_command/ability_command.s
 
 # target to generate assembly for a file
-src/command/ability_command.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command.cpp.s
-.PHONY : src/command/ability_command.cpp.s
+src/command/ability_command/ability_command.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/ability_command.cpp.s
+.PHONY : src/command/ability_command/ability_command.cpp.s
 
-src/command/basic_command.o: src/command/basic_command.cpp.o
-.PHONY : src/command/basic_command.o
+src/command/ability_command/abilityless.o: src/command/ability_command/abilityless.cpp.o
+.PHONY : src/command/ability_command/abilityless.o
 
 # target to build an object file
-src/command/basic_command.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command.cpp.o
-.PHONY : src/command/basic_command.cpp.o
+src/command/ability_command/abilityless.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/abilityless.cpp.o
+.PHONY : src/command/ability_command/abilityless.cpp.o
 
-src/command/basic_command.i: src/command/basic_command.cpp.i
-.PHONY : src/command/basic_command.i
+src/command/ability_command/abilityless.i: src/command/ability_command/abilityless.cpp.i
+.PHONY : src/command/ability_command/abilityless.i
 
 # target to preprocess a source file
-src/command/basic_command.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command.cpp.i
-.PHONY : src/command/basic_command.cpp.i
+src/command/ability_command/abilityless.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/abilityless.cpp.i
+.PHONY : src/command/ability_command/abilityless.cpp.i
 
-src/command/basic_command.s: src/command/basic_command.cpp.s
-.PHONY : src/command/basic_command.s
+src/command/ability_command/abilityless.s: src/command/ability_command/abilityless.cpp.s
+.PHONY : src/command/ability_command/abilityless.s
 
 # target to generate assembly for a file
-src/command/basic_command.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command.cpp.s
-.PHONY : src/command/basic_command.cpp.s
+src/command/ability_command/abilityless.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/abilityless.cpp.s
+.PHONY : src/command/ability_command/abilityless.cpp.s
+
+src/command/ability_command/quadruple.o: src/command/ability_command/quadruple.cpp.o
+.PHONY : src/command/ability_command/quadruple.o
+
+# target to build an object file
+src/command/ability_command/quadruple.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quadruple.cpp.o
+.PHONY : src/command/ability_command/quadruple.cpp.o
+
+src/command/ability_command/quadruple.i: src/command/ability_command/quadruple.cpp.i
+.PHONY : src/command/ability_command/quadruple.i
+
+# target to preprocess a source file
+src/command/ability_command/quadruple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quadruple.cpp.i
+.PHONY : src/command/ability_command/quadruple.cpp.i
+
+src/command/ability_command/quadruple.s: src/command/ability_command/quadruple.cpp.s
+.PHONY : src/command/ability_command/quadruple.s
+
+# target to generate assembly for a file
+src/command/ability_command/quadruple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quadruple.cpp.s
+.PHONY : src/command/ability_command/quadruple.cpp.s
+
+src/command/ability_command/quarter.o: src/command/ability_command/quarter.cpp.o
+.PHONY : src/command/ability_command/quarter.o
+
+# target to build an object file
+src/command/ability_command/quarter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quarter.cpp.o
+.PHONY : src/command/ability_command/quarter.cpp.o
+
+src/command/ability_command/quarter.i: src/command/ability_command/quarter.cpp.i
+.PHONY : src/command/ability_command/quarter.i
+
+# target to preprocess a source file
+src/command/ability_command/quarter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quarter.cpp.i
+.PHONY : src/command/ability_command/quarter.cpp.i
+
+src/command/ability_command/quarter.s: src/command/ability_command/quarter.cpp.s
+.PHONY : src/command/ability_command/quarter.s
+
+# target to generate assembly for a file
+src/command/ability_command/quarter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/quarter.cpp.s
+.PHONY : src/command/ability_command/quarter.cpp.s
+
+src/command/ability_command/reroll.o: src/command/ability_command/reroll.cpp.o
+.PHONY : src/command/ability_command/reroll.o
+
+# target to build an object file
+src/command/ability_command/reroll.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reroll.cpp.o
+.PHONY : src/command/ability_command/reroll.cpp.o
+
+src/command/ability_command/reroll.i: src/command/ability_command/reroll.cpp.i
+.PHONY : src/command/ability_command/reroll.i
+
+# target to preprocess a source file
+src/command/ability_command/reroll.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reroll.cpp.i
+.PHONY : src/command/ability_command/reroll.cpp.i
+
+src/command/ability_command/reroll.s: src/command/ability_command/reroll.cpp.s
+.PHONY : src/command/ability_command/reroll.s
+
+# target to generate assembly for a file
+src/command/ability_command/reroll.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reroll.cpp.s
+.PHONY : src/command/ability_command/reroll.cpp.s
+
+src/command/ability_command/reverse_direction.o: src/command/ability_command/reverse_direction.cpp.o
+.PHONY : src/command/ability_command/reverse_direction.o
+
+# target to build an object file
+src/command/ability_command/reverse_direction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reverse_direction.cpp.o
+.PHONY : src/command/ability_command/reverse_direction.cpp.o
+
+src/command/ability_command/reverse_direction.i: src/command/ability_command/reverse_direction.cpp.i
+.PHONY : src/command/ability_command/reverse_direction.i
+
+# target to preprocess a source file
+src/command/ability_command/reverse_direction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reverse_direction.cpp.i
+.PHONY : src/command/ability_command/reverse_direction.cpp.i
+
+src/command/ability_command/reverse_direction.s: src/command/ability_command/reverse_direction.cpp.s
+.PHONY : src/command/ability_command/reverse_direction.s
+
+# target to generate assembly for a file
+src/command/ability_command/reverse_direction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/reverse_direction.cpp.s
+.PHONY : src/command/ability_command/reverse_direction.cpp.s
+
+src/command/ability_command/swap_card.o: src/command/ability_command/swap_card.cpp.o
+.PHONY : src/command/ability_command/swap_card.o
+
+# target to build an object file
+src/command/ability_command/swap_card.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/swap_card.cpp.o
+.PHONY : src/command/ability_command/swap_card.cpp.o
+
+src/command/ability_command/swap_card.i: src/command/ability_command/swap_card.cpp.i
+.PHONY : src/command/ability_command/swap_card.i
+
+# target to preprocess a source file
+src/command/ability_command/swap_card.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/swap_card.cpp.i
+.PHONY : src/command/ability_command/swap_card.cpp.i
+
+src/command/ability_command/swap_card.s: src/command/ability_command/swap_card.cpp.s
+.PHONY : src/command/ability_command/swap_card.s
+
+# target to generate assembly for a file
+src/command/ability_command/swap_card.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/swap_card.cpp.s
+.PHONY : src/command/ability_command/swap_card.cpp.s
+
+src/command/ability_command/switch_card.o: src/command/ability_command/switch_card.cpp.o
+.PHONY : src/command/ability_command/switch_card.o
+
+# target to build an object file
+src/command/ability_command/switch_card.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/switch_card.cpp.o
+.PHONY : src/command/ability_command/switch_card.cpp.o
+
+src/command/ability_command/switch_card.i: src/command/ability_command/switch_card.cpp.i
+.PHONY : src/command/ability_command/switch_card.i
+
+# target to preprocess a source file
+src/command/ability_command/switch_card.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/switch_card.cpp.i
+.PHONY : src/command/ability_command/switch_card.cpp.i
+
+src/command/ability_command/switch_card.s: src/command/ability_command/switch_card.cpp.s
+.PHONY : src/command/ability_command/switch_card.s
+
+# target to generate assembly for a file
+src/command/ability_command/switch_card.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/ability_command/switch_card.cpp.s
+.PHONY : src/command/ability_command/switch_card.cpp.s
+
+src/command/basic_command/basic_command.o: src/command/basic_command/basic_command.cpp.o
+.PHONY : src/command/basic_command/basic_command.o
+
+# target to build an object file
+src/command/basic_command/basic_command.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/basic_command.cpp.o
+.PHONY : src/command/basic_command/basic_command.cpp.o
+
+src/command/basic_command/basic_command.i: src/command/basic_command/basic_command.cpp.i
+.PHONY : src/command/basic_command/basic_command.i
+
+# target to preprocess a source file
+src/command/basic_command/basic_command.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/basic_command.cpp.i
+.PHONY : src/command/basic_command/basic_command.cpp.i
+
+src/command/basic_command/basic_command.s: src/command/basic_command/basic_command.cpp.s
+.PHONY : src/command/basic_command/basic_command.s
+
+# target to generate assembly for a file
+src/command/basic_command/basic_command.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/basic_command.cpp.s
+.PHONY : src/command/basic_command/basic_command.cpp.s
+
+src/command/basic_command/double.o: src/command/basic_command/double.cpp.o
+.PHONY : src/command/basic_command/double.o
+
+# target to build an object file
+src/command/basic_command/double.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/double.cpp.o
+.PHONY : src/command/basic_command/double.cpp.o
+
+src/command/basic_command/double.i: src/command/basic_command/double.cpp.i
+.PHONY : src/command/basic_command/double.i
+
+# target to preprocess a source file
+src/command/basic_command/double.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/double.cpp.i
+.PHONY : src/command/basic_command/double.cpp.i
+
+src/command/basic_command/double.s: src/command/basic_command/double.cpp.s
+.PHONY : src/command/basic_command/double.s
+
+# target to generate assembly for a file
+src/command/basic_command/double.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/double.cpp.s
+.PHONY : src/command/basic_command/double.cpp.s
+
+src/command/basic_command/half.o: src/command/basic_command/half.cpp.o
+.PHONY : src/command/basic_command/half.o
+
+# target to build an object file
+src/command/basic_command/half.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/half.cpp.o
+.PHONY : src/command/basic_command/half.cpp.o
+
+src/command/basic_command/half.i: src/command/basic_command/half.cpp.i
+.PHONY : src/command/basic_command/half.i
+
+# target to preprocess a source file
+src/command/basic_command/half.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/half.cpp.i
+.PHONY : src/command/basic_command/half.cpp.i
+
+src/command/basic_command/half.s: src/command/basic_command/half.cpp.s
+.PHONY : src/command/basic_command/half.s
+
+# target to generate assembly for a file
+src/command/basic_command/half.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/half.cpp.s
+.PHONY : src/command/basic_command/half.cpp.s
+
+src/command/basic_command/next.o: src/command/basic_command/next.cpp.o
+.PHONY : src/command/basic_command/next.o
+
+# target to build an object file
+src/command/basic_command/next.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/next.cpp.o
+.PHONY : src/command/basic_command/next.cpp.o
+
+src/command/basic_command/next.i: src/command/basic_command/next.cpp.i
+.PHONY : src/command/basic_command/next.i
+
+# target to preprocess a source file
+src/command/basic_command/next.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/next.cpp.i
+.PHONY : src/command/basic_command/next.cpp.i
+
+src/command/basic_command/next.s: src/command/basic_command/next.cpp.s
+.PHONY : src/command/basic_command/next.s
+
+# target to generate assembly for a file
+src/command/basic_command/next.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/next.cpp.s
+.PHONY : src/command/basic_command/next.cpp.s
 
 src/command/command.o: src/command/command.cpp.o
 .PHONY : src/command/command.o
@@ -224,6 +464,30 @@ src/game/game.s: src/game/game.cpp.s
 src/game/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game.cpp.s
 .PHONY : src/game/game.cpp.s
+
+src/input_handler/file_handler.o: src/input_handler/file_handler.cpp.o
+.PHONY : src/input_handler/file_handler.o
+
+# target to build an object file
+src/input_handler/file_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/input_handler/file_handler.cpp.o
+.PHONY : src/input_handler/file_handler.cpp.o
+
+src/input_handler/file_handler.i: src/input_handler/file_handler.cpp.i
+.PHONY : src/input_handler/file_handler.i
+
+# target to preprocess a source file
+src/input_handler/file_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/input_handler/file_handler.cpp.i
+.PHONY : src/input_handler/file_handler.cpp.i
+
+src/input_handler/file_handler.s: src/input_handler/file_handler.cpp.s
+.PHONY : src/input_handler/file_handler.s
+
+# target to generate assembly for a file
+src/input_handler/file_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/input_handler/file_handler.cpp.s
+.PHONY : src/input_handler/file_handler.cpp.s
 
 src/inventory_holder/deck.o: src/inventory_holder/deck.cpp.o
 .PHONY : src/inventory_holder/deck.o
@@ -345,29 +609,29 @@ src/playerslist/playerslist.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/playerslist/playerslist.cpp.s
 .PHONY : src/playerslist/playerslist.cpp.s
 
-src/randomizer/randomizer.o: src/randomizer/randomizer.cpp.o
-.PHONY : src/randomizer/randomizer.o
+src/valuables/ability_card.o: src/valuables/ability_card.cpp.o
+.PHONY : src/valuables/ability_card.o
 
 # target to build an object file
-src/randomizer/randomizer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/randomizer/randomizer.cpp.o
-.PHONY : src/randomizer/randomizer.cpp.o
+src/valuables/ability_card.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/ability_card.cpp.o
+.PHONY : src/valuables/ability_card.cpp.o
 
-src/randomizer/randomizer.i: src/randomizer/randomizer.cpp.i
-.PHONY : src/randomizer/randomizer.i
+src/valuables/ability_card.i: src/valuables/ability_card.cpp.i
+.PHONY : src/valuables/ability_card.i
 
 # target to preprocess a source file
-src/randomizer/randomizer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/randomizer/randomizer.cpp.i
-.PHONY : src/randomizer/randomizer.cpp.i
+src/valuables/ability_card.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/ability_card.cpp.i
+.PHONY : src/valuables/ability_card.cpp.i
 
-src/randomizer/randomizer.s: src/randomizer/randomizer.cpp.s
-.PHONY : src/randomizer/randomizer.s
+src/valuables/ability_card.s: src/valuables/ability_card.cpp.s
+.PHONY : src/valuables/ability_card.s
 
 # target to generate assembly for a file
-src/randomizer/randomizer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/randomizer/randomizer.cpp.s
-.PHONY : src/randomizer/randomizer.cpp.s
+src/valuables/ability_card.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/ability_card.cpp.s
+.PHONY : src/valuables/ability_card.cpp.s
 
 src/valuables/card.o: src/valuables/card.cpp.o
 .PHONY : src/valuables/card.o
@@ -426,18 +690,51 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Tubes-1-OOP-O08"
-	@echo "... src/command/ability_command.o"
-	@echo "... src/command/ability_command.i"
-	@echo "... src/command/ability_command.s"
-	@echo "... src/command/basic_command.o"
-	@echo "... src/command/basic_command.i"
-	@echo "... src/command/basic_command.s"
+	@echo "... src/command/ability_command/ability_command.o"
+	@echo "... src/command/ability_command/ability_command.i"
+	@echo "... src/command/ability_command/ability_command.s"
+	@echo "... src/command/ability_command/abilityless.o"
+	@echo "... src/command/ability_command/abilityless.i"
+	@echo "... src/command/ability_command/abilityless.s"
+	@echo "... src/command/ability_command/quadruple.o"
+	@echo "... src/command/ability_command/quadruple.i"
+	@echo "... src/command/ability_command/quadruple.s"
+	@echo "... src/command/ability_command/quarter.o"
+	@echo "... src/command/ability_command/quarter.i"
+	@echo "... src/command/ability_command/quarter.s"
+	@echo "... src/command/ability_command/reroll.o"
+	@echo "... src/command/ability_command/reroll.i"
+	@echo "... src/command/ability_command/reroll.s"
+	@echo "... src/command/ability_command/reverse_direction.o"
+	@echo "... src/command/ability_command/reverse_direction.i"
+	@echo "... src/command/ability_command/reverse_direction.s"
+	@echo "... src/command/ability_command/swap_card.o"
+	@echo "... src/command/ability_command/swap_card.i"
+	@echo "... src/command/ability_command/swap_card.s"
+	@echo "... src/command/ability_command/switch_card.o"
+	@echo "... src/command/ability_command/switch_card.i"
+	@echo "... src/command/ability_command/switch_card.s"
+	@echo "... src/command/basic_command/basic_command.o"
+	@echo "... src/command/basic_command/basic_command.i"
+	@echo "... src/command/basic_command/basic_command.s"
+	@echo "... src/command/basic_command/double.o"
+	@echo "... src/command/basic_command/double.i"
+	@echo "... src/command/basic_command/double.s"
+	@echo "... src/command/basic_command/half.o"
+	@echo "... src/command/basic_command/half.i"
+	@echo "... src/command/basic_command/half.s"
+	@echo "... src/command/basic_command/next.o"
+	@echo "... src/command/basic_command/next.i"
+	@echo "... src/command/basic_command/next.s"
 	@echo "... src/command/command.o"
 	@echo "... src/command/command.i"
 	@echo "... src/command/command.s"
 	@echo "... src/game/game.o"
 	@echo "... src/game/game.i"
 	@echo "... src/game/game.s"
+	@echo "... src/input_handler/file_handler.o"
+	@echo "... src/input_handler/file_handler.i"
+	@echo "... src/input_handler/file_handler.s"
 	@echo "... src/inventory_holder/deck.o"
 	@echo "... src/inventory_holder/deck.i"
 	@echo "... src/inventory_holder/deck.s"
@@ -453,9 +750,9 @@ help:
 	@echo "... src/playerslist/playerslist.o"
 	@echo "... src/playerslist/playerslist.i"
 	@echo "... src/playerslist/playerslist.s"
-	@echo "... src/randomizer/randomizer.o"
-	@echo "... src/randomizer/randomizer.i"
-	@echo "... src/randomizer/randomizer.s"
+	@echo "... src/valuables/ability_card.o"
+	@echo "... src/valuables/ability_card.i"
+	@echo "... src/valuables/ability_card.s"
 	@echo "... src/valuables/card.o"
 	@echo "... src/valuables/card.i"
 	@echo "... src/valuables/card.s"

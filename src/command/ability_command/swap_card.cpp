@@ -21,7 +21,10 @@ void SwapCard::execute() {
   do {
     try {
       InputHandler<int> optionHandler;
+      cout << "\033[1m\033[36m \n";
       // Select First Player
+      cout << this->game->getCurrPlayerRef().getName() << " melakukan SWAPCARD!" << endl;
+
       cout << "Silakan pilih pemain yang kartunya ingin ditukar: " << endl;
       optionList = this->game->getPlayersList() - this->game->getCurrPlayerRef();
       optionList.printSequenceOrder();
@@ -34,13 +37,13 @@ void SwapCard::execute() {
       optionList2.printSequenceOrder();
       optionHandler.setInput("> ", 0, optionList2.getSize());
       secondOption = optionHandler.getInput() - 1;
-
-      Player& secondPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(secondOption));
       
       // Select Cards
-      optionHandler.setInput("Pilihan kartu pertama: \n 1. Kanan\n 2. Kiri\n> ", 1, 2);
+      cout << "Silakan pilih kartu kanan/kiri " << this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption)).getName() << ":" << endl;
+      optionHandler.setInput("> ", 1, 2);
       firstCard = optionHandler.getInput() - 1;
-      optionHandler.setInput("Pilihan kartu kedua: \n 1. Kanan\n 2. Kiri\n> ", 1, 2);
+      cout << "Silakan pilih kartu kanan/kiri " << this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(secondOption)).getName() << ":" << endl;
+      optionHandler.setInput("> ", 1, 2);
       secondCard = optionHandler.getInput() - 1;
 
       valid = true;
@@ -63,9 +66,9 @@ void SwapCard::execute() {
   firstPlayer.setCard(secondCard - 1, tempCard);
   
   // Interface
-  cout << this->game->getCurrPlayerRef().getName() << " melakukan SWAPCARD!" << endl;
   cout << "Kartu " << firstPlayer.getName() << " telah tertukar dengan "
        << secondPlayer.getName() << "." << endl;
+  cout << "\033[0m";
 
   this->turnOffAbility();
 }

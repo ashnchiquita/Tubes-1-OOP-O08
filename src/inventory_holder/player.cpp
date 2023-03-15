@@ -54,7 +54,9 @@ void Player::setPoint(long int point) { this->point = point; }
 void Player::addPoint(long int point) { this->point += point; };
 
 /* ABILITY CARD */
-AbilityCard& Player::getAbility() { return this->abilityCard; }
+AbilityCard& Player::getAbilityRef() { return this->abilityCard;}
+
+AbilityCard Player::getAbility() const { return this->abilityCard; }
 
 Card Player::getCard(int idx) {
   if (idx == 0) {
@@ -118,15 +120,46 @@ bool Player::operator==(const Player& other) const {
 }
 
 void Player::print() {
-  cout << "Name: " << this->name << endl;
-  cout << "Point: " << this->point << endl;
+  char space = ' ';
+  char dash = '_';
+  int num = 45;
+  /* DEBUG */
+  // cout << "Name: " << this->name << endl;
+  cout << string(num, dash) << endl << endl;
+  cout << " Point    : " << this->point << ""<< endl;
  
-  cout << "Ability: ";
+  cout << " Ability  : ";
   this->getAbility().displayAbility();
   cout << endl;
-  cout << "Cards: ";
+  cout << " Cards    : ";
   this->bufferCard.first.displayCard();
   cout << ", ";
   this->bufferCard.second.displayCard();
   cout << endl;
+  cout << string(num, dash) << endl;
+}
+
+void Player::PlayerASCII() {
+  string firstColor, secondColor;
+  CardColor card1 = this->getCard(0).getColor();
+  if (card1== CardColor::GREEN ){ firstColor = "\033[32m";}
+  else if (this->getCard(0).getColor() == CardColor::BLUE){ firstColor = "\033[34m";}
+  else if (this->getCard(0).getColor() == CardColor::RED){ firstColor = "\033[31m";}
+  else if (this->getCard(0).getColor() == CardColor::RED){ firstColor = "\033[33m";}
+
+  if (this->getCard(1).getColor() == CardColor::GREEN ){ secondColor = "\033[32m";}
+  else if (this->getCard(1).getColor() == CardColor::BLUE){ secondColor = "\033[34m";}
+  else if (this->getCard(1).getColor() == CardColor::RED){ secondColor = "\033[31m";}
+  else if (this->getCard(1).getColor() == CardColor::RED){ secondColor = "\033[33m";}
+  
+  this->getCard(0).displayCard(); cout<< "    "; this->getCard(1).displayCard();
+        cout << firstColor << "┌─────────┐   " << secondColor << "┌─────────┐    \n";
+        cout << firstColor <<"│"<<this->getCard(0).getNum()<<"        │   " << secondColor << "│"<< this->getCard(1).getNum() <<"        │   \n";
+        cout << firstColor <<"│         │   " << secondColor << "│         │    \n";
+        cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
+        cout << firstColor <<"│    ♣    │   " << secondColor << "│    ♣    │    \n";
+        cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
+        cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
+        cout << firstColor <<"│        "<<this->getCard(0).getNum()<<"│   " << secondColor << "│        "<< this->getCard(1).getNum() <<"│     \n";
+        cout << firstColor <<"└─────────┘   " << secondColor << "|─────────┘     \n";
 }

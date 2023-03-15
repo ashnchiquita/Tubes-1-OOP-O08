@@ -100,6 +100,9 @@ class Card : public Valuable {
    */
   void displayCard();
 
+  /* ASCII CARD*/
+  void ASCIICard();
+
   bool operator<(const Card& other) const;
 };
 

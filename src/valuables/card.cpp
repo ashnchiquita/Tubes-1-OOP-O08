@@ -108,7 +108,27 @@ void Card::displayCard() {
   colorMap[CardColor::YELLOW] = "Kuning";
   colorMap[CardColor::RED] = "Merah";
 
-  cout << this->num << " " << colorMap[this->color] << '\n';
+  cout << this->num << " " << colorMap[this->color];
 }
 
 bool Card::operator<(const Card& other) const { return this->getNum() < other.getNum(); }
+
+void Card::ASCIICard(){
+  if (this->color == CardColor::GREEN ){ cout << "\033[32m";}
+  else if (this->color == CardColor::BLUE){ cout << "\033[34m";}
+  else if (this->color == CardColor::RED){ cout << "\033[31m";}
+  else if (this->color == CardColor::RED){ cout << "\033[33m";}
+  
+  this->displayCard(); cout<< "    \n";
+  
+  printf(
+        "┌─────────┐    \n"
+        "│%d        │   \n"
+        "│         │    \n"
+        "│         │     \n"
+        "│    ♣    │    \n"
+        "│         │     \n"
+        "│         │     \n"
+        "│        %d│     \n"
+        "└─────────┘     \n", this->num, this->num);
+};

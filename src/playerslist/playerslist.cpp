@@ -6,6 +6,11 @@ void PlayersList::delFirstInsertLast() {
     this->list.erase(this->list.begin());
 }
 
+void PlayersList::undoDelFirstInsertLast() {
+    this->list.insert(this->list.begin(), this->list.back());
+    this->list.erase(this->list.end() - 1);
+}
+
 PlayersList::PlayersList(){
     this->roundCount = 0;
     this->turnCountInARound = 0;
@@ -31,15 +36,31 @@ void PlayersList::changeTurn() {
     this->turnCountInARound = (this->turnCountInARound + 1) % 7;
 }
 
+void PlayersList::undoChangeTurn() {
+    this->turnCountInARound = (this->turnCountInARound + 6) % 7;
+    if (this->turnCountInARound == 6) {
+        this->undoChangeRound();
+    }
+    this->undoDelFirstInsertLast();
+}
+
 void PlayersList::changeRound() {
     this->delFirstInsertLast();
     this->roundCount++;
 }
 
+void PlayersList::undoChangeRound() {
+    this->undoDelFirstInsertLast();
+    this->roundCount--;
+}
+
 void PlayersList::print() {
-    cout << "Round Count: " << this->roundCount << endl;
-    cout << "Turn Count In A Round: " << this->turnCountInARound << endl;
-    cout << "Players Sequence: ";
+    char space = ' ';
+    char dash = '-';
+    int num = 60;
+    cout << "| Round Count: " << this->roundCount << string(num-sizeof(this->roundCount)-15, space) << "|" << endl;
+    cout << "| Turn Count In A Round: " << this->turnCountInARound << string(num-sizeof(this->turnCountInARound)-26, space) << "|" << endl;
+    cout << "| Players Sequence: ";
     this->printSequence();
 }
 
@@ -120,6 +141,15 @@ void PlayersList::reversePlayers() {
     }
 }
 
+void PlayersList::afterReverse() {
+    int changePos = 7 - this->turnCountInARound - 1;
+    iter_swap(this->list.begin(), this->list.begin() + changePos);
+}
+
+void PlayersList::recoverReverse() {
+
+}
+
 int PlayersList::getSize() {
     return this->list.size();
 }
@@ -188,7 +218,7 @@ bool PlayersList::isNewRound() const {
 bool PlayersList::hasAbility() const {
     vector<Player>::const_iterator it;
     for(it = this->list.begin(); it != this->list.end(); ++it) {
-        if ((*it).getAbilityCardStatus()) {
+        if (it->getAbility().getAbilityCardStatus()) {
             return true;
         }
     }

@@ -44,6 +44,7 @@ add_executable(Tubes-1-OOP-O08
     # valuables
     src/valuables/card.cpp
     src/valuables/combo.cpp
+    src/valuables/ability_card.cpp
     )
 
 set_target_properties(Tubes-1-OOP-O08

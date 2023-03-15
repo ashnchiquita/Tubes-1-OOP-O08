@@ -1,5 +1,5 @@
-#include "combo.hpp"
-#include "card.hpp"
+#include "combo.cpp"
+#include "card.cpp"
 #include "valuable.hpp"
 
 #include <algorithm>

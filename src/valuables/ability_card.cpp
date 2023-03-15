@@ -17,16 +17,12 @@ bool AbilityCard::getAbilityCardStatus() const {
     return this->status;
 }
 
-void AbilityCard::setAbilityCardStatus(bool _status) {
-    this->status = status;
+void AbilityCard::setAbilityCardStatus(bool in) {
+    this->status = in;
 }
 
 void AbilityCard::useAbility() {
-    if (this->status) {
-        this->status = false;
-    } else {
-        // TODO: throw exception
-    }
+    this->status = false;
 }
 
 void AbilityCard::displayAbility() const {
@@ -44,7 +40,7 @@ string AbilityCard::abilityString() const {
     typeMap[AbilityType::QUADRUPLE] = "QUADRUPLE";
     typeMap[AbilityType::QUARTER] = "QUARTER";
     typeMap[AbilityType::REVERSE] = "REVERSE";
-    typeMap[AbilityType::SWAP] = "SWAP";
+    typeMap[AbilityType::SWAP] = "SWAPCARD";
     typeMap[AbilityType::SWITCH] = "SWITCH";
     typeMap[AbilityType::ABILITYLESS] = "ABILITYLESS";
     typeMap[AbilityType::NULLABILITY] = "NULLABILITY";

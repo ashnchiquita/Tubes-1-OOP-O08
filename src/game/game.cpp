@@ -48,11 +48,34 @@ Game::Game() {
   r.iterShuffle(abilityList, 7);
 
   // Opening /* TODO: ASCII ART */
-  cout << "~ , ` - . `* Welcome To *' - . `. ~" << endl;
-  cout << "             A S C I I " << endl;
-  cout << "               A R T   " << endl << endl;
+  cout << "\033[34m" << "                                ~ , ` - . `* Welcome To *' - . `. ~" << "\033[0m" << endl;
+
+  // cout << "\033[33m"<< "__________________________________________________________________________________________________________" << endl << endl;
+  // cout << "|    $$$$$$\\   $$$$$$\\   $$$$$$\\  $$$$$$$\\ $$$$$$\\ $$\\   $$\\       $$$$$$\\ $$$$$$$\\ $$$$$$\\ $$\\   $$\\    |" << endl;
+  // cout << "|   $$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __ $$\\_$$  _|$$$\\  $$ |      \\_$$  _|$$  __ $$\\_$$  _|$$$\\  $$ |   |" << endl;
+  // cout << "|   $$ /  $$ |$$ /  $$ |$$ /  $$ |$$ |  $$ | $$ |  $$$$\\ $$ |        $$ |  $$ |  $$ | $$ |  $$$$\\ $$ |   |" << endl;
+  // cout << "|   $$ |  $$ |$$ |  $$ |$$ |  $$ |$$$$$$$  | $$ |  $$ $$\\$$ |        $$ |  $$$$$$$  | $$ |  $$ $$\\$$ |   |" << endl;
+  // cout << "|   $$ |  $$ |$$ |  $$ |$$ |  $$ |$$  ____/  $$ |  $$ \\$$$$ |        $$ |  $$  ____/  $$ |  $$ \\$$$$ |   |" << endl;
+  // cout << "|   $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |       $$ |  $$ |\\$$$ |        $$ |  $$ |       $$ |  $$ |\\$$$ |   |" << endl;
+  // cout << "|    $$$$$$  | $$$$$$  | $$$$$$  |$$ |     $$$$$$\\ $$ |\\$$ |      $$$$$$\\  $$ |     $$$$$$\\$$ | \\$$ |    |" << endl;
+  // cout << "|    \\______/  \\______/  \\______/ \\__|     \\______|\\__|  \\__|      \\______|\\__|    \\______|\\__|  \\__|    |" << endl;
+  // cout << endl <<"__________________________________________________________________________________________________________" << "\033[0m" << endl << endl;
+  
+  cout << "\033[33m" << "_______________________________________________________________________________________________"<< endl;
+  cout << "|                                                                                              |"<< endl;
+  cout << "|    ♡♡♡♡♡♡\\   ♡♡♡♡♡♡\\  ♡♡♡♡♡♡♡\\ ♡♡♡♡♡♡\\ ♡♡\\   ♡♡\\       ♡♡♡♡♡♡\\ ♡♡♡♡♡♡♡\\ ♡♡♡♡♡♡\\ ♡♡\\   ♡♡\\    |" << endl;
+  cout << "|   ♡♡  __♡♡\\ ♡♡  __♡♡\\ ♡♡  __ ♡♡\\_♡♡  _|♡♡♡\\  ♡♡ |      \\_♡♡  _|♡♡  __ ♡♡\\_♡♡  _|♡♡♡\\  ♡♡ |   |" << endl;
+  cout << "|   ♡♡ /  ♡♡ |♡♡ /  ♡♡ |♡♡ |  ♡♡ | ♡♡ |  ♡♡♡♡\\ ♡♡ |        ♡♡ |  ♡♡ |  ♡♡ | ♡♡ |  ♡♡♡♡\\ ♡♡ |   |" << endl;
+  cout << "|   ♡♡ |  ♡♡ |♡♡ |  ♡♡ |♡♡♡♡♡♡♡  | ♡♡ |  ♡♡ ♡♡\\♡♡ |        ♡♡ |  ♡♡♡♡♡♡♡  | ♡♡ |  ♡♡ ♡♡\\♡♡ |   |" << endl;
+  cout << "|   ♡♡ |  ♡♡ |♡♡ |  ♡♡ |♡♡  ____/  ♡♡ |  ♡♡ \\♡♡♡♡ |        ♡♡ |  ♡♡  ____/  ♡♡ |  ♡♡ \\♡♡♡♡ |   |" << endl;
+  cout << "|   ♡♡ |  ♡♡ |♡♡ |  ♡♡ |♡♡ |       ♡♡ |  ♡♡ |\\♡♡♡ |        ♡♡ |  ♡♡ |       ♡♡ |  ♡♡ |\\♡♡♡ |   |" << endl;
+  cout << "|    ♡♡♡♡♡♡  | ♡♡♡♡♡♡  |♡♡ |     ♡♡♡♡♡♡\\ ♡♡ | \\♡♡ |      ♡♡♡♡♡♡\\ ♡♡ |     ♡♡♡♡♡♡\\ ♡♡ | \\♡♡ |   |"   << endl;
+  cout << "|    \\______/  \\______/ \\__|     \\______|\\__|  \\__|      \\______|\\__|    \\______|\\__|   \\__|   |" << endl;
+  cout << "|                                                                                              |"<< endl;
+  cout << "|______________________________________________________________________________________________" << "|"<< endl << endl;
   // kata akumah pake foto upin ipin oleng
-  cout << "Created by group * ~ ' . * ♡ OOPin 1pin ♡ * . ' ~ * (Kode O08)" << endl << endl;
+  
+  cout << "\033[34m" << "                         Created by group * ~ ' . * ♡ OOPin 1pin ♡ * . ' ~ * (Kode O08)" << "\033[0m" << endl << endl;
 
   // Input Source
   CommandHandler<string> optionPicker;
@@ -60,13 +83,17 @@ Game::Game() {
   
   do {
     try {
+      cout << "\033[35m";
       optionPicker.yesNoCommand("\nApakah ingin memasukkan konfigurasi deck dari file? [y/n] ");
+      cout << "\033[0m";
       string choice = optionPicker.getInput();
 
-      if (choice == "y" || choice == "Y"){
+      if (choice == "y" || choice == "Y") {
         // Filename
-        cout << endl << "Pastikan file konfigurasi deck berada di folder config." << endl;
-        cout << "Masukkan nama file: ";
+        cout << endl  << "___________________________________________________________" << endl;
+        cout          << "| Pastikan file konfigurasi deck berada di folder config. |" << endl;
+        cout          << "|_________________________________________________________|" << endl;
+        cout << "Masukkan nama file: " << endl << "> ";
         cin >> filename;
 
         // Get mainDeck
@@ -87,8 +114,12 @@ Game::Game() {
 
   for (int i = 0; i < 7; i++) {
     // Insert name for players
-    cout << "Masukkan nama pemain " << (i + 1) << ": ";
-    getline(cin, name);
+    do {
+      cout << "Masukkan nama pemain " << (i + 1) << ": " << endl << "> ";
+      getline(cin, name);
+      cout << "\n";
+    } while (name == "");
+    
 
     // Players get Cards
     this->playersList.addPlayer(Player(name, 0));
@@ -98,7 +129,7 @@ Game::Game() {
     this->playersList.getPlayerAt(i) << temp;
 
     // Players get Ability
-    this->playersList.getPlayerAt(i).getAbility().giveAbility(abilityList[i]);
+    this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]);
   }
 }
 
@@ -124,23 +155,32 @@ void Game::multiplyGamePoint(float multiplier) {
 
 void Game::runTurn() {
   string cmd;
-
+  cout << " --------------------- TABLE CARD ---------------------" << endl;
+  this->mainTable.ASCIITable();
   cout << endl << "Sekarang giliran " << this->getCurrPlayerRef().getName() << "!" << endl;
-  cout << "Kartu ability " << this->getCurrPlayerRef().getName() << ": ";
-  this->getCurrPlayerRef().getAbility().displayAbility();
+  cout << "\033[1m\033[33m";
+  cout << "Game Point : " << this->gamePoint << endl;
+  cout << "\033[35m";
+  this->getCurrPlayerRef().print();
+  cout << " --------------------- PLAYER CARD ---------------------" << endl;
+  this->getCurrPlayerRef().PlayerASCII();
+  cout << "\033[0m";
+  /* DEBUG */
+  // cout << "Kartu ability " << this->getCurrPlayerRef().getName() << ": ";
+  // this->getCurrPlayerRef().getAbility().displayAbility();
 
   Command* command;
   CommandHandler<string> optionHandler;
   bool valid = false;
   do {
     try {
-      optionHandler.turnCommand("Masukkan command\n> ", !this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().abilityString());
+      bool constraints[2] = {!this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().getAbilityCardStatus()};
+      optionHandler.turnCommand("\nMasukkan command\n> ", constraints, this->getCurrPlayerRef().getAbility().abilityString());
       cmd = optionHandler.getInput();
       valid = true;
     } catch (Exception& e) {
       cout << e.what() << '\n';
     }
-
   } while (!valid);
 
   // Creating command
@@ -158,7 +198,7 @@ void Game::runTurn() {
     command = new Reroll(this);
   } else if (cmd == string("REVERSE")) {
     command = new ReverseDirection(this);
-  } else if (cmd == string("SWAP")) {
+  } else if (cmd == string("SWAPCARD")) {
     command = new SwapCard(this);
   } else if (cmd == string("SWITCH")) {
     command = new SwitchCard(this);
@@ -185,6 +225,7 @@ void Game::runTurn() {
 
 void Game::runGame() {
   do {
+    /* DEBUG */
     printGameState();
     runTurn();
   } while (!this->playersList.isComplete());
@@ -224,6 +265,7 @@ void Game::resetGame() {
 
       if (choice == "y" || choice == "Y"){
         // Filename
+        /* TODO: sinkronin sama yang di at*/
         cout << endl << "Pastikan file konfigurasi deck berada di folder config." << endl;
         cout << "Masukkan nama file: ";
         cin >> filename;
@@ -249,8 +291,10 @@ void Game::resetGame() {
     this->playersList.getPlayerAt(i) << temp;
 
     // Players get Ability
-    this->playersList.getPlayerAt(i).getAbility().giveAbility(abilityList[i]);
+    this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]);
   } 
+  /* DEBUG */
+  this->printGameState();
 }
 
 bool Game::isFinished() { return this->playersList.hasWinner(); }
@@ -334,6 +378,7 @@ void Game::givePoint() {
   cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << endl;
   winningPlayer.print();
 
+  /* DEBUG */
   cout << "Combo " << winningPlayer.getName() << ": " << endl;
   for (int i = 0; i < 5; i++) {
     maxComboCards[i].displayCard();
@@ -350,9 +395,16 @@ void Game::givePoint() {
 }
 
 void Game::printGameState() {
-  cout << "============= GAME STATE =============" << endl;
-  cout << "Game Point : " << this->gamePoint << endl;
-  cout << "Players Queue" << endl;
+  char space = ' ';
+  char dash = '-';
+  int num = 60;
+  cout << string(num, dash) << endl;
+  cout << "|" << string(num/2-6, space) << "GAME STATE" << string(num/2-6, space) << "|"<< endl;
+  cout << "|"<< string(num-2, space) <<"|" << endl;
+  cout << "| Game Point : " << this->gamePoint << endl;
   this->playersList.print();
-  cout << "======================================" << endl;
+  cout << "| Deck cards count : " << this->mainDeck.getSize() << endl;
+  cout << "| ";
+  this->mainTable.print();
+  cout << string(num, dash) << endl;
 }

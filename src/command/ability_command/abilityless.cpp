@@ -11,6 +11,7 @@ Abilityless::~Abilityless() {}
 
 void Abilityless::execute() {
   // Mematikan kemampuan lawan
+  cout << "\033[1m\033[36m \n";
   cout << this->game->getCurrPlayerRef().getName() << " melakukan ABILITYLESS!" << endl;
 
   if (!this->game->getPlayersList().hasAbility()) {
@@ -25,13 +26,13 @@ void Abilityless::execute() {
     bool valid = false;
     do {
       try {
-        cout << "Silahkan pilih pemain yang kartunya ingin dimatikan" << endl;
+        cout << "Silahkan pilih pemain yang kartunya ingin dimatikan:" << endl;
         optionList =
             this->game->getPlayersList() - this->game->getCurrPlayerRef();
         optionList.printSequenceOrder();
 
         InputHandler<int> optionHandler;
-        optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize());
+        optionHandler.setInput("> ", 1, optionList.getSize());
 
         option = optionHandler.getInput() - 1;
 
@@ -49,9 +50,10 @@ void Abilityless::execute() {
       cout << "Yah, sayang penggunaan kartu ini sia-sia." << endl;
     } else {
       // Set Ability Nonactive
-      targetPlayer.getAbility().setAbilityCardStatus(false);
+      this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option)).getAbilityRef().setAbilityCardStatus(false);
       cout << "Kartu ability " << targetPlayer.getName() << " telah dimatikan."
           << endl;
+      cout << "\033[0m";
     }
   }
   

@@ -15,6 +15,7 @@ class PlayersList {
         int turnCountInARound, roundCount;
 
         void delFirstInsertLast();
+        void undoDelFirstInsertLast();
 
     public:
         PlayersList();
@@ -22,7 +23,9 @@ class PlayersList {
         int getRoundCount() const;
         int getTurnCountInARound() const;
         void changeTurn();
+        void undoChangeTurn();
         void changeRound();
+        void undoChangeRound();
         void print();
         void printSequence();
         void printSequenceOrder();
@@ -34,6 +37,8 @@ class PlayersList {
         Player& getPlayerAt(int i);
 
         void reversePlayers();
+        void afterReverse();
+        void recoverReverse();
         void reset();
         int getSize();
 

@@ -8,6 +8,8 @@ Next::Next(Game* currentGame) : BasicCommand(currentGame) {}
 Next::~Next() {}
 
 void Next::execute() {
+    cout << "\033[1m\033[36m \n";
     cout << this->game->getCurrPlayerRef().getName() << " melakukan NEXT!" << endl;
     cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
+    cout << "\033[0m";
 }

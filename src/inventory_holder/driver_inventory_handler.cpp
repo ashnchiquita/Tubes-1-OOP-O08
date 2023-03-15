@@ -126,7 +126,6 @@ int main() {
 
 
   cout << "PRINT ABILITY\n";
-  player1.displayAbility();
   
   delete [] testCombine;
   delete [] playerHand;

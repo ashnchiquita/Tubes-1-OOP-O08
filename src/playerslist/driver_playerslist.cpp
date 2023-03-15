@@ -34,6 +34,11 @@ int main() {
     p.print();
     cout << endl << endl;
 
+    cout << "==================== UNDO CHANGE p TURN ====================" << endl;
+    p.undoChangeTurn();
+    p.print();
+    cout << endl << endl;
+
     // remaining turns
     cout << "==================== p REMAINING TURNS ====================" << endl;
     p.getRemainingTurns().print();

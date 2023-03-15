@@ -11,7 +11,8 @@ SwitchCard::~SwitchCard(){}
 void SwitchCard::execute() {
   // Pemain akan menukar kartu main deck miliknya dengan kartu main deck milik
   // pemain lain
-  cout << this->game->getCurrPlayerRef().getName() << " melakukan SWITCHCARD!" << endl;
+  cout << "\033[1m\033[36m \n";
+  cout << this->game->getCurrPlayerRef().getName() << " melakukan SWITCH!" << endl;
 
   PlayersList optionList;
   int option;
@@ -29,18 +30,18 @@ void SwitchCard::execute() {
   bool valid = false;
   do {
     try {
-      cout << "Silahkan pilih pemain yang kartunya ingin Anda tukar" << endl;
+      cout << "Silahkan pilih pemain yang kartunya ingin ditukar: " << endl;
       optionList =
           this->game->getPlayersList() - this->game->getCurrPlayerRef();
       optionList.printSequenceOrder();
 
       InputHandler<int> optionHandler;
-      optionHandler.setInput("Masukan pilihan: ", 1, optionList.getSize() );
+      optionHandler.setInput("> ", 1, optionList.getSize() );
       option = optionHandler.getInput() - 1;
 
       valid = true;
     } catch (Exception& e) {
-      cout << e.what() << '\n';
+      cout << e.what() << endl;
     }
   } while (!valid);
 
@@ -55,9 +56,12 @@ void SwitchCard::execute() {
   // Interface
   cout << "Kedua kartu " << currPlayer.getName() << " telah ditukar dengan "
        << targetPlayer.getName() << "!" << endl;
-  cout << "Kartumu sekarang adalah:" << endl;
+  cout << "Kartumu sekarang:" << endl;
   currPlayer.getCard(0).displayCard();
+  cout << " & ";
   currPlayer.getCard(1).displayCard();
+  cout << endl;
+  cout << "\033[0m";
 
   this->turnOffAbility();
 }

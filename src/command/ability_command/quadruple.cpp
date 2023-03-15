@@ -15,9 +15,11 @@ void Quadruple::execute() {
 
   // cout << "Quadruple" << endl;
   // Interface
+  cout << "\033[1m\033[36m \n";
   cout << this->game->getCurrPlayerRef().getName() << " melakukan QUADRUPLE!" << endl;
   cout << "Poin hadiah naik dari " << point << " menjadi "
        << this->game->getGamePoint() << "!\n";
+  cout << "\033[0m";
 
   this->turnOffAbility();
 }

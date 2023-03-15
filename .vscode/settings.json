@@ -72,6 +72,9 @@
         "optional": "cpp",
         "stack": "cpp",
         "filesystem": "cpp",
+        "__functional_base": "cpp",
+        "__hash_table": "cpp",
+        "complex": "cpp"
     },
     "C_Cpp.formatting": "disabled",
     "editor.formatOnPaste": true,

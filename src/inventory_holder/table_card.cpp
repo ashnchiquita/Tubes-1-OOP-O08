@@ -64,3 +64,81 @@ void TableCard::print() {
 }
 
 int TableCard::getSize() const { return this->bufferCard.size(); }
+
+void TableCard::ASCIITable(){
+  vector <Card>::iterator it;
+    
+  //   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it) {
+  //     (*it).ASCIICard();
+  //   }
+
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    (it)->displayCard(); cout<< "         ";
+  } printf("\n");
+  
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("┌─────────┐    ");
+  } printf("\n");
+
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("│%d        │    ", (*it).getNum());
+  } printf("\n");
+
+  for (int i = 0; i<2; i++){
+    for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("│         │    ");
+    } printf("\n");
+  }
+
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("│    ♣    │    ");
+  } printf("\n");
+
+  for (int i = 0; i<2; i++){
+    for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("│         │    ");
+    } printf("\n");
+  }
+
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("│        %d│    ", (*it).getNum());
+  } printf("\n");
+
+  for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
+    if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}
+    else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
+    else if ((*it).getColor() == CardColor::RED){ cout << "\033[33m";}
+    printf("└─────────┘    ");
+  } printf("\n");
+
+  cout << "\033[0m";
+}
