@@ -4,4 +4,4 @@ AbilityCommand::AbilityCommand(Game* currentGame) : Command(currentGame) {}
 
 AbilityCommand::~AbilityCommand() {}
 
-void AbilityCommand::turnOffAbility() { this->game->getCurrPlayerRef().getAbility().setAbilityCardStatus(false); }
+void AbilityCommand::turnOffAbility() { this->game->getCurrPlayerRef().getAbilityRef().setAbilityCardStatus(false); }
