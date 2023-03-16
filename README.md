@@ -1,5 +1,6 @@
-# Tubes-1-OOP-O08
-# IF2110-BNMO-The-Game
+## Tubes-1-OOP-O08
+# Kompetisi Kartu ala Kerajaan Permen
+## IF2210 Pemrograman Berorientasi Objek
  Project ini merupakan salah satu pemenuhan Tugas besar I IF2210 Pemrograman Berorientasi Objek
 <h2 align="center">
   OOpin Ipin<br/>
