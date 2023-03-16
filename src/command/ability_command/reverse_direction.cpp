@@ -23,7 +23,7 @@ void ReverseDirection::execute() {
   this->game->getPlayersListRef().getNextRound().printSequence();
   cout << "\033[0m";
 
-  this->game->getPlayersList().print();
+  // this->game->getPlayersList().print();
   this->game->getPlayersListRef().afterReverse();
   this->game->runTurn();
   this->game->getPlayersListRef().undoChangeTurn();
