@@ -61,13 +61,13 @@ void TableCard::print() {
 
 int TableCard::getSize() const { return this->bufferCard.size(); }
 
+void TableCard::clearCards() {
+  this->bufferCard.clear();
+}
+
 void TableCard::ASCIITable(){
   vector <Card>::iterator it;
   char space =' ';
-    
-  //   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it) {
-  //     (*it).ASCIICard();
-  //   }
 
   for (it = this->bufferCard.begin(); it != this->bufferCard.end(); ++it){
     if ((*it).getColor() == CardColor::GREEN) {cout << "\033[32m";}

@@ -19,6 +19,7 @@ class TableCard : public InventoryHolder <vector <Card> > {
   TableCard& operator>>(Card* card) override;
 
   // services
+  void clearCards() override;
   vector<Card> getAllCards();
   void ASCIITable();
   void print() override;

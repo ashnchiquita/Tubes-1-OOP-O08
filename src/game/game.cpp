@@ -244,6 +244,11 @@ void Game::resetGame() {
   cout << endl << "Game di-reset..." << endl << endl;
   this->playersList.reset();
   this->gamePoint = 64;
+  // Table Card Reset
+  this->mainTable.clearCards();
+  // Player Reset
+  this->playersList.resetPlayersCards();
+  // Deck Reset
   this->mainDeck.resetDeck();
   this->mainDeck.shuffleDeck();
 
