@@ -46,6 +46,7 @@ class PlayersList {
 
         /* TODO: implement winner searching */
         bool isComplete();
+        bool isNextComplete();
 
         // setelah hadiah dikasih
         Player highestPoint() const;

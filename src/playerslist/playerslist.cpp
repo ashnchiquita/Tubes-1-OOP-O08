@@ -186,6 +186,10 @@ bool PlayersList::isComplete() {
   return this->roundCount == 6 && this->turnCountInARound == 0;
 }
 
+bool PlayersList::isNextComplete() {
+    return this->roundCount == 5 && this->turnCountInARound == 6;
+}
+
 /* TODO: implement winner searching */
 Player PlayersList::highestPoint() const {
     return *(max_element(this->list.begin(), this->list.end()));

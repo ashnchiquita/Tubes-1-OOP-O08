@@ -6,14 +6,14 @@
 
 class CommandException : public Exception{
     protected:
-        const std::string message = "Invalid command";
+        const std::string message = "Masukan tidak valid. Silakan ulangi lagi.";
     public:
         virtual const std::string what() const throw() {return message;};
 };
 
 class CommandNotAvailableException : public CommandException{
     private:
-        const std::string messageSnippet1 = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
+        const std::string messageSnippet1 = "Eits, tidak bisa. Kamu tidak punya kartu Ability ";
         const std::string messageSnippet2 = ". Silahkan lakukan perintah lain.";
         std::string cardString;
     public:
