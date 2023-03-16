@@ -34,7 +34,8 @@ class GameABC {
 template <typename T>
 GameABC<T>::GameABC(int playerCount) {
   // Initialization
-  string name, filename;
+  string name;
+  string filename;
   Card temp;
 
   // Opening /* TODO: ASCII ART */
@@ -105,7 +106,7 @@ GameABC<T>::GameABC(int playerCount) {
     do {
       cout << "Masukkan nama pemain " << (i + 1) << ": " << endl << "> ";
       getline(cin, name);
-      cout << "\n";
+
     } while (name == "");
 
     // Players get Cards

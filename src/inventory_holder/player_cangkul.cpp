@@ -3,7 +3,7 @@ using namespace std;
 
 PlayerCangkul::PlayerCangkul(): PlayerABC() {}
 
-PlayerCangkul::PlayerCangkul(string name, int x): PlayerABC(name, x) {}
+PlayerCangkul::PlayerCangkul(string name, long int x): PlayerABC(name, x) {}
 
 PlayerCangkul::PlayerCangkul(const PlayerCangkul& other) : PlayerABC(other) {
   for(Card c: other.bufferCard) {
