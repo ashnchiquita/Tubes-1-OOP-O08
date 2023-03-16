@@ -40,9 +40,11 @@ void SwapCard::execute() {
       
       // Select Cards
       cout << "Silakan pilih kartu kanan/kiri " << this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption)).getName() << ":" << endl;
+      cout << "1. Kanan" << endl << "2. Kiri" << endl;
       optionHandler.setInput("> ", 1, 2);
       firstCard = optionHandler.getInput() - 1;
       cout << "Silakan pilih kartu kanan/kiri " << this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(secondOption)).getName() << ":" << endl;
+      cout << "1. Kanan" << endl << "2. Kiri" << endl;
       optionHandler.setInput("> ", 1, 2);
       secondCard = optionHandler.getInput() - 1;
 

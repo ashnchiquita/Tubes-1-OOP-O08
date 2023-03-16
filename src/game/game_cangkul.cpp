@@ -28,18 +28,25 @@ bool GameCangkul::isFinished() {
 }
 
 void GameCangkul::removeCardAt(int cardIdx, int playerIdx) {
+  cout << "idx " << cardIdx << '\n';
   vector<Card> tempVect;
   PlayerCangkul& player = this->playersList.getPlayerAt(playerIdx);
 
-  for(int i = 0; i < player.getCardCount(); i++) {
-    if(player.getCardCount() - 1 - i != cardIdx) {
+  int n = player.getCardCount();
+  for(int i = 0; i < n; i++) {
+    if(n - 1 - i != cardIdx) {
       Card tempCard;
       player >> &tempCard;
+      tempCard.displayCard();
+      cout << '\n';
       tempVect.push_back(tempCard);
+    } else {
+      Card tempCard;
+      player >> &tempCard;
     }
   }
 
-  for(int i = 0; i < player.getCardCount()-1; i++) {
+  for(int i = 0; i < n-1; i++) {
     Card tempCard = tempVect.back();
     tempVect.pop_back();
     player << tempCard;
@@ -48,37 +55,107 @@ void GameCangkul::removeCardAt(int cardIdx, int playerIdx) {
 
 void GameCangkul::runGame() {
   int maxPlayerIdx = 0;
+  Card topCard;
   Deck tempDeck = this->mainDeck;
+  InputHandler<int> optionHandler;
+  bool valid = 0;
 
   do {
     int input;
     Card card;
 
-    cout << "Pilih kartu:\n";
+    cout << "\nPemain " << this->playersList.getPlayerAt(maxPlayerIdx).getName() << '\n';
+    cout << "Kartu yang dimiliki\n";
     for(int i = 0; i < this->playersList.getPlayerAt(maxPlayerIdx).getCardCount(); i++) {
       cout << i+1 << ". ";
       this->playersList.getPlayerAt(maxPlayerIdx).getCard(i).displayCard();
+      cout << '\n';
     }
-    cin >> input;
 
+    valid = 0;
+    do{
+      try{
+        optionHandler.setInput("Pilih kartu: ", 1, this->playersList.getPlayerAt(maxPlayerIdx).getCardCount());
+        input = optionHandler.getInput() - 1;
+        valid = 1;
+      } catch(Exception& e){
+        cout << e.what() << endl;
+      }
+    } while(!valid);
+    topCard = this->playersList.getPlayerAt(maxPlayerIdx).getCard(input);
     tempDeck << this->playersList.getPlayerAt(maxPlayerIdx).getCard(input);
     this->removeCardAt(input, maxPlayerIdx);
 
-    int nextPlayerIdx = (maxPlayerIdx + 1) % playersList.getSize();
+    int currPlayerIdx = (maxPlayerIdx + 1) % playersList.getSize();
     for(int i = 0; i < 3; i++) {
+      cout << "\nPemain " << this->playersList.getPlayerAt(currPlayerIdx).getName() << '\n';
+
       do {
+        for(int i = 0; i < this->playersList.getPlayerAt(currPlayerIdx).getCardCount(); i++) {
+          cout << i+1 << ". ";
+          this->playersList.getPlayerAt(currPlayerIdx).getCard(i).displayCard();
+          cout << '\n';
+        }
+
         cout << "Pilih aksi:\n";
         cout << "1. Ambil kartu\n";
         cout << "2. Buang kartu\n";
 
-        cin >> input;
+        valid = 0;
+        do{
+          try{
+            optionHandler.setInput("> ", 1, 2);
+            input = optionHandler.getInput();
+            valid = 1;
+          } catch(Exception& e){
+            cout << e.what() << endl;
+          }
+        } while(!valid);
+
+        if(input == 1) {
+          Card tempCard;
+          if(this->mainDeck.getSize() == 0) {
+            while(tempDeck.getSize() != 0); {
+              tempDeck >> &tempCard;
+              this->mainDeck << tempCard;
+            }
+          } else {
+            this->mainDeck >> &tempCard;
+            this->playersList.getPlayerAt(currPlayerIdx) << tempCard;
+          }
+        }
       } while(input != 2);
+
+      
+      valid = 0;
+      do{
+        try{
+          optionHandler.setInput("Pilih kartu: ", 1, this->playersList.getPlayerAt(currPlayerIdx).getCardCount());
+          input = optionHandler.getInput() - 1;
+          if(this->playersList.getPlayerAt(currPlayerIdx).getCard(input).getColor() != topCard.getColor()) {
+            valid = 0;
+          } else {
+            valid = 1;
+          }
+        } catch(Exception& e){
+          cout << e.what() << endl;
+        }
+      } while(!valid);
+
+      if(this->playersList.getPlayerAt(currPlayerIdx).getCard(input).getNum() > topCard.getNum()) {
+        topCard = this->playersList.getPlayerAt(currPlayerIdx).getCard(input);
+        maxPlayerIdx = currPlayerIdx;
+      }
+
+      tempDeck << this->playersList.getPlayerAt(currPlayerIdx).getCard(input);
+      this->removeCardAt(input, currPlayerIdx);
+
+      currPlayerIdx = (currPlayerIdx + 1) % this->playersList.getSize();
     }
+
 
   } while (!this->isFinished());
 }
 
 void GameCangkul::printGameState() {}
-void GameCangkul::resetGame() {
-  
-}
+void GameCangkul::resetGame() {}
