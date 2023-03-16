@@ -9,6 +9,7 @@
 #include "../exception/game_exception.hpp"
 #include "../exception/command_exception.hpp"
 #include "../valuables/combo.hpp"
+#include "../valuables/combine.hpp"
 #include "../input_handler/command_handler.hpp"
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/inventory_holder.hpp"
@@ -26,15 +27,14 @@ class GamePoker : public GameABC {
     long int gamePoint;
     TableCard mainTable;
 
-    void runTurn();
-    void givePoint();
-
   public:
     GamePoker();
 
     long int getGamePoint() const;
     TableCard& getTableCard();
 
+    void runTurn();
+    void givePoint();
     void resetGame() override;
     bool isFinished() override;
     void runGame() override;

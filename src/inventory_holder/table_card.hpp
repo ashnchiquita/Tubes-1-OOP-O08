@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "../valuables/card.hpp"
 #include "./inventory_holder.hpp"
@@ -18,7 +19,7 @@ class TableCard : public InventoryHolder <vector <Card> > {
   TableCard& operator>>(Card* card) override;
 
   // services
-  Card* getAllCards();
+  vector<Card> getAllCards();
   void ASCIITable();
   void print() override;
 

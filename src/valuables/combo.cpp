@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <map>
+
 using namespace std;
 
 /**
@@ -10,23 +11,26 @@ using namespace std;
  * @param cardList List of cards forming the combo
  * @param listSize Size of the list
  */
-Combo::Combo(const Card* cardList, int listSize) {
-  this->cardList = new Card[listSize];
-  this->comboSize = listSize;
+Combo::Combo(vector<Card> cards) {
+  this->cardList = cards;
 
-  int* countArr = new int[14];
+  vector<int> countArr; // 14
   for (int i = 0; i < 14; i++) {
-    countArr[i] = 0;
+    countArr.push_back(0);
   }
 
-  int** colorArr = new int*[14];
+  vector< vector<int> > colorArr; // 14 x 4
   for (int i = 0; i < 14; i++) {
-    colorArr[i] = new int[4];
+    vector <int> tempVec;
+    for (int j = 0; j < 4; j++) {
+      tempVec.push_back(0);
+    }
+    colorArr.push_back(tempVec);
   }
 
-  for (int i = 0; i < listSize; i++) {
-    countArr[cardList[i].getNum()]++;
-    colorArr[cardList[i].getNum()][int(cardList[i].getColor())]++;
+  for (int i = 0; i < cards.size(); i++) {
+    countArr[cards[i].getNum()]++;
+    colorArr[cards[i].getNum()][int(cardList[i].getColor())]++;
   }
 
   int index = 0, count = 1;
@@ -35,7 +39,7 @@ Combo::Combo(const Card* cardList, int listSize) {
       if (countArr[i] == count) {
         for (int j = 0; j < 4; j++) {
           if (colorArr[i][j] > 0) {
-            (this->cardList[index]) = *(new Card(i, static_cast<CardColor>(j)));
+            (this->cardList[index]) = Card(i, static_cast<CardColor>(j));
             index++;
           }
         }
@@ -44,14 +48,12 @@ Combo::Combo(const Card* cardList, int listSize) {
     count++;
   }
 
-  delete[] countArr;
-  delete[] colorArr;
 }
 
 /**
  * Class destructor
  */
-Combo::~Combo() { delete[] cardList; }
+Combo::~Combo() {}
 
 /**
  * Determine the type of this combo
@@ -59,10 +61,10 @@ Combo::~Combo() { delete[] cardList; }
  * @returns Type of combo
  */
 ComboType Combo::determineCombo() {
-  Card* cards = this->cardList;
+  vector<Card> cards = this->cardList;
 
   map<int, int> cardCount;
-  for (int i = 0; i < this->comboSize; i++) {
+  for (int i = 0; i < this->cardList.size(); i++) {
     cardCount[cards[i].getNum()]++;
   }
 
@@ -81,15 +83,15 @@ ComboType Combo::determineCombo() {
   }
 
   bool isSameColor = true;
-  for (int i = 0; i < this->comboSize - 1; i++) {
+  for (int i = 0; i < this->cardList.size() - 1; i++) {
     if (cards[i].getColor() != cards[i + 1].getColor()) {
       isSameColor = false;
       break;
     }
   }
 
-  if (cards[this->comboSize - 1].getNum() - cards[0].getNum() + 1 ==
-      this->comboSize) {
+  if (cards[this->cardList.size() - 1].getNum() - cards[0].getNum() + 1 ==
+      this->cardList.size()) {
     return isSameColor ? ComboType::STRAIGHT_FLUSH : ComboType::STRAIGHT;
   } else if (isSameColor) {
     return ComboType::FLUSH;
@@ -139,11 +141,11 @@ float Combo::value() {
   int comboPriority = this->getComboPriority(comboType);
 
   float cardValue = 0.0;
-  for (int i = 0; i < this->comboSize; i++) {
+  for (int i = 0; i < this->cardList.size(); i++) {
     cardValue += this->cardList[i].value();
   }
 
   return (cardValue / MAX_CARD_VALUE) +
-         this->cardList[this->comboSize - 1].value() * 10 +
+         this->cardList[this->cardList.size() - 1].value() * 10 +
          comboPriority * 1000;
 }

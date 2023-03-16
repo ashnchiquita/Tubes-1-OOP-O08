@@ -61,7 +61,17 @@ void PlayersList::print() {
     cout << "| Round Count: " << this->roundCount << string(num-sizeof(this->roundCount)-15, space) << "|" << endl;
     cout << "| Turn Count In A Round: " << this->turnCountInARound << string(num-sizeof(this->turnCountInARound)-26, space) << "|" << endl;
     cout << "| Players Sequence: ";
-    this->printSequence();
+    if (this->getSize() == 0) {
+        cout << "-" << endl;
+    } else {
+        vector<Player>::iterator i = this->list.begin();
+        cout << (*i).getName();
+        for (i = this->list.begin() + 1; i < this->list.end(); ++i) {
+            cout << ", ";
+            (*i).print();
+        }
+        cout << endl;
+    }
 }
 
 void PlayersList::printSequence() {
@@ -142,13 +152,10 @@ void PlayersList::reversePlayers() {
 }
 
 void PlayersList::afterReverse() {
-    int changePos = 7 - this->turnCountInARound - 1;
+    int changePos = (7 - this->turnCountInARound) % 7;
     iter_swap(this->list.begin(), this->list.begin() + changePos);
 }
 
-void PlayersList::recoverReverse() {
-
-}
 
 int PlayersList::getSize() {
     return this->list.size();
@@ -179,6 +186,10 @@ bool PlayersList::isComplete() {
   return this->roundCount == 6 && this->turnCountInARound == 0;
 }
 
+bool PlayersList::isNextComplete() {
+    return this->roundCount == 5 && this->turnCountInARound == 6;
+}
+
 /* TODO: implement winner searching */
 Player PlayersList::highestPoint() const {
     return *(max_element(this->list.begin(), this->list.end()));
@@ -199,7 +210,7 @@ bool PlayersList::restrictCommand() const {
 }
 
 bool PlayersList::restrictTable() const {
-    return this->roundCount >= 5;
+    return this->roundCount > 5;
 }
 
 Player& PlayersList::findPlayer(const Player& other) {

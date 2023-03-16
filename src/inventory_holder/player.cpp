@@ -74,10 +74,10 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
-Card* Player::getAllCards() const {
-  Card* output = new Card[2];
-  output[0] = this->bufferCard.first;
-  output[1] = this->bufferCard.second;
+vector<Card> Player::getAllCards() const {
+  vector<Card> output;
+  output.push_back(this->bufferCard.first);
+  output.push_back(this->bufferCard.second);
   return output;
 }
 
@@ -145,21 +145,22 @@ void Player::PlayerASCII() {
   if (card1== CardColor::GREEN ){ firstColor = "\033[32m";}
   else if (this->getCard(0).getColor() == CardColor::BLUE){ firstColor = "\033[34m";}
   else if (this->getCard(0).getColor() == CardColor::RED){ firstColor = "\033[31m";}
-  else if (this->getCard(0).getColor() == CardColor::RED){ firstColor = "\033[33m";}
+  else if (this->getCard(0).getColor() == CardColor::YELLOW){ firstColor = "\033[33m";}
 
   if (this->getCard(1).getColor() == CardColor::GREEN ){ secondColor = "\033[32m";}
   else if (this->getCard(1).getColor() == CardColor::BLUE){ secondColor = "\033[34m";}
   else if (this->getCard(1).getColor() == CardColor::RED){ secondColor = "\033[31m";}
-  else if (this->getCard(1).getColor() == CardColor::RED){ secondColor = "\033[33m";}
+  else if (this->getCard(1).getColor() == CardColor::YELLOW){ secondColor = "\033[33m";}
+  char space = ' ';
   
-  this->getCard(0).displayCard(); cout<< "    "; this->getCard(1).displayCard();
+  cout << firstColor; this->getCard(0).displayCard(); cout << secondColor << "    "; this->getCard(1).displayCard(); cout << endl;
         cout << firstColor << "┌─────────┐   " << secondColor << "┌─────────┐    \n";
-        cout << firstColor <<"│"<<this->getCard(0).getNum()<<"        │   " << secondColor << "│"<< this->getCard(1).getNum() <<"        │   \n";
+        cout << firstColor <<"│"<<this->getCard(0).getNum()<< string(1-this->getCard(0).getNum()/10, space)<<"       │   " << secondColor << "│"<< this->getCard(1).getNum() << string(1-this->getCard(1).getNum()/10, space) <<"       │   \n";
         cout << firstColor <<"│         │   " << secondColor << "│         │    \n";
         cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
         cout << firstColor <<"│    ♣    │   " << secondColor << "│    ♣    │    \n";
         cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
         cout << firstColor <<"│         │   " << secondColor << "│         │     \n";
-        cout << firstColor <<"│        "<<this->getCard(0).getNum()<<"│   " << secondColor << "│        "<< this->getCard(1).getNum() <<"│     \n";
-        cout << firstColor <<"└─────────┘   " << secondColor << "|─────────┘     \n";
+        cout << firstColor <<"│       "<<string(1-this->getCard(0).getNum()/10, space)<<this->getCard(0).getNum()<<"│   " << secondColor << "│       "<<string(1-this->getCard(1).getNum()/10, space)<< this->getCard(1).getNum() <<"│     \n";
+        cout << firstColor <<"└─────────┘   " << secondColor << "└─────────┘     \n";
 }

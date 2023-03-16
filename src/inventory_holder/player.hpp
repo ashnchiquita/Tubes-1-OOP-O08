@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "../valuables/card.hpp"
 #include "../valuables/ability_card.hpp"
@@ -39,7 +40,7 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   Card getCard(int idx);
   void setCard(int idx, Card card);
 
-  Card* getAllCards() const;
+  vector<Card> getAllCards() const;
 
   // operator
   Player& operator<<(const Card& card) override;

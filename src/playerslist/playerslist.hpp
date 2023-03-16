@@ -38,7 +38,6 @@ class PlayersList {
 
         void reversePlayers();
         void afterReverse();
-        void recoverReverse();
         void reset();
         int getSize();
 
@@ -47,6 +46,7 @@ class PlayersList {
 
         /* TODO: implement winner searching */
         bool isComplete();
+        bool isNextComplete();
 
         // setelah hadiah dikasih
         Player highestPoint() const;

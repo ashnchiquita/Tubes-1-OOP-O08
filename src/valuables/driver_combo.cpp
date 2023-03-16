@@ -16,7 +16,6 @@ int main() {
   for (int i = 1; i <= 52; i++) {
     deck.push_back(i);
   }
-  random_shuffle(deck.begin(), deck.end());
 
   // Create random combo
   Card** cardList = new Card*[10];

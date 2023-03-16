@@ -212,96 +212,10 @@ void GamePoker::runTurn() {
 }
 
 void GamePoker::givePoint() {
-  Card* tableCard = new Card[5];
-  Card** playerHands = new Card*[this->playersList.getSize()];
-  Card* combinedCards = new Card[5];
-  tableCard = this->mainTable.getAllCards();
-
-  for (int i = 0; i < this->playersList.getSize(); i++) {
-    playerHands[i] = new Card[2];
-    playerHands[i] = this->playersList.getPlayerAt(i).getAllCards();
-  }
-
-  // Initialization
-  Player& winningPlayer = this->playersList.getPlayerAt(0);
-  copy(tableCard, tableCard + 5, combinedCards);
-
-  Combo tempCombo(combinedCards, 5);
-  int highestCombo = tempCombo.value();
-
-  Card* maxComboCards = new Card[5];
-  copy(combinedCards, combinedCards + 5, maxComboCards);
-
-  Combo * tempC;
-
-  // Find a player with the highest combo
-  // C(5, 4) * C(2, 1)
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      if (i != j) {
-        combinedCards[j] = tableCard[j];
-      }
-    }
-
-    for (int j = 0; j < this->playersList.getSize(); j++) {
-      combinedCards[i] = playerHands[j][0];
-      tempC = new Combo(combinedCards, 5);
-      tempCombo = *(tempC);
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayer = this->playersList.getPlayerAt(j);
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-
-      delete tempC;
-
-      combinedCards[i] = playerHands[j][1];
-      tempC = new Combo(combinedCards, 5);
-      tempCombo = *(tempC);
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayer = this->playersList.getPlayerAt(j);
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-
-      delete tempC;
-    }
-  }
-
-  // C(5, 3) * C(2, 2)
-  do {
-    for (int i = 0; i < this->playersList.getSize(); i++) {
-      copy(playerHands[i], playerHands[0] + 2, combinedCards);
-      copy(tableCard, tableCard + 3, combinedCards + 2);
-
-      tempCombo = *(new Combo(combinedCards, 5));
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayer = this->playersList.getPlayerAt(i);
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-    }
-  } while (next_permutation(tableCard, tableCard + 5));
-
+  Combine combi(this->mainTable, this->playersList);
+  int winnerIdx = combi.evaluate();
+  Player& winningPlayer = this->playersList.getPlayerAt(winnerIdx);
   winningPlayer.addPoint(this->gamePoint);
-  cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << endl;
+  cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << "! Selamat!! >.<" << endl;
   winningPlayer.print();
-
-  /* DEBUG */
-  cout << "Combo " << winningPlayer.getName() << ": " << endl;
-  for (int i = 0; i < 5; i++) {
-    maxComboCards[i].displayCard();
-  }
-
-  for (int i = 0; i < this->playersList.getSize(); i++) {
-    delete playerHands[i];
-  }
-
-  delete [] playerHands;
-  delete [] tableCard;
-  delete [] combinedCards;
-  delete [] maxComboCards;
 }

@@ -393,6 +393,30 @@ src/command/basic_command/half.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/half.cpp.s
 .PHONY : src/command/basic_command/half.cpp.s
 
+src/command/basic_command/help.o: src/command/basic_command/help.cpp.o
+.PHONY : src/command/basic_command/help.o
+
+# target to build an object file
+src/command/basic_command/help.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/help.cpp.o
+.PHONY : src/command/basic_command/help.cpp.o
+
+src/command/basic_command/help.i: src/command/basic_command/help.cpp.i
+.PHONY : src/command/basic_command/help.i
+
+# target to preprocess a source file
+src/command/basic_command/help.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/help.cpp.i
+.PHONY : src/command/basic_command/help.cpp.i
+
+src/command/basic_command/help.s: src/command/basic_command/help.cpp.s
+.PHONY : src/command/basic_command/help.s
+
+# target to generate assembly for a file
+src/command/basic_command/help.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/basic_command/help.cpp.s
+.PHONY : src/command/basic_command/help.cpp.s
+
 src/command/basic_command/next.o: src/command/basic_command/next.cpp.o
 .PHONY : src/command/basic_command/next.o
 
@@ -681,6 +705,30 @@ src/valuables/card.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/card.cpp.s
 .PHONY : src/valuables/card.cpp.s
 
+src/valuables/combine.o: src/valuables/combine.cpp.o
+.PHONY : src/valuables/combine.o
+
+# target to build an object file
+src/valuables/combine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/combine.cpp.o
+.PHONY : src/valuables/combine.cpp.o
+
+src/valuables/combine.i: src/valuables/combine.cpp.i
+.PHONY : src/valuables/combine.i
+
+# target to preprocess a source file
+src/valuables/combine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/combine.cpp.i
+.PHONY : src/valuables/combine.cpp.i
+
+src/valuables/combine.s: src/valuables/combine.cpp.s
+.PHONY : src/valuables/combine.s
+
+# target to generate assembly for a file
+src/valuables/combine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/valuables/combine.cpp.s
+.PHONY : src/valuables/combine.cpp.s
+
 src/valuables/combo.o: src/valuables/combo.cpp.o
 .PHONY : src/valuables/combo.o
 
@@ -747,6 +795,9 @@ help:
 	@echo "... src/command/basic_command/half.o"
 	@echo "... src/command/basic_command/half.i"
 	@echo "... src/command/basic_command/half.s"
+	@echo "... src/command/basic_command/help.o"
+	@echo "... src/command/basic_command/help.i"
+	@echo "... src/command/basic_command/help.s"
 	@echo "... src/command/basic_command/next.o"
 	@echo "... src/command/basic_command/next.i"
 	@echo "... src/command/basic_command/next.s"
@@ -783,6 +834,9 @@ help:
 	@echo "... src/valuables/card.o"
 	@echo "... src/valuables/card.i"
 	@echo "... src/valuables/card.s"
+	@echo "... src/valuables/combine.o"
+	@echo "... src/valuables/combine.i"
+	@echo "... src/valuables/combine.s"
 	@echo "... src/valuables/combo.o"
 	@echo "... src/valuables/combo.i"
 	@echo "... src/valuables/combo.s"

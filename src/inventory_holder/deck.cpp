@@ -1,4 +1,5 @@
 #include "deck.hpp"
+#include "../randomizer/randomizer.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -25,7 +26,7 @@ Deck::Deck(vector<Card> cardArray) { /* TODO: sambungin sama file IO */
 Deck::Deck(const Deck& other) {
   this->inventoryLimit = other.inventoryLimit;
   this->bufferCard = other.bufferCard;
-};
+}
 
 Deck& Deck::operator=(const vector<Card> cardArray) {
   this->bufferCard.clear();
@@ -82,8 +83,8 @@ void Deck::resetDeck() {
 };
 
 void Deck::shuffleDeck() {
-  auto rng = default_random_engine();
-  shuffle(this->bufferCard.begin(), this->bufferCard.end(), rng);
+  Randomizer r;
+  r.iterShuffle(&this->bufferCard);
 };
 
 void Deck::print() {
