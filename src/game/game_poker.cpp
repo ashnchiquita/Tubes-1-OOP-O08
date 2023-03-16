@@ -162,11 +162,17 @@ void GamePoker::runTurn() {
   bool valid = false;
   do {
     try {
-      bool constraints[2] = {!this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().getAbilityCardStatus()};
+      bool constraints[3] = {!this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().getAbilityCardStatus(), this->getCurrPlayerRef().getAbility().isAbilityKilled()};
       optionHandler.turnCommand("\nMasukkan command\n> ", constraints, this->getCurrPlayerRef().getAbility().abilityString());
       cmd = optionHandler.getInput();
       valid = true;
-    } catch (Exception& e) {
+    }
+    catch (CommandCardUsedException& cardused){
+      cout << e.what() << '\n';
+      cmd = "NEXT";
+      valid = true;
+    }
+    catch (Exception& e) {
       cout << e.what() << '\n';
     }
   } while (!valid);
@@ -214,7 +220,7 @@ void GamePoker::runTurn() {
 void GamePoker::givePoint() {
   Combine combi(this->mainTable, this->playersList);
   int winnerIdx = combi.evaluate();
-  Player& winningPlayer = this->playersList.getPlayerAt(winnerIdx);
+  PlayerPoker& winningPlayer = this->playersList.getPlayerAt(winnerIdx);
   winningPlayer.addPoint(this->gamePoint);
   cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << "! Selamat!! >.<" << endl;
   winningPlayer.print();

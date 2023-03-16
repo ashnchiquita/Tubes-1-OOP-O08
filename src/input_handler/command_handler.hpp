@@ -54,12 +54,13 @@ void CommandHandler<T>::yesNoCommand(string prompt){
 }
 
 template <typename T>
-void CommandHandler<T>::turnCommand(string prompt, bool constraints[2], string abilitytype){
+void CommandHandler<T>::turnCommand(string prompt, bool constraints[3], string abilitytype){
     this->setInput(prompt, commandStrings, 11);
 
     if (constraints[0]){
         if (this->input == abilitytype)
             if (!constraints[1]) throw CommandDisabledException(abilitytype);
+            else if (constraints[2]) throw CommandCardUsedException(abilitytype);
             else return;
         else if(this->input == string("DOUBLE") || this->input == string("HALF") || this->input == string("NEXT") || this->input == string("HELP"))
             return;

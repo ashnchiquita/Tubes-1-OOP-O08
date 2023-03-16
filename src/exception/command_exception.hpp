@@ -38,5 +38,14 @@ class CommandDisabledException : public CommandException{
         const std::string what() const throw() {return (messageSnippet1 + cardString + messageSnippet2);}
 };
 
+class CommandCardUsedException : public CommandException{
+    private:
+        const std::string messageSnippet1 = "Oops, kartu ability ";
+        const std::string messageSnippet2 = "mu telah digunakan, gerakanmu terbuang sia - sia.";
+        std::string cardString;
+    public:
+        CommandCardUsedException(std::string card) : cardString(card){};
+        const std::string what() const throw() {return (messageSnippet1 + cardString + messageSnippet2);}
+};
 
 #endif

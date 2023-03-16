@@ -14,6 +14,7 @@
 #include "../inventory_holder/deck.hpp"
 #include "../inventory_holder/inventory_holder.hpp"
 #include "../inventory_holder/player.hpp"
+#include "../inventory_holder/player_poker.hpp"
 #include "../inventory_holder/table_card.hpp"
 #include "../playerslist/playerslist.hpp"
 #include "../randomizer/randomizer.hpp"
@@ -22,7 +23,7 @@
 
 using namespace std;
 
-class GamePoker : public GameABC {
+class GamePoker : public GameABC<PlayerPoker> {
   protected:
     long int gamePoint;
     TableCard mainTable;

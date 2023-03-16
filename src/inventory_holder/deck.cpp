@@ -98,3 +98,7 @@ void Deck::print() {
     }
   }
 }
+
+void Deck::clearCards() {
+  this->bufferCard.clear();
+}

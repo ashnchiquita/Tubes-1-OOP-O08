@@ -74,7 +74,9 @@
         "filesystem": "cpp",
         "__functional_base": "cpp",
         "__hash_table": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "bit": "cpp",
+        "numbers": "cpp"
     },
     "C_Cpp.formatting": "disabled",
     "editor.formatOnPaste": true,

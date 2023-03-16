@@ -4,7 +4,7 @@ project(Tubes-1-OOP-O08)
 add_executable(Tubes-1-OOP-O08
     # main
     src/main.cpp
-    src/game/game_abc.cpp
+    # src/game/game_abc.cpp
     src/game/game_poker.cpp
 
     # command
@@ -40,9 +40,10 @@ add_executable(Tubes-1-OOP-O08
     src/inventory_holder/deck.cpp
     src/inventory_holder/player.cpp
     src/inventory_holder/table_card.cpp
+    src/inventory_holder/player_poker.cpp
 
     # playerslist
-    src/playerslist/playerslist.cpp
+    # src/playerslist/playerslist.cpp
 
     # valuables
     src/valuables/card.cpp

@@ -14,15 +14,15 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   string name;
   long int point;
   static int totalPlayer;
-  AbilityCard abilityCard;
+  AbilityCard abilityCard; //!
 
  public:
   // ctor-cctor-dtor
   Player();
   Player(string name);
   Player(string name, long int point);
-  Player(const Player& other);
-  Player& operator=(const Player& other);
+  Player(const Player& other); //!
+  Player& operator=(const Player& other); //!
 
   // services
   string getName() const;
@@ -33,25 +33,25 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   void addPoint(long int point);
 
   // Ability Card
-  AbilityCard& getAbilityRef();
-  AbilityCard getAbility() const;
+  AbilityCard& getAbilityRef(); //!
+  AbilityCard getAbility() const; //!
 
   // IDX 0 for LeftCard, IDX 1 for RightCard
-  Card getCard(int idx);
-  void setCard(int idx, Card card);
+  Card getCard(int idx); //!
+  void setCard(int idx, Card card); //!
 
-  vector<Card> getAllCards() const;
+  vector<Card> getAllCards() const; //!
 
   // operator
-  Player& operator<<(const Card& card) override;
-  Player& operator>>(Card* card) override;
+  Player& operator<<(const Card& card) override; //!
+  Player& operator>>(Card* card) override; //!
 
   bool operator<(const Player& other) const;
   bool operator>(const Player& other) const;
   bool operator==(const Player& other) const;
 
-  void print() override;
-  void PlayerASCII();
+  void print() override; //!
+  void PlayerASCII(); //!
 };
 
 #endif

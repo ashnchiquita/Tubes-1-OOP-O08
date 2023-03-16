@@ -26,11 +26,9 @@ class Deck : public InventoryHolder<vector<Card> > {
   Card getTop() const;
   int getSize() const;
   // Card* getTwo() const;
+  void clearCards() override;
   void resetDeck();
   void shuffleDeck();
 };
 
 #endif
-
-
-
