@@ -8,9 +8,12 @@ using namespace std;
 class GameCangkul : public GameABC<PlayerCangkul> {
   private:
     void removeCardAt(int cardIdx, int playerIdx);
+    Deck tempDeck;
 
   public:
     GameCangkul();
+
+    void ambilKartu(int);
 
     void runGame() override;
     void printGameState() override;

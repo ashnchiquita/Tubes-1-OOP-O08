@@ -27,8 +27,26 @@ bool GameCangkul::isFinished() {
   return false;
 }
 
+void GameCangkul::ambilKartu(int currPlayerIdx){
+  Card tempCard;
+  if(this->mainDeck.getSize() == 0) {
+    if(this->tempDeck.getSize() != 0) {
+      while(this->tempDeck.getSize() != 0); {
+        tempDeck >> &tempCard;
+        this->mainDeck << tempCard;
+      }
+    }
+    else{
+      cout << "Deck kosong, buang kartu woy!" << endl;
+    }
+  } else {
+    this->mainDeck >> &tempCard;
+    this->playersList.getPlayerAt(currPlayerIdx) << tempCard;
+  }
+}
+
+
 void GameCangkul::removeCardAt(int cardIdx, int playerIdx) {
-  cout << "idx " << cardIdx << '\n';
   vector<Card> tempVect;
   PlayerCangkul& player = this->playersList.getPlayerAt(playerIdx);
 
@@ -54,9 +72,10 @@ void GameCangkul::removeCardAt(int cardIdx, int playerIdx) {
 }
 
 void GameCangkul::runGame() {
-  int maxPlayerIdx = 0;
+  this->tempDeck = this->mainDeck;
+  
   Card topCard;
-  Deck tempDeck = this->mainDeck;
+  int maxPlayerIdx = 0;
   InputHandler<int> optionHandler;
   bool valid = 0;
 
@@ -96,7 +115,8 @@ void GameCangkul::runGame() {
           this->playersList.getPlayerAt(currPlayerIdx).getCard(i).displayCard();
           cout << '\n';
         }
-
+        
+        cout << "\nKartu paling tinggi sekarang: "; topCard.displayCard(); cout << endl;
         cout << "Pilih aksi:\n";
         cout << "1. Ambil kartu\n";
         cout << "2. Buang kartu\n";
@@ -113,16 +133,7 @@ void GameCangkul::runGame() {
         } while(!valid);
 
         if(input == 1) {
-          Card tempCard;
-          if(this->mainDeck.getSize() == 0) {
-            while(tempDeck.getSize() != 0); {
-              tempDeck >> &tempCard;
-              this->mainDeck << tempCard;
-            }
-          } else {
-            this->mainDeck >> &tempCard;
-            this->playersList.getPlayerAt(currPlayerIdx) << tempCard;
-          }
+          ambilKartu(currPlayerIdx);
         }
       } while(input != 2);
 
@@ -133,7 +144,7 @@ void GameCangkul::runGame() {
           optionHandler.setInput("Pilih kartu: ", 1, this->playersList.getPlayerAt(currPlayerIdx).getCardCount());
           input = optionHandler.getInput() - 1;
           if(this->playersList.getPlayerAt(currPlayerIdx).getCard(input).getColor() != topCard.getColor()) {
-            valid = 0;
+            cout << "Warna kartu tidak valid" << endl;
           } else {
             valid = 1;
           }
