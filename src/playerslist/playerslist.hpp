@@ -2,6 +2,7 @@
 #define PLAYERSLIST_HPP
 
 #include "../exception/array_exception.hpp"
+#include "../inventory_holder/inventory_holder.hpp"
 #include "../inventory_holder/player.hpp"
 #include <iostream>
 #include <algorithm>
@@ -24,6 +25,7 @@ class PlayersList {
         void addPlayer(T p);
         int getRoundCount() const;
         int getTurnCountInARound() const;
+        void resetPlayersCards();
         void changeTurn();
         void undoChangeTurn();
         void changeRound();
@@ -102,6 +104,13 @@ void PlayersList<T>::changeTurn() {
         this->changeRound();
     }
     this->turnCountInARound = (this->turnCountInARound + 1) % 7;
+}
+
+template <typename T>
+void PlayersList<T>::resetPlayersCards() {
+    for (int i=0; i<getSize(); i++){
+        this->list[i].clearCards();
+    }
 }
 
 template <typename T>

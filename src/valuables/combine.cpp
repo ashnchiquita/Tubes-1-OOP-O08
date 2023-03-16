@@ -23,7 +23,7 @@ int Combine::evaluate() {
     combinedCards = tableCard;
     
     Combo tempCombo(combinedCards);
-    int highestCombo = tempCombo.value();
+    float highestCombo = 0.001;
 
     maxComboCards = combinedCards;
 

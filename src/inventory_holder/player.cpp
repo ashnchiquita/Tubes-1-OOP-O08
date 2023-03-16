@@ -47,6 +47,12 @@ Player& Player::operator=(const Player& other) {
   return *this;
 }
 
+void Player::clearCards(){
+  Card temp;
+  *this >> &temp;
+  *this >> &temp;
+}
+
 string Player::getName() const { return this->name; }
 void Player::setName(string name) { this->name = name; }
 long int Player::getPoint() const { return this->point; }

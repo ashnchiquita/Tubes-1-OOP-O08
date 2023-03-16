@@ -25,6 +25,8 @@ class Player : public InventoryHolder<pair<Card, Card> > {
   Player& operator=(const Player& other); //!
 
   // services
+  void clearCards() override;
+
   string getName() const;
   void setName(string name);
 
