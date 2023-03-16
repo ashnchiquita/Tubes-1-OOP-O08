@@ -3,7 +3,6 @@
 
 #include "../exception/array_exception.hpp"
 #include "../inventory_holder/inventory_holder.hpp"
-#include "../inventory_holder/player.hpp"
 #include <iostream>
 #include <algorithm>
 #include <math.h>
@@ -298,7 +297,7 @@ bool PlayersList<T>::hasWinner() const {
 template <typename T>
 PlayersList<T> PlayersList<T>::getLeaderboard() const {
     PlayersList<T> copy = *this;
-    sort(copy.list.begin(), copy.list.end(), greater<Player>());
+    sort(copy.list.begin(), copy.list.end(), greater<T>());
     return copy;
 }
 
