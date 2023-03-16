@@ -2,6 +2,8 @@
 #define _COMBO_HPP_
 
 #include <iostream>
+#include <vector>
+using namespace std;
 
 #include "card.hpp"
 #include "valuable.hpp"
@@ -25,9 +27,7 @@ class Combo : public Valuable {
   // ATTRIBUTES
 
   // Sorted card list forming the combo
-  Card* cardList;
-  // Number of cards in the combo
-  int comboSize;
+  vector<Card> cardList;
 
   // METHODS
 
@@ -56,7 +56,7 @@ class Combo : public Valuable {
    * @param cardList List of cards forming the combo
    * @param listSize Size of the list
    */
-  Combo(const Card* cardList, int listSize);
+  Combo(vector<Card> cardList);
 
   /**
    * Class destructor

@@ -74,10 +74,10 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
-Card* Player::getAllCards() const {
-  Card* output = new Card[2];
-  output[0] = this->bufferCard.first;
-  output[1] = this->bufferCard.second;
+vector<Card> Player::getAllCards() const {
+  vector<Card> output;
+  output.push_back(this->bufferCard.first);
+  output.push_back(this->bufferCard.second);
   return output;
 }
 

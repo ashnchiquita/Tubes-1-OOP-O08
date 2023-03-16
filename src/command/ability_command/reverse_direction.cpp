@@ -25,9 +25,7 @@ void ReverseDirection::execute() {
 
   this->game->getPlayersList().print();
   this->game->getPlayersListRef().afterReverse();
-  cout << "tai" << endl;
   this->game->runTurn();
-  cout << "tai 2" << endl;
   this->game->getPlayersListRef().undoChangeTurn();
   this->game->getPlayersListRef().afterReverse();
 }

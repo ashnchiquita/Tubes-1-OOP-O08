@@ -44,12 +44,8 @@ TableCard& TableCard::operator>>(Card* card) {
   return *this;
 }
 
-Card* TableCard::getAllCards() {
-  Card* output = new Card[this->bufferCard.size()];
-  for (int i = 0; i < this->bufferCard.size(); i++) {
-    output[i] = this->bufferCard[i];
-  }
-  return output;
+vector<Card> TableCard::getAllCards() {
+  return this->bufferCard;
 }
 
 void TableCard::print() {

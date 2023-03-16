@@ -37,13 +37,11 @@ void PlayersList::changeTurn() {
 }
 
 void PlayersList::undoChangeTurn() {
-    cout << "-------- UNDOING CHANGE TURN ---------" << endl;
     this->turnCountInARound = (this->turnCountInARound + 6) % 7;
     if (this->turnCountInARound == 6) {
         this->undoChangeRound();
     }
     this->undoDelFirstInsertLast();
-    cout << "--------------------------------------" << endl;
 }
 
 void PlayersList::changeRound() {
@@ -154,10 +152,8 @@ void PlayersList::reversePlayers() {
 }
 
 void PlayersList::afterReverse() {
-    cout << "-------- AFTER REVERSE ---------" << endl;
     int changePos = (7 - this->turnCountInARound) % 7;
     iter_swap(this->list.begin(), this->list.begin() + changePos);
-    cout << "--------------------------------" << endl;
 }
 
 

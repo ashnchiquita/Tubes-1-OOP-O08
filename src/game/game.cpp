@@ -26,6 +26,7 @@
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
 #include "../input_handler/file_handler.hpp"
+#include "../valuables/combine.hpp"
 
 #include <iostream>
 #include <string>
@@ -306,130 +307,12 @@ void Game::resetGame() {
 bool Game::isFinished() { return this->playersList.hasWinner(); }
 
 void Game::givePoint() {
-  Card* tableCard = new Card[5];
-  Card** playerHands = new Card*[this->playersList.getSize()];
-  Card* combinedCards = new Card[5];
-  tableCard = this->mainTable.getAllCards();
-
-
-  for (int i = 0; i < this->playersList.getSize(); i++) {
-    playerHands[i] = new Card[2];
-    playerHands[i] = this->playersList.getPlayerAt(i).getAllCards();
-  }
-
-  // Initialization
-  int winningPlayerIdx = 0;
-  copy(tableCard, tableCard + 5, combinedCards);
-
-  Combo tempCombo(combinedCards, 5);
-
-  int highestCombo = tempCombo.value();
-
-  Card* maxComboCards = new Card[5];
-  copy(combinedCards, combinedCards + 5, maxComboCards);
-
-  Combo * tempC = nullptr;
-
-
-
-  // Find a player with the highest combo
-  // C(5, 4) * C(2, 1)
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      if (i != j) {
-        combinedCards[j] = tableCard[j];
-      }
-    }
-
-  cout << "Test7" << endl;
-
-
-    for (int j = 0; j < this->playersList.getSize(); j++) {
-      combinedCards[i] = playerHands[j][0];
-      tempC = new Combo(combinedCards, 5);
-      tempCombo = *(tempC);
-
-      cout << "Test7.1." << i << endl;
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayerIdx = j;
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-    
-      cout << "Test7.2." << i << endl;
-
-      delete tempC;
-
-      combinedCards[i] = playerHands[j][1];
-
-      cout << "Test7.21." << i << endl;
-
-      tempC = new Combo(combinedCards, 5);
-
-      cout << "Test7.22." << i << endl;
-
-      tempCombo = *(tempC);
-
-      cout << "Test7.23." << i << endl;
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayerIdx = j;
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-
-      cout << "Test7.3." << i << endl;
-
-      delete tempC;
-    }
-  }
-
-  cout << "Test8" << endl;
-
-  // C(5, 3) * C(2, 2)
-  do {
-    for (int i = 0; i < this->playersList.getSize(); i++) {
-      cout << "Test8.1." << i << endl;
-      copy(playerHands[i], playerHands[0] + 2, combinedCards);
-      cout << "Test8.2." << i << endl;
-      
-      copy(tableCard, tableCard + 3, combinedCards + 2);
-      cout << "Test8.3." << i << endl;
-
-      tempCombo = *(new Combo(combinedCards, 5));
-      cout << "Test8.4." << i << endl;
-
-      if (tempCombo.value() > highestCombo) {
-        highestCombo = tempCombo.value();
-        winningPlayerIdx = i;
-        copy(combinedCards, combinedCards + 5, maxComboCards);
-      }
-    }
-  } while (next_permutation(tableCard, tableCard + 5));
-
-  cout << "Test9" << endl;
-  
-  Player& winningPlayer = this->playersList.getPlayerAt(winningPlayerIdx);
-
+  Combine combi(this->mainTable, this->playersList);
+  int winnerIdx = combi.evaluate();
+  Player& winningPlayer = this->playersList.getPlayerAt(winnerIdx);
   winningPlayer.addPoint(this->gamePoint);
-  cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << endl;
+  cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << "! Selamat!! >.<" << endl;
   winningPlayer.print();
-
-  /* DEBUG */
-  cout << "Combo " << winningPlayer.getName() << ": " << endl;
-  for (int i = 0; i < 5; i++) {
-    maxComboCards[i].displayCard();
-  }
-
-  for (int i = 0; i < this->playersList.getSize(); i++) {
-    delete playerHands[i];
-  }
-
-  delete [] playerHands;
-  delete [] tableCard;
-  delete [] combinedCards;
-  delete [] maxComboCards;
 }
 
 void Game::printGameState() {

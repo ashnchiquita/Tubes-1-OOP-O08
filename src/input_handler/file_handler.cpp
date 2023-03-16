@@ -50,7 +50,7 @@ vector<Card> FileHandler::colorCodeFromSentence(const string& filename) {
       }
 
       try{
-        colorCodes.push_back(*(new Card(stoi(number), warna)));
+        colorCodes.push_back(Card(stoi(number), warna));
       }
       catch(const std::exception& e){
         throw ConfigInvalidNumberException();
