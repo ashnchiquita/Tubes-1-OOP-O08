@@ -58,7 +58,7 @@ class Card : public Valuable {
    *
    * @returns Value of the card
    */
-  float value();
+  float value() const override;
 
   /**
    * Card number getter
@@ -104,6 +104,7 @@ class Card : public Valuable {
   void ASCIICard();
 
   bool operator<(const Card& other) const;
+  bool operator>(const Card& other) const;
 };
 
 #endif

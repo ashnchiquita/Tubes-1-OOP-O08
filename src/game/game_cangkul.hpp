@@ -6,6 +6,9 @@
 using namespace std;
 
 class GameCangkul : public GameABC<PlayerCangkul> {
+  private:
+    void removeCardAt(int cardIdx, int playerIdx);
+
   public:
     GameCangkul();
 

@@ -172,6 +172,12 @@ void GamePoker::runTurn() {
       cmd = "NEXT";
       valid = true;
     }
+    catch (CommandHelpException& e){
+      command = new Double(this);
+      command->execute();
+      delete command;
+      cout << e.what() << '\n';
+    }
     catch (Exception& e) {
       cout << e.what() << '\n';
     }

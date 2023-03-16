@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-class PlayerCangkul : public PlayerABC<vector<Card>> {
+class PlayerCangkul : public PlayerABC< vector<Card> > {
   public:
     PlayerCangkul();
     PlayerCangkul(string name, int x);
@@ -17,7 +17,8 @@ class PlayerCangkul : public PlayerABC<vector<Card>> {
     PlayerCangkul& operator>>(Card* card) override;
 
     bool operator<(const PlayerCangkul& other) const;
-
+    void clearCards() {} 
+    void print() {}
     int getCardCount() const;
 };
 

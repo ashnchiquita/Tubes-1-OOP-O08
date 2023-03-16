@@ -29,8 +29,6 @@ class InventoryHolder {
   virtual void print() = 0;
 };
 
-
-
 template <typename T>
 InventoryHolder<T>::InventoryHolder() {
   this->inventoryLimit = 0;

@@ -61,7 +61,7 @@ bool Card::operator==(const Card& other) const {
  *
  * @returns Value of the card
  */
-float Card::value() { return float(this->num) + float(int(this->color)) * 0.2; }
+float Card::value() const { return float(this->num) + float(int(this->color)) * 0.2; }
 
 /**
  * Card number getter
@@ -112,6 +112,7 @@ void Card::displayCard() {
 }
 
 bool Card::operator<(const Card& other) const { return this->getNum() < other.getNum(); }
+bool Card::operator>(const Card& other) const { return this->getNum() > other.getNum(); }
 
 void Card::ASCIICard(){
   if (this->color == CardColor::GREEN ){ cout << "\033[32m";}

@@ -4,7 +4,7 @@
 class Valuable {
  public:
   // Get the value of this valuable
-  virtual float value() = 0;
+  virtual float value() const = 0;
 };
 
 #endif

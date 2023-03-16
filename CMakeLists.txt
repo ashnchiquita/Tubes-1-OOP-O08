@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.25)
 project(Tubes-1-OOP-O08)
 
+# set (CMAKE_CXX_STANDARD 11)
+
 add_executable(Tubes-1-OOP-O08
     # main
     src/main.cpp
@@ -29,6 +31,7 @@ add_executable(Tubes-1-OOP-O08
     # -
 
     # game
+    src/game/game_cangkul.cpp
     src/game/game_poker.cpp
 
     # input_handler
@@ -38,9 +41,13 @@ add_executable(Tubes-1-OOP-O08
     src/inventory_holder/deck.cpp
     src/inventory_holder/table_card.cpp
     src/inventory_holder/player_poker.cpp
+    src/inventory_holder/player_cangkul.cpp
 
     # playerslist
     # -
+
+    # runner
+    src/runner/runner.cpp
      
     # valuables
     src/valuables/card.cpp

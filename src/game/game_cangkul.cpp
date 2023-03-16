@@ -1,6 +1,6 @@
 #include "./game_cangkul.hpp"
 
-GameCangkul::GameCangkul(): GameABC(4) {
+GameCangkul::GameCangkul(): GameABC<PlayerCangkul>(4) {
   Card temp;
 
   for(int i = 0; i < 4; i++) {
@@ -23,12 +23,35 @@ bool GameCangkul::isFinished() {
       return true;
     }
   }
+  return false;
+}
+
+void GameCangkul::removeCardAt(int cardIdx, int playerIdx) {
+  vector<Card> tempVect;
+  PlayerCangkul& player = this->playersList.getPlayerAt(playerIdx);
+
+  for(int i = 0; i < player.getCardCount(); i++) {
+    if(player.getCardCount() - 1 - i != cardIdx) {
+      Card tempCard;
+      player >> &tempCard;
+      tempVect.push_back(tempCard);
+    }
+  }
+
+  for(int i = 0; i < player.getCardCount()-1; i++) {
+    Card tempCard = tempVect.back();
+    tempVect.pop_back();
+    player << tempCard;
+  }
 }
 
 void GameCangkul::runGame() {
   int maxPlayerIdx = 0;
+  Deck tempDeck = this->mainDeck;
+
   do {
     int input;
+    Card card;
 
     cout << "Pilih kartu:\n";
     for(int i = 0; i < this->playersList.getPlayerAt(maxPlayerIdx).getCardCount(); i++) {
@@ -37,6 +60,24 @@ void GameCangkul::runGame() {
     }
     cin >> input;
 
+    tempDeck << this->playersList.getPlayerAt(maxPlayerIdx).getCard(input);
+    this->removeCardAt(input, maxPlayerIdx);
+
+    int nextPlayerIdx = (maxPlayerIdx + 1) % playersList.getSize();
+    for(int i = 0; i < 3; i++) {
+      cout << "Pilih aksi:\n";
+      cout << "1. Ambil kartu\n";
+      cout << "2. Buang kartu\n";
+
+      cin >> input;
+
+      // if(input == 1) {
+
+      // }
+    }
 
   } while (!this->isFinished());
 }
+
+void GameCangkul::printGameState() {}
+void GameCangkul::resetGame() {}

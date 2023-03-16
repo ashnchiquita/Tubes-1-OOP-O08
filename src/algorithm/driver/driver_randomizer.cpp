@@ -1,6 +1,5 @@
 
 #include "../algos.hpp"
-#include "../randomizer.hpp"
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -16,8 +15,10 @@ int main() {
   }
 
   vector<int> test(6,42);
+  int myints[] = {16,2,77,29};
+  std::vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
 
-  cout << maxValue(test);
+  cout << maxValue(fifth) << endl;
 
   return 0;
 }

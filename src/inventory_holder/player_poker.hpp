@@ -3,7 +3,7 @@
 
 #include "player_abc.hpp"
 
-class PlayerPoker : public PlayerABC<pair<Card, Card>> {
+class PlayerPoker : public PlayerABC< pair<Card, Card> > {
   protected:
     AbilityCard abilityCard;
 
@@ -29,7 +29,7 @@ class PlayerPoker : public PlayerABC<pair<Card, Card>> {
     PlayerPoker& operator<<(const Card& card) override;
     PlayerPoker& operator>>(Card* card) override;
 
-    void print() override;
+    void print();
     void PlayerASCII();
 
     bool operator<(const PlayerPoker& other) const {

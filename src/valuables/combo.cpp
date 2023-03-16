@@ -60,7 +60,7 @@ Combo::~Combo() {}
  *
  * @returns Type of combo
  */
-ComboType Combo::determineCombo() {
+ComboType Combo::determineCombo() const {
   vector<Card> cards = this->cardList;
 
   map<int, int> cardCount;
@@ -107,7 +107,7 @@ ComboType Combo::determineCombo() {
  *
  * @returns Priority of the combo
  */
-int Combo::getComboPriority(ComboType type) {
+int Combo::getComboPriority(ComboType type) const {
   if (type == ComboType::HIGH_CARD) {
     return 1; 
   } else if (type == ComboType::PAIR) {
@@ -136,7 +136,7 @@ int Combo::getComboPriority(ComboType type) {
  *
  * @returns Value of the combo
  */
-float Combo::value() {
+float Combo::value() const {
   ComboType comboType = this->determineCombo();
   int comboPriority = this->getComboPriority(comboType);
 
@@ -148,4 +148,8 @@ float Combo::value() {
   return (cardValue / MAX_CARD_VALUE) +
          this->cardList[this->cardList.size() - 1].value() * 10 +
          comboPriority * 1000;
+}
+
+bool Combo::operator>(Combo& other) const {
+  return (this->value()) > other.value();
 }

@@ -2,7 +2,10 @@
 #ifndef ALGOS_H
 #define ALGOS_H
 
+#include <iostream>
 #include <random>
+#include <vector>
+
 using namespace std;
 
 class Algos{
@@ -18,9 +21,6 @@ public:
 
     template<typename T>
     T pickRandom(T* array);
-
-    template<typename T>
-    T maxValue(T* array);
 };
 
 
@@ -55,13 +55,14 @@ T Algos::pickRandom(T array[]){
 }
 
 template<typename T>
-T Algos::maxValue(T* array) {
-    auto iterate = array->begin();
-    T max = *iterate;
-    while(iterate != array->end()){
-        iterate++;
-        T temp = *iterate;
-        // if(max =)
+T maxValue(vector<T> array) {
+    typename vector <T>::iterator it;
+    T max = *array.begin();
+
+    for (it = array.begin(); it != array.end(); ++it) {
+        if (*it > max) {
+            max = *it;
+        } 
     }
     return max;
 } 

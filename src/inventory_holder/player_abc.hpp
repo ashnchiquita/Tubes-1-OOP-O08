@@ -24,7 +24,7 @@ class PlayerABC : public InventoryHolder<T> {
   PlayerABC(string name);
   PlayerABC(string name, long int point);
   PlayerABC(const PlayerABC& other);
-
+  virtual ~PlayerABC() {}
   // services
   string getName() const;
   void setName(string name);
@@ -34,12 +34,15 @@ class PlayerABC : public InventoryHolder<T> {
   void addPoint(long int point);
 
   // operator
-  virtual PlayerABC& operator<<(const Card& card) override;
-  virtual PlayerABC& operator>>(Card* card) override;
+  virtual PlayerABC& operator<<(const Card& card);
+  virtual PlayerABC& operator>>(Card* card);
 
   bool operator<(const PlayerABC& other) const;
   bool operator>(const PlayerABC& other) const;
   bool operator==(const PlayerABC& other) const;
+  
+  virtual void clearCards() = 0; 
+  virtual void print() = 0;
 };
 
 template <typename T>

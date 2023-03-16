@@ -465,29 +465,53 @@ src/command/command.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/command/command.cpp.s
 .PHONY : src/command/command.cpp.s
 
-src/game/game.o: src/game/game.cpp.o
-.PHONY : src/game/game.o
+src/game/game_cangkul.o: src/game/game_cangkul.cpp.o
+.PHONY : src/game/game_cangkul.o
 
 # target to build an object file
-src/game/game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game.cpp.o
-.PHONY : src/game/game.cpp.o
+src/game/game_cangkul.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_cangkul.cpp.o
+.PHONY : src/game/game_cangkul.cpp.o
 
-src/game/game.i: src/game/game.cpp.i
-.PHONY : src/game/game.i
+src/game/game_cangkul.i: src/game/game_cangkul.cpp.i
+.PHONY : src/game/game_cangkul.i
 
 # target to preprocess a source file
-src/game/game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game.cpp.i
-.PHONY : src/game/game.cpp.i
+src/game/game_cangkul.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_cangkul.cpp.i
+.PHONY : src/game/game_cangkul.cpp.i
 
-src/game/game.s: src/game/game.cpp.s
-.PHONY : src/game/game.s
+src/game/game_cangkul.s: src/game/game_cangkul.cpp.s
+.PHONY : src/game/game_cangkul.s
 
 # target to generate assembly for a file
-src/game/game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game.cpp.s
-.PHONY : src/game/game.cpp.s
+src/game/game_cangkul.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_cangkul.cpp.s
+.PHONY : src/game/game_cangkul.cpp.s
+
+src/game/game_poker.o: src/game/game_poker.cpp.o
+.PHONY : src/game/game_poker.o
+
+# target to build an object file
+src/game/game_poker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_poker.cpp.o
+.PHONY : src/game/game_poker.cpp.o
+
+src/game/game_poker.i: src/game/game_poker.cpp.i
+.PHONY : src/game/game_poker.i
+
+# target to preprocess a source file
+src/game/game_poker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_poker.cpp.i
+.PHONY : src/game/game_poker.cpp.i
+
+src/game/game_poker.s: src/game/game_poker.cpp.s
+.PHONY : src/game/game_poker.s
+
+# target to generate assembly for a file
+src/game/game_poker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/game/game_poker.cpp.s
+.PHONY : src/game/game_poker.cpp.s
 
 src/input_handler/file_handler.o: src/input_handler/file_handler.cpp.o
 .PHONY : src/input_handler/file_handler.o
@@ -537,29 +561,53 @@ src/inventory_holder/deck.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/deck.cpp.s
 .PHONY : src/inventory_holder/deck.cpp.s
 
-src/inventory_holder/player.o: src/inventory_holder/player.cpp.o
-.PHONY : src/inventory_holder/player.o
+src/inventory_holder/player_cangkul.o: src/inventory_holder/player_cangkul.cpp.o
+.PHONY : src/inventory_holder/player_cangkul.o
 
 # target to build an object file
-src/inventory_holder/player.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.o
-.PHONY : src/inventory_holder/player.cpp.o
+src/inventory_holder/player_cangkul.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_cangkul.cpp.o
+.PHONY : src/inventory_holder/player_cangkul.cpp.o
 
-src/inventory_holder/player.i: src/inventory_holder/player.cpp.i
-.PHONY : src/inventory_holder/player.i
+src/inventory_holder/player_cangkul.i: src/inventory_holder/player_cangkul.cpp.i
+.PHONY : src/inventory_holder/player_cangkul.i
 
 # target to preprocess a source file
-src/inventory_holder/player.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.i
-.PHONY : src/inventory_holder/player.cpp.i
+src/inventory_holder/player_cangkul.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_cangkul.cpp.i
+.PHONY : src/inventory_holder/player_cangkul.cpp.i
 
-src/inventory_holder/player.s: src/inventory_holder/player.cpp.s
-.PHONY : src/inventory_holder/player.s
+src/inventory_holder/player_cangkul.s: src/inventory_holder/player_cangkul.cpp.s
+.PHONY : src/inventory_holder/player_cangkul.s
 
 # target to generate assembly for a file
-src/inventory_holder/player.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.s
-.PHONY : src/inventory_holder/player.cpp.s
+src/inventory_holder/player_cangkul.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_cangkul.cpp.s
+.PHONY : src/inventory_holder/player_cangkul.cpp.s
+
+src/inventory_holder/player_poker.o: src/inventory_holder/player_poker.cpp.o
+.PHONY : src/inventory_holder/player_poker.o
+
+# target to build an object file
+src/inventory_holder/player_poker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_poker.cpp.o
+.PHONY : src/inventory_holder/player_poker.cpp.o
+
+src/inventory_holder/player_poker.i: src/inventory_holder/player_poker.cpp.i
+.PHONY : src/inventory_holder/player_poker.i
+
+# target to preprocess a source file
+src/inventory_holder/player_poker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_poker.cpp.i
+.PHONY : src/inventory_holder/player_poker.cpp.i
+
+src/inventory_holder/player_poker.s: src/inventory_holder/player_poker.cpp.s
+.PHONY : src/inventory_holder/player_poker.s
+
+# target to generate assembly for a file
+src/inventory_holder/player_poker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player_poker.cpp.s
+.PHONY : src/inventory_holder/player_poker.cpp.s
 
 src/inventory_holder/table_card.o: src/inventory_holder/table_card.cpp.o
 .PHONY : src/inventory_holder/table_card.o
@@ -609,29 +657,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/playerslist/playerslist.o: src/playerslist/playerslist.cpp.o
-.PHONY : src/playerslist/playerslist.o
+src/runner/runner.o: src/runner/runner.cpp.o
+.PHONY : src/runner/runner.o
 
 # target to build an object file
-src/playerslist/playerslist.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/playerslist/playerslist.cpp.o
-.PHONY : src/playerslist/playerslist.cpp.o
+src/runner/runner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/runner/runner.cpp.o
+.PHONY : src/runner/runner.cpp.o
 
-src/playerslist/playerslist.i: src/playerslist/playerslist.cpp.i
-.PHONY : src/playerslist/playerslist.i
+src/runner/runner.i: src/runner/runner.cpp.i
+.PHONY : src/runner/runner.i
 
 # target to preprocess a source file
-src/playerslist/playerslist.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/playerslist/playerslist.cpp.i
-.PHONY : src/playerslist/playerslist.cpp.i
+src/runner/runner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/runner/runner.cpp.i
+.PHONY : src/runner/runner.cpp.i
 
-src/playerslist/playerslist.s: src/playerslist/playerslist.cpp.s
-.PHONY : src/playerslist/playerslist.s
+src/runner/runner.s: src/runner/runner.cpp.s
+.PHONY : src/runner/runner.s
 
 # target to generate assembly for a file
-src/playerslist/playerslist.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/playerslist/playerslist.cpp.s
-.PHONY : src/playerslist/playerslist.cpp.s
+src/runner/runner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/runner/runner.cpp.s
+.PHONY : src/runner/runner.cpp.s
 
 src/valuables/ability_card.o: src/valuables/ability_card.cpp.o
 .PHONY : src/valuables/ability_card.o
@@ -780,27 +828,33 @@ help:
 	@echo "... src/command/command.o"
 	@echo "... src/command/command.i"
 	@echo "... src/command/command.s"
-	@echo "... src/game/game.o"
-	@echo "... src/game/game.i"
-	@echo "... src/game/game.s"
+	@echo "... src/game/game_cangkul.o"
+	@echo "... src/game/game_cangkul.i"
+	@echo "... src/game/game_cangkul.s"
+	@echo "... src/game/game_poker.o"
+	@echo "... src/game/game_poker.i"
+	@echo "... src/game/game_poker.s"
 	@echo "... src/input_handler/file_handler.o"
 	@echo "... src/input_handler/file_handler.i"
 	@echo "... src/input_handler/file_handler.s"
 	@echo "... src/inventory_holder/deck.o"
 	@echo "... src/inventory_holder/deck.i"
 	@echo "... src/inventory_holder/deck.s"
-	@echo "... src/inventory_holder/player.o"
-	@echo "... src/inventory_holder/player.i"
-	@echo "... src/inventory_holder/player.s"
+	@echo "... src/inventory_holder/player_cangkul.o"
+	@echo "... src/inventory_holder/player_cangkul.i"
+	@echo "... src/inventory_holder/player_cangkul.s"
+	@echo "... src/inventory_holder/player_poker.o"
+	@echo "... src/inventory_holder/player_poker.i"
+	@echo "... src/inventory_holder/player_poker.s"
 	@echo "... src/inventory_holder/table_card.o"
 	@echo "... src/inventory_holder/table_card.i"
 	@echo "... src/inventory_holder/table_card.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/playerslist/playerslist.o"
-	@echo "... src/playerslist/playerslist.i"
-	@echo "... src/playerslist/playerslist.s"
+	@echo "... src/runner/runner.o"
+	@echo "... src/runner/runner.i"
+	@echo "... src/runner/runner.s"
 	@echo "... src/valuables/ability_card.o"
 	@echo "... src/valuables/ability_card.i"
 	@echo "... src/valuables/ability_card.s"

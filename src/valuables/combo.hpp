@@ -36,7 +36,7 @@ class Combo : public Valuable {
    *
    * @returns Type of combo
    */
-  ComboType determineCombo();
+  ComboType determineCombo() const;
 
   /**
    * Get the priority of a combo
@@ -45,7 +45,7 @@ class Combo : public Valuable {
    *
    * @returns Priority of the combo
    */
-  int getComboPriority(ComboType type);
+  int getComboPriority(ComboType type) const;
 
  public:
   // METHODS
@@ -68,13 +68,9 @@ class Combo : public Valuable {
    *
    * @returns Value of the combo
    */
-  float value();
+  float value() const override;
 
-  // Combo& operator=(const Combo& other) {
-  //   delete[] this->cardList;
-  //   this->cardList = other.cardList;
-  //   this->comboSize = other.comboSize;
-  // }
+  bool operator>(Combo&) const;
 };
 
 #endif
