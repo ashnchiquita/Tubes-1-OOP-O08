@@ -7,20 +7,21 @@ using namespace std;
 AbilityCard::AbilityCard() {
     this->type = AbilityType::NULLABILITY;
     this->status = true;
+    this->killed = false;
 }
 
 void AbilityCard::killAbility() {
-    this->type = AbilityType::NULLABILITY;
-    this->status = false;
+    this->killed = true;
 }
 
 bool AbilityCard::isAbilityKilled() {
-    return this->type == AbilityType::NULLABILITY && this->status == false;
+    return this->killed;
 }
 
 void AbilityCard::giveAbility(AbilityType _type) {
     this->type = _type;
     this->status = true;
+    this->killed = false;
 }
 
 bool AbilityCard::getAbilityCardStatus() const {
@@ -37,7 +38,9 @@ void AbilityCard::useAbility() {
 
 void AbilityCard::displayAbility() const {
     cout << "Kartu " << this->abilityString() << " (";
-    if (this->status) {
+    if (this->killed) {
+        cout << "sudah dimatikan)";
+    } else if (this->status) {
         cout << "belum digunakan)";
     } else {
         cout << "sudah digunakan)";
@@ -59,5 +62,5 @@ string AbilityCard::abilityString() const {
 }
 
 bool AbilityCard::operator==(const AbilityCard& other) const {
-    return this->type == other.type && this->status == other.status;
+    return this->type == other.type && this->status == other.status && this->killed == other.killed;
 }

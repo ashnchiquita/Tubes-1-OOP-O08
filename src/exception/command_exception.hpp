@@ -31,12 +31,29 @@ class CommandRoundOneException : public CommandException{
 class CommandDisabledException : public CommandException{
     private:
         const std::string messageSnippet1 = "Oops, kartu ability ";
-        const std::string messageSnippet2 = "mu telah dimatikan sebelumnya :(\nSilahkan lakukan perintah lain.";
+        const std::string messageSnippet2 = "-mu telah dimatikan sebelumnya :(\nSilakan lakukan perintah lain.";
         std::string cardString;
     public:
         CommandDisabledException(std::string card) : cardString(card){};
         const std::string what() const throw() {return (messageSnippet1 + cardString + messageSnippet2);}
 };
 
+class CommandCardUsedException : public CommandException{
+    private:
+        const std::string messageSnippet1 = "Oops, kartu ability ";
+        const std::string messageSnippet2 = "-mu telah digunakan, giliranmu terbuang sia-sia.";
+        std::string cardString;
+    public:
+        CommandCardUsedException(std::string card) : cardString(card){};
+        const std::string what() const throw() {return (messageSnippet1 + cardString + messageSnippet2);}
+};
+
+class CommandHelpException : public CommandException{
+    private:
+        const std::string message = "Silahkan pilih command yang lain.";
+    public:
+        CommandHelpException(){};
+        const std::string what() const throw() {return message;}
+};
 
 #endif

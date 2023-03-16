@@ -1,5 +1,5 @@
 #include "deck.hpp"
-#include "../randomizer/randomizer.hpp"
+#include "../algorithm/algos.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -83,7 +83,7 @@ void Deck::resetDeck() {
 };
 
 void Deck::shuffleDeck() {
-  Randomizer r;
+  Algos r;
   r.iterShuffle(&this->bufferCard);
 };
 

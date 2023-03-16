@@ -6,7 +6,7 @@
 
 class ConfigException : public Exception{
     protected:
-        const std::string message = "Invalid Config operation";
+        const std::string message = "Operasi konfigurasi deck invalid. Silakan ulangi lagi.";
     public:
         virtual const std::string what() const throw() {return message;};
 };
@@ -14,7 +14,7 @@ class ConfigException : public Exception{
 //ini buat input nomor yang gak valid (angka diisi huruf, kalo redundan hapus aja, pake yang invalid number)
 class ConfigFileException : public ConfigException{
     private:
-        const std::string message = "Error opening file";
+        const std::string message = "File konfigurasi deck tidak ditemukan. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };
@@ -22,7 +22,7 @@ class ConfigFileException : public ConfigException{
 //ini buat input nomor yang gak valid (angka diisi huruf, kalo redundan hapus aja, pake yang invalid number)
 class ConfigInvalidCharException : public ConfigException{
     private:
-        const std::string message = "Unexpected char in config";
+        const std::string message = "File konfigurasi deck mengandung karakter ilegal. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };
@@ -30,7 +30,7 @@ class ConfigInvalidCharException : public ConfigException{
 //ini buat input warna yang gak valid
 class ConfigInvalidColorException : public ConfigException{
     private:
-        const std::string message = "Card color in config is invalid";
+        const std::string message = "Warna kartu pada file konfigurasi deck tidak valid. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };
@@ -38,7 +38,7 @@ class ConfigInvalidColorException : public ConfigException{
 //ini buat input number yang gak valid (< 1 ato > 13)
 class ConfigInvalidNumberException : public ConfigException{
     private:
-        const std::string message = "Card number in config is out of range";
+        const std::string message = "Angka kartu pada file konfigurasi deck tidak valid. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };
@@ -46,7 +46,7 @@ class ConfigInvalidNumberException : public ConfigException{
 //kalo kartu > 52
 class ConfigTooManyException : public ConfigException{
     private:
-        const std::string message = "Too many cards in config";
+        const std::string message = "Kartu pada file config terlalu banyak. Silakan ulangi lagi." ;
     public:
         const std::string what() const throw() {return message;}
 };
@@ -54,7 +54,7 @@ class ConfigTooManyException : public ConfigException{
 //kalo kartu < 52
 class ConfigNotEnoughException : public ConfigException{
     private:
-        const std::string message = "Not enough cards in config";
+        const std::string message = "Kartu pada file config terlalu sedikit. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };
@@ -62,15 +62,7 @@ class ConfigNotEnoughException : public ConfigException{
 //kalo ada kartu yang sama
 class ConfigSameCardException : public ConfigException{
     private:
-        const std::string message = "Duplicate cards in config";
-    public:
-        const std::string what() const throw() {return message;}
-};
-
-//kalo ada kartu yang invalid? kalo apa invalidnya? kalo bisa pake exception yang diatas ganti aja, keliatannya redundan
-class ConfigInvalidCardException : public ConfigException{
-    private:
-        const std::string message = "Invalid card in config";
+        const std::string message = "Kartu duplikat terdapat pada config. Silakan ulangi lagi.";
     public:
         const std::string what() const throw() {return message;}
 };

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/alishalistya/VSCode/Tubes-1-OOP-O08
+# Install script for directory: /Users/owner/Documents/sem4/stima/tucil2/Tubes-1-OOP-O08
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/alishalistya/VSCode/Tubes-1-OOP-O08/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/owner/Documents/sem4/stima/tucil2/Tubes-1-OOP-O08/bin/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
