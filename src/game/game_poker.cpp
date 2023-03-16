@@ -55,6 +55,8 @@ void GamePoker::resetGame() {
   this->mainDeck.resetDeck();
   this->mainDeck.shuffleDeck();
 
+  
+
   // Input Source
   CommandHandler<string> optionPicker;
   Card temp;
@@ -236,4 +238,13 @@ void GamePoker::givePoint() {
   winningPlayer.addPoint(this->gamePoint);
   cout << endl << "Game point sebesar " << this->gamePoint << " diberikan ke " << winningPlayer.getName() << "! Selamat!! >.<" << endl;
   winningPlayer.print();
+}
+
+void GamePoker::endGame() {
+  cout << "Permainan berakhir" << endl;
+  cout << "Leaderboard:" << endl;
+  this->playersList.getLeaderboard().printSequencePoints();
+  PlayerPoker winner = this->playersList.highestPoint();
+  cout << "Pemenangnya adalah " << winner.getName() << "! Selamat!!" << endl;
+
 }

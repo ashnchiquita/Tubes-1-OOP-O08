@@ -41,6 +41,7 @@ class GamePoker : public GameABC<PlayerPoker> {
     void printGameState() override;
     
     void multiplyGamePoint(float multiplier);
+    void endGame();
 };
 
 #endif

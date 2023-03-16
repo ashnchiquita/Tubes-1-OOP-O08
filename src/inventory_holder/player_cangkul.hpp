@@ -8,7 +8,7 @@ using namespace std;
 class PlayerCangkul : public PlayerABC< vector<Card> > {
   public:
     PlayerCangkul();
-    PlayerCangkul(string name, int x);
+    PlayerCangkul(string name, long int x);
     PlayerCangkul(const PlayerCangkul& other);
 
     Card getCard(int idx);

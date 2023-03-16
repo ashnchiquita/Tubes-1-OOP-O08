@@ -56,6 +56,7 @@ void Runner::startGame(){
                 g.resetGame();
             }
         } while (!g.isFinished());
+        g.endGame();
     }
     else if (this->choice == 2){
         GameCangkul g;
