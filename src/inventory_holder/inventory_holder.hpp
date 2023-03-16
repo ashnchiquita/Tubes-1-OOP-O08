@@ -23,6 +23,7 @@ class InventoryHolder {
   void setInventoryLimit(int inventoryLimit);
 
   // operators
+  virtual void clearCards() = 0; 
   virtual InventoryHolder& operator<<(const Card& card) = 0;
   virtual InventoryHolder& operator>>(Card* card) = 0;
   virtual void print() = 0;

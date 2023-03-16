@@ -1,6 +1,7 @@
 #ifndef PLAYERSLIST_HPP
 #define PLAYERSLIST_HPP
 
+#include "../inventory_holder/inventory_holder.hpp"
 #include "../inventory_holder/player.hpp"
 #include <iostream>
 #include <algorithm>
@@ -22,6 +23,7 @@ class PlayersList {
         void addPlayer(Player p);
         int getRoundCount() const;
         int getTurnCountInARound() const;
+        void resetPlayersCards();
         void changeTurn();
         void undoChangeTurn();
         void changeRound();

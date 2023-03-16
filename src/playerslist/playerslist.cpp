@@ -28,6 +28,12 @@ int PlayersList::getTurnCountInARound() const {
     return this->turnCountInARound;
 }
 
+void PlayersList::resetPlayersCards() {
+    for (int i=0; i<getSize(); i++){
+        this->list[i].clearCards();
+    }
+}
+
 void PlayersList::changeTurn() {
     this->delFirstInsertLast();
     if (this->turnCountInARound == 6) {

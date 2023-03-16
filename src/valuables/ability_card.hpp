@@ -16,17 +16,19 @@ enum class AbilityType {
 };
 
 class AbilityCard {
-    private:
-        AbilityType type;
-        bool status;
-    public:
-        AbilityCard();
-        void giveAbility(AbilityType);
-        bool getAbilityCardStatus() const;
-        void setAbilityCardStatus(bool);
-        void useAbility();
-        void displayAbility() const;
-        string abilityString() const;
-        bool operator==(const AbilityCard& other) const;
+  private:
+    AbilityType type;
+    bool status;
+  public:
+    AbilityCard();
+    void killAbility();
+    bool isAbilityKilled();
+    void giveAbility(AbilityType);
+    bool getAbilityCardStatus() const;
+    void setAbilityCardStatus(bool);
+    void useAbility();
+    void displayAbility() const;
+    string abilityString() const;
+    bool operator==(const AbilityCard& other) const;
 };
 #endif 
