@@ -22,9 +22,10 @@ void SwitchCard::execute() {
   firstCard = currPlayer.getCard(0);
   secondCard = currPlayer.getCard(1);
 
+
   cout << "Kartumu sekarang adalah:" << endl;
-  firstCard.displayCard();
-  secondCard.displayCard();
+  cout << "1. "; firstCard.displayCard(); cout << endl;
+  cout << "2. "; secondCard.displayCard(); cout << endl;
 
   // Picking Options
   bool valid = false;
@@ -48,18 +49,23 @@ void SwitchCard::execute() {
   // Swapping Cards
   PlayerPoker& targetPlayer = 
     this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
+    
+  Card tempCard1, tempCard2;
+  tempCard1 = targetPlayer.getCard(0);
+  tempCard2 = targetPlayer.getCard(1);
+
   targetPlayer.setCard(0, firstCard);
   targetPlayer.setCard(1, secondCard);
-  currPlayer.setCard(0, targetPlayer.getCard(0));
-  currPlayer.setCard(1, targetPlayer.getCard(1));
+  currPlayer.setCard(0, tempCard1);
+  currPlayer.setCard(1, tempCard2);
 
   // Interface
   cout << "Kedua kartu " << currPlayer.getName() << " telah ditukar dengan "
        << targetPlayer.getName() << "!" << endl;
   cout << "Kartumu sekarang:" << endl;
-  currPlayer.getCard(0).displayCard();
+  this->game->getCurrPlayerRef().getCard(0).displayCard();
   cout << " & ";
-  currPlayer.getCard(1).displayCard();
+  this->game->getCurrPlayerRef().getCard(1).displayCard();
   cout << endl;
   cout << "\033[0m";
 

@@ -61,9 +61,9 @@ void SwapCard::execute() {
 
   // Swapping Cards
   Card tempCard;
-  tempCard = firstPlayer.getCard(firstCard - 1);
-  firstPlayer.setCard(firstCard - 1, secondPlayer.getCard(secondCard - 1));
-  firstPlayer.setCard(secondCard - 1, tempCard);
+  tempCard = firstPlayer.getCard(firstCard);
+  firstPlayer.setCard(firstCard, secondPlayer.getCard(secondCard));
+  secondPlayer.setCard(secondCard, tempCard);
   
   // Interface
   cout << "Kartu " << firstPlayer.getName() << " telah tertukar dengan "
