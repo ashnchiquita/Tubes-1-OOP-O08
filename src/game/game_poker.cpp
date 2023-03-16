@@ -11,6 +11,7 @@
 #include "../command/basic_command/basic_command.hpp"
 #include "../command/basic_command/double.hpp"
 #include "../command/basic_command/half.hpp"
+#include "../command/basic_command/help.hpp"
 #include "../command/basic_command/next.hpp"
 
 GamePoker::GamePoker(): GameABC(7) {
@@ -173,7 +174,7 @@ void GamePoker::runTurn() {
       valid = true;
     }
     catch (CommandHelpException& e){
-      command = new Double(this);
+      command = new Help(this);
       command->execute();
       delete command;
       cout << e.what() << '\n';

@@ -31,33 +31,21 @@ Berikut merupakan cara untuk build project atau menginstall program
 git clone https://github.com/ashnchiquita/Tubes-1-OOP-O08.git
 ```
 
-2. run this command
+2. Jalankan command
 
 ```
 cmake -B build .
 ```
-atau
-```
-ccmake -B build .
-```
-```
-c
-```
-```
-g
-```
-3. go to build dir & make executable file
+3. Pindah ke folder build dan jalankan command untuk membuat executable
 
 ```
 cd build
 make
 ```
 
-4. go to bin directory & run executable file
+4. Jalankan file executable
 
 ```
-cd ..
-cd bin
 ./Tubes-1-OOP-O08
 ```
 

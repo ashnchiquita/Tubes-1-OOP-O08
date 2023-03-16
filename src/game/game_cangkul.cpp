@@ -65,15 +65,13 @@ void GameCangkul::runGame() {
 
     int nextPlayerIdx = (maxPlayerIdx + 1) % playersList.getSize();
     for(int i = 0; i < 3; i++) {
-      cout << "Pilih aksi:\n";
-      cout << "1. Ambil kartu\n";
-      cout << "2. Buang kartu\n";
+      do {
+        cout << "Pilih aksi:\n";
+        cout << "1. Ambil kartu\n";
+        cout << "2. Buang kartu\n";
 
-      cin >> input;
-
-      // if(input == 1) {
-
-      // }
+        cin >> input;
+      } while(input != 2);
     }
 
   } while (!this->isFinished());
