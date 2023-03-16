@@ -5,7 +5,7 @@
 
 class Quarter : public AbilityCommand {
  public:
-  Quarter(Game*);
+  Quarter(GamePoker*);
   void execute();
   ~Quarter();
 };

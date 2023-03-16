@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Next::Next(Game* currentGame) : BasicCommand(currentGame) {}
+Next::Next(GamePoker* currentGame) : BasicCommand(currentGame) {}
 
 Next::~Next() {}
 

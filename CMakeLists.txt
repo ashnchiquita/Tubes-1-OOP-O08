@@ -4,6 +4,8 @@ project(Tubes-1-OOP-O08)
 add_executable(Tubes-1-OOP-O08
     # main
     src/main.cpp
+    src/game/game_abc.cpp
+    src/game/game_poker.cpp
 
     # command
     src/command/command.cpp
@@ -28,7 +30,7 @@ add_executable(Tubes-1-OOP-O08
     # -
 
     # game
-    src/game/game.cpp
+    # src/game/game.cpp
 
     # input_handler
     src/input_handler/file_handler.cpp

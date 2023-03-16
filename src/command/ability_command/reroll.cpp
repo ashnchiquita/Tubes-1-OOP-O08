@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Reroll::Reroll(Game* currentGame) : AbilityCommand(currentGame) {}
+Reroll::Reroll(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 Reroll::~Reroll() {}
 

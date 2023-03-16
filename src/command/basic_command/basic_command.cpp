@@ -1,5 +1,6 @@
 #include "basic_command.hpp"
+#include "../command.hpp"
 
-BasicCommand::BasicCommand(Game* currentGame) : Command(currentGame) {}
+BasicCommand::BasicCommand(GamePoker* currentGame) : Command(currentGame) {}
 
 BasicCommand::~BasicCommand() {}

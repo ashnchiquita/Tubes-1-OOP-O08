@@ -75,7 +75,6 @@ GameABC::GameABC(int playerCount) {
       getline(cin, name);
       cout << "\n";
     } while (name == "");
-    
 
     // Players get Cards
     this->playersList.addPlayer(Player(name, 0));
@@ -83,8 +82,21 @@ GameABC::GameABC(int playerCount) {
     this->playersList.getPlayerAt(i) << temp;
     this->mainDeck >> &temp;
     this->playersList.getPlayerAt(i) << temp;
-
-    // Players get Ability
-    this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]);
   }
+}
+
+Player& GameABC::getCurrPlayerRef() {
+  return this->playersList.getCurrPlayer();
+}
+
+Deck& GameABC::getDeck() {
+  return this->mainDeck;
+}
+
+PlayersList GameABC::getPlayersList() {
+  return this->playersList;
+}
+
+PlayersList& GameABC::getPlayersListRef() {
+  return this->playersList;
 }

@@ -5,7 +5,7 @@
 
 class Half : public BasicCommand {
     public:
-        Half(Game*);
+        Half(GamePoker*);
         void execute();
         ~Half();
 };

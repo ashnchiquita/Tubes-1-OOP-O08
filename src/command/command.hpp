@@ -1,13 +1,15 @@
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
 
-#include "../game/game.hpp"
+// #include "../game/game.hpp"
+#include "../game/game_poker.hpp"
+// #include "../game/game_abc.hpp"
 
 class Command {
     protected:
-        Game* game;
+        GamePoker* game;
     public:
-        Command(Game*);
+        Command(GamePoker*);
         virtual void execute() = 0;
         virtual ~Command();
 };

@@ -1,8 +1,8 @@
-#include "game/game.hpp"
+#include "game/game_poker.hpp"
 
 /* TODO: handle Y/N input untuk retry */
 int main() {
-    Game g;
+    GamePoker g;
     do {
         g.runGame();
         if (!g.isFinished()) {

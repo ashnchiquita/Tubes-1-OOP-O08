@@ -5,7 +5,7 @@
 
 class Quadruple : public AbilityCommand {
  public:
-  Quadruple(Game*);
+  Quadruple(GamePoker*);
   void execute();
   ~Quadruple();
 };

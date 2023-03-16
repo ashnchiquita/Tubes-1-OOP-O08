@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Quarter::Quarter(Game* currentGame) : AbilityCommand(currentGame) {}
+Quarter::Quarter(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 Quarter::~Quarter() {}
 

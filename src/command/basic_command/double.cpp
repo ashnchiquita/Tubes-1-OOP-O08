@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Double::Double(Game* currentGame) : BasicCommand(currentGame) {}
+Double::Double(GamePoker* currentGame) : BasicCommand(currentGame) {}
 
 Double::~Double() {}
 

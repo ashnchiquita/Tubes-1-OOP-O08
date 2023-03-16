@@ -5,7 +5,7 @@
 
 class Next : public BasicCommand {
     public:
-        Next(Game*);
+        Next(GamePoker* g);
         void execute();
         ~Next();
 };

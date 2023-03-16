@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-Abilityless::Abilityless(Game* currentGame) : AbilityCommand(currentGame) {}
+Abilityless::Abilityless(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 Abilityless::~Abilityless() {}
 

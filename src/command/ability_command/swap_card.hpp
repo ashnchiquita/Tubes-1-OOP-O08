@@ -5,7 +5,7 @@
 
 class SwapCard : public AbilityCommand {
  public:
-  SwapCard(Game*);
+  SwapCard(GamePoker*);
   void execute();
   ~SwapCard();
 };

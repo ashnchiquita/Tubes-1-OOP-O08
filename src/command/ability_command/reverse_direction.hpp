@@ -5,7 +5,7 @@
 
 class ReverseDirection : public AbilityCommand {
  public:
-  ReverseDirection(Game*);
+  ReverseDirection(GamePoker*);
   void execute();
   ~ReverseDirection();
 };

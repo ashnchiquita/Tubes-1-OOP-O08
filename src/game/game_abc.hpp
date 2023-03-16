@@ -1,5 +1,5 @@
-#ifndef GAME_CANGKUL_HPP
-#define GAME_CANGKUL_HPP
+#ifndef GAME_ABC_HPP
+#define GAME_ABC_HPP
 
 #include <string>
 
@@ -12,12 +12,9 @@
 using namespace std;
 
 class GameABC {
-  private:
+  protected:
     PlayersList playersList;
     Deck mainDeck;
-
-    void resetGame();
-    bool isFinished();
 
   public:
     GameABC(int playerCount);
@@ -27,8 +24,10 @@ class GameABC {
     PlayersList getPlayersList();
     PlayersList& getPlayersListRef();
 
-    void runGame();
-    void printGameState();
+    virtual void runGame() = 0;
+    virtual void printGameState() = 0;
+    virtual void resetGame() = 0;
+    virtual bool isFinished() = 0;
 };
 
 #endif

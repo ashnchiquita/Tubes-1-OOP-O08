@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Half::Half(Game* currentGame) : BasicCommand(currentGame) {}
+Half::Half(GamePoker* currentGame) : BasicCommand(currentGame) {}
 
 Half::~Half() {}
 

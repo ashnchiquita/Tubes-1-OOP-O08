@@ -1,6 +1,6 @@
 #include "ability_command.hpp"
 
-AbilityCommand::AbilityCommand(Game* currentGame) : Command(currentGame) {}
+AbilityCommand::AbilityCommand(GamePoker* currentGame) : Command(currentGame) {}
 
 AbilityCommand::~AbilityCommand() {}
 

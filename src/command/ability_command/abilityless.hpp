@@ -5,7 +5,7 @@
 
 class Abilityless : public AbilityCommand {
   public:
-    Abilityless(Game*);
+    Abilityless(GamePoker*);
     void execute();
     ~Abilityless();
 };

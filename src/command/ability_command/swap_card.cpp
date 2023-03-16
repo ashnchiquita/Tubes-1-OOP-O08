@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-SwapCard::SwapCard(Game* currentGame) : AbilityCommand(currentGame) {}
+SwapCard::SwapCard(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 SwapCard::~SwapCard(){}
 

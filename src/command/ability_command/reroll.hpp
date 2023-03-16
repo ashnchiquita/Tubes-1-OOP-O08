@@ -5,7 +5,7 @@
 
 class Reroll : public AbilityCommand {
  public:
-  Reroll(Game*);
+  Reroll(GamePoker*);
   void execute();
   ~Reroll();
 };

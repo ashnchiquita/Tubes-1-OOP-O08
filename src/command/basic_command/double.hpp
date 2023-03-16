@@ -5,7 +5,7 @@
 
 class Double : public BasicCommand {
     public:
-        Double(Game*);
+        Double(GamePoker*);
         void execute();
         ~Double();
 };

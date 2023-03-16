@@ -1,6 +1,6 @@
 #include "command.hpp"
 
-Command::Command(Game* currentGame) {
+Command::Command(GamePoker* currentGame) {
     this->game = currentGame;
 }
 

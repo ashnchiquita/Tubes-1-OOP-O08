@@ -3,9 +3,9 @@
 
 #include "../command.hpp"
 
-class BasicCommand : public Command {
+class BasicCommand: public Command {
     public:
-        BasicCommand(Game*);
+        BasicCommand(GamePoker*);
         virtual void execute() = 0;
         virtual ~BasicCommand();
 };

@@ -7,29 +7,29 @@
 
 class Game {
  private:
-  long int gamePoint;
+  long int gamePoint; //!
   PlayersList playersList;
   Deck mainDeck;
-  TableCard mainTable;
+  TableCard mainTable; //!
 
  public:
   Game();
   
-  long int getGamePoint() const;
+  long int getGamePoint() const; //!
   Player& getCurrPlayerRef();
   Deck& getDeck();
-  TableCard& getTableCard();
+  TableCard& getTableCard(); //!
   PlayersList getPlayersList();
   PlayersList& getPlayersListRef();
 
-  void multiplyGamePoint(float multiplier);
-  void runTurn();
-  void runGame();
+  void multiplyGamePoint(float multiplier); //!
+  void runTurn(); //!
+  void runGame(); //!
   void resetGame();
 
   bool isFinished();
-  void givePoint();
-  void printGameState();
+  void givePoint(); //!
+  void printGameState(); //!
 };
 
 #endif

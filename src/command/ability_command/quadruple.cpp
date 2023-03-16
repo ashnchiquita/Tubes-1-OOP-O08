@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Quadruple::Quadruple(Game* currentGame) : AbilityCommand(currentGame) {}
+Quadruple::Quadruple(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 Quadruple::~Quadruple(){}
 

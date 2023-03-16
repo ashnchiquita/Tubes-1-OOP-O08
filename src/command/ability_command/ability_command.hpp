@@ -5,7 +5,7 @@
 
 class AbilityCommand : public Command {
   public:
-    AbilityCommand(Game*);
+    AbilityCommand(GamePoker*);
     virtual void execute() = 0;
     void turnOffAbility();
     virtual ~AbilityCommand();

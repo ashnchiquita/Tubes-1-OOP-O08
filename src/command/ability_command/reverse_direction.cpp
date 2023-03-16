@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-ReverseDirection::ReverseDirection(Game* currentGame)
+ReverseDirection::ReverseDirection(GamePoker* currentGame)
     : AbilityCommand(currentGame) {}
 
 ReverseDirection::~ReverseDirection() {}

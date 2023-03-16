@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-SwitchCard::SwitchCard(Game* currentGame) : AbilityCommand(currentGame) {}
+SwitchCard::SwitchCard(GamePoker* currentGame) : AbilityCommand(currentGame) {}
 
 SwitchCard::~SwitchCard(){}
 

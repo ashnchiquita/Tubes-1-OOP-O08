@@ -5,7 +5,7 @@
 
 class SwitchCard : public AbilityCommand {
  public:
-  SwitchCard(Game*);
+  SwitchCard(GamePoker*);
   void execute();
   ~SwitchCard();
 };

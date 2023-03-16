@@ -80,6 +80,6 @@
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
     "[cpp]": {
-        "editor.defaultFormatter": "psycha0s.cpp-format"
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     }
 }

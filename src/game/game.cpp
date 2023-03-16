@@ -34,18 +34,18 @@ Game::Game() {
   // Initialization
   string name, filename;
   Card temp;
-  AbilityType abilityList[7] = {
-    AbilityType::REROLL, 
-    AbilityType::QUADRUPLE, 
-    AbilityType::QUARTER, 
-    AbilityType::REVERSE, 
-    AbilityType::SWAP, 
-    AbilityType::SWITCH, 
-    AbilityType::ABILITYLESS };
+  AbilityType abilityList[7] = { //!
+    AbilityType::REROLL, //!
+    AbilityType::QUADRUPLE, //!
+    AbilityType::QUARTER, //!
+    AbilityType::REVERSE, //!
+    AbilityType::SWAP, //!
+    AbilityType::SWITCH, //!
+    AbilityType::ABILITYLESS }; //!
   
   // Randomizer
-  Randomizer r;
-  r.iterShuffle(abilityList, 7);
+  Randomizer r; //!
+  r.iterShuffle(abilityList, 7); //!
 
   // Opening /* TODO: ASCII ART */
   cout << "\033[34m" << "                                ~ , ` - . `* Welcome To *' - . `. ~" << "\033[0m" << endl;
@@ -107,7 +107,7 @@ Game::Game() {
     }
   } while (!valid);
 
-  this->gamePoint = 64;
+  this->gamePoint = 64; //!
 
   // Config Player
   cin.ignore();
@@ -129,7 +129,7 @@ Game::Game() {
     this->playersList.getPlayerAt(i) << temp;
 
     // Players get Ability
-    this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]);
+    this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]); //!
   }
 }
 
