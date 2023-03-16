@@ -15,7 +15,16 @@ cmake unix linux only
 ```
 cmake -B build .
 ```
-
+atau
+```
+ccmake -B build .
+```
+```
+c
+```
+```
+g
+```
 2. go to build dir & make executable file
 
 ```

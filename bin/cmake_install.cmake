@@ -1,4 +1,4 @@
-# Install script for directory: /Users/alishalistya/VSCode/Tubes-1-OOP-O08
+# Install script for directory: /Users/owner/Documents/sem4/stima/tucil2/Tubes-1-OOP-O08
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -57,9 +57,13 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD:cmake_install.cmake
 <<<<<<< HEAD
 file(WRITE "/home/rma1403/Documents/Programming/kuliah/Tubes-1-OOP-O08/${CMAKE_INSTALL_MANIFEST}"
 =======
 file(WRITE "/Users/alishalistya/VSCode/Tubes-1-OOP-O08/${CMAKE_INSTALL_MANIFEST}"
 >>>>>>> 1a1f127a64c077fdd6413aab735191021526bdb6
+=======
+file(WRITE "/Users/owner/Documents/sem4/stima/tucil2/Tubes-1-OOP-O08/bin/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 9e7df66541bbf01add16067f9306c9f07846f6b8:bin/cmake_install.cmake
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

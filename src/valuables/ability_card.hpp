@@ -18,7 +18,7 @@ enum class AbilityType {
 class AbilityCard {
   private:
     AbilityType type;
-    bool status;
+    bool status, killed;
   public:
     AbilityCard();
     void killAbility();

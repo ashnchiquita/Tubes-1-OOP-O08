@@ -22,7 +22,7 @@
 #include "../inventory_holder/player.hpp"
 #include "../inventory_holder/table_card.hpp"
 #include "../playerslist/playerslist.hpp"
-#include "../randomizer/randomizer.hpp"
+#include "../algorithm/algos.hpp"
 #include "../valuables/card.hpp"
 #include "../valuables/combo.hpp"
 #include "../input_handler/file_handler.hpp"
@@ -45,9 +45,9 @@ Game::Game() {
     AbilityType::SWITCH, //!
     AbilityType::ABILITYLESS }; //!
   
-  // Randomizer
-  Randomizer r; //!
-  r.iterShuffle(abilityList, 7); //!
+  // Algos
+  Algos r;
+  r.iterShuffle(abilityList, 7);
 
   // Opening /* TODO: ASCII ART */
   cout << "\033[34m" << "                                ~ , ` - . `* Welcome To *' - . `. ~" << "\033[0m" << endl;
@@ -169,11 +169,17 @@ void Game::runTurn() {
   bool valid = false;
   do {
     try {
-      bool constraints[2] = {!this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().getAbilityCardStatus()};
+      bool constraints[3] = {!this->playersList.restrictCommand(), this->getCurrPlayerRef().getAbility().getAbilityCardStatus(), this->getCurrPlayerRef().getAbility().isAbilityKilled()};
       optionHandler.turnCommand("\nMasukkan command\n> ", constraints, this->getCurrPlayerRef().getAbility().abilityString());
       cmd = optionHandler.getInput();
       valid = true;
-    } catch (Exception& e) {
+    }
+    catch (CommandCardUsedException& e){
+      cout << e.what() << '\n';
+      cmd = "NEXT";
+      valid = true;
+    }
+    catch (Exception& e) {
       cout << e.what() << '\n';
     }
   } while (!valid);
@@ -254,8 +260,8 @@ void Game::resetGame() {
     AbilityType::SWITCH, 
     AbilityType::ABILITYLESS};
 
-  // Randomizer
-  Randomizer r;
+  // Algos
+  Algos r;
   r.iterShuffle(abilityList, 7);
 
   bool valid = false;
