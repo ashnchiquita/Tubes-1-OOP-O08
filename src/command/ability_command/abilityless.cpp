@@ -50,7 +50,7 @@ void Abilityless::execute() {
       cout << "Yah, sayang penggunaan kartu ini sia-sia." << endl;
     } else {
       // Set Ability Nonactive
-      this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option)).getAbilityRef().setAbilityCardStatus(false);
+      this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option)).getAbilityRef().killAbility();
       cout << "Kartu ability " << targetPlayer.getName() << " telah dimatikan."
           << endl;
       cout << "\033[0m";

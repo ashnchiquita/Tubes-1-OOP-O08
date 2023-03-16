@@ -8,6 +8,16 @@ AbilityCard::AbilityCard() {
     this->type = AbilityType::NULLABILITY;
     this->status = true;
 }
+
+void AbilityCard::killAbility() {
+    this->type = AbilityType::NULLABILITY;
+    this->status = false;
+}
+
+bool AbilityCard::isAbilityKilled() {
+    return this->type == AbilityType::NULLABILITY && this->status == false;
+}
+
 void AbilityCard::giveAbility(AbilityType _type) {
     this->type = _type;
     this->status = true;
