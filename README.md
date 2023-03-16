@@ -6,20 +6,12 @@
 </h2>
 
 <p align="center">
-![Frame 2](https://user-images.githubusercontent.com/73476678/225608238-9df8048e-caa9-4f5b-b038-68b1693eca92.png)
+ <img src="https://user-images.githubusercontent.com/73476678/225608238-9df8048e-caa9-4f5b-b038-68b1693eca92.png">
 
 </p>
 
 <p> Program berbasis Command-Line Interface (CLI) yang dibuat dalam bahasa C++. Program ini memproyeksikan sebuah gim mini tentang kartu dengan logika kartu seperti Poker Hold'em. Terdapat 7 pemain pada permainan. Pada program ini, pemain dapat menggunakan kemampuan khusus seperti Revese Turn ataupun Mematikan Ability pemain lain. </p>
 <hr>
-
-## Table of Contents
-1. [Getting Started](#getting-started)
-2. [How to Run](#how-to-run)
-3. [Pembagian Tugas](#pembagian-tugas)
-4. [Daftar Fitur](#daftar-fitur)
-5. [Struktur](#struktur)
-6. [Author](#author)
 
 ## Dependencies
 
