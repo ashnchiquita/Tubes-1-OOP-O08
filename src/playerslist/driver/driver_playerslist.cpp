@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#include "playerslist.hpp"
+#include "../playerslist.hpp"
 
 int main() {
     PlayersList p;

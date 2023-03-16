@@ -108,7 +108,7 @@ void TableCard::ASCIITable(){
     else if ((*it).getColor() == CardColor::BLUE){ cout << "\033[34m";}
     else if ((*it).getColor() == CardColor::RED){ cout << "\033[31m";}
     else if ((*it).getColor() == CardColor::YELLOW){ cout << "\033[33m";}
-    printf("│    ♣    │    ");
+    printf("│    ♡    │    ");
   } printf("\n");
 
   for (int i = 0; i<2; i++){

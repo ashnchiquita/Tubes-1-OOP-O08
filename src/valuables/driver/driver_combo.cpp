@@ -1,6 +1,6 @@
-#include "combo.cpp"
-#include "card.cpp"
-#include "valuable.hpp"
+#include "../combo.cpp"
+#include "../card.cpp"
+#include "../valuable.hpp"
 
 #include <algorithm>
 #include <ctime>
@@ -33,10 +33,6 @@ int main() {
   // Calculate combo value
   float comboValues[10];
   int comboPrio[10];
-  for (int i = 0; i < 10; i++) {
-    Combo temp(cardList[i], 5);
-    comboValues[i] = temp.value();
-  }
 
   // Print combos in descending order
   bool checked[10];
