@@ -112,7 +112,7 @@ bool PlayerABC<T>::operator>(const PlayerABC<T>& other) const {
 
 template <typename T>
 bool PlayerABC<T>::operator==(const PlayerABC<T>& other) const {
-  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name && this->abilityCard == other.abilityCard;
+  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name;
 }
 
 #endif

@@ -136,7 +136,7 @@ void PlayersList<T>::print() {
     if (this->getSize() == 0) {
         cout << "-" << endl;
     } else {
-        vector<Player>::iterator i = this->list.begin();
+        typename vector<T>::iterator i = this->list.begin();
         cout << (*i).getName();
         for (i = this->list.begin() + 1; i < this->list.end(); ++i) {
             cout << ", ";
@@ -151,7 +151,7 @@ void PlayersList<T>::printSequence() {
     if (this->getSize() == 0) {
         cout << "-" << endl;
     } else {
-        vector<Player>::iterator i = this->list.begin();
+        typename vector<T>::iterator i = this->list.begin();
         cout << (*i).getName();
         for (i = this->list.begin() + 1; i < this->list.end(); ++i) {
             cout << ", " << (*i).getName();
@@ -165,7 +165,7 @@ void PlayersList<T>::printSequenceOrder() {
     if (this->getSize() == 0) {
         cout << "Tidak ada Player" << endl;
     } else {
-        vector<Player>::iterator i;
+        typename vector<T>::iterator i;
         int count = 1;
         for (i = this->list.begin(); i != this->list.end(); ++i) {
             cout << count << ". " << (*i).getName() << endl;
@@ -179,7 +179,7 @@ void PlayersList<T>::printSequencePoints() {
     if (this->getSize() == 0) {
         cout << "Tidak ada Player" << endl;
     } else {
-        vector<Player>::iterator i;
+        typename vector<T>::iterator i;
         int count = 1;
         for (i = this->list.begin(); i != this->list.end(); ++i) {
             cout << count << ". " << (*i).getName() << ": " << (*i).getPoint() << endl;
@@ -191,7 +191,7 @@ void PlayersList<T>::printSequencePoints() {
 template <typename T>
 PlayersList<T> PlayersList<T>::operator-(const T& other) {
     PlayersList diff = *this;
-    vector<Player>::iterator res = find(diff.list.begin(), diff.list.end(), other);
+    typename vector<T>::iterator res = find(diff.list.begin(), diff.list.end(), other);
 
     if (res != diff.list.end()) {
         diff.list.erase(res);
@@ -305,7 +305,7 @@ bool PlayersList<T>::restrictTable() const {
 
 template <typename T>
 T& PlayersList<T>::findPlayer(const T& other) {
-    vector<Player>::iterator res = find(this->list.begin(), this->list.end(), other);
+    typename vector<T>::iterator res = find(this->list.begin(), this->list.end(), other);
     if (res != this->list.end()) {
         return *res;
     } else {
@@ -320,7 +320,7 @@ bool PlayersList<T>::isNewRound() const {
 
 template <typename T>
 bool PlayersList<T>::hasAbility() const {
-    vector<Player>::const_iterator it;
+    typename vector<T>::const_iterator it;
     for(it = this->list.begin(); it != this->list.end(); ++it) {
         if (it->getAbility().getAbilityCardStatus()) {
             return true;

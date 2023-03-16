@@ -38,7 +38,7 @@ add_executable(Tubes-1-OOP-O08
 
     # inventory holder
     src/inventory_holder/deck.cpp
-    src/inventory_holder/player.cpp
+    # src/inventory_holder/player.cpp
     src/inventory_holder/table_card.cpp
     src/inventory_holder/player_poker.cpp
 

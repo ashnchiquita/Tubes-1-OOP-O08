@@ -1,5 +1,4 @@
 #include "./player_poker.hpp"
-#include <iostream>
 using namespace std;
 
 PlayerPoker::PlayerPoker(): PlayerABC() {}
@@ -110,7 +109,7 @@ void PlayerPoker::PlayerASCII() {
   else if (this->getCard(1).getColor() == CardColor::YELLOW){ secondColor = "\033[33m";}
   char space = ' ';
   
-  std::cout << firstColor; this->getCard(0).displayCard(); cout << secondColor << "    "; this->getCard(1).displayCard(); cout << endl;
+  cout << firstColor; this->getCard(0).displayCard(); cout << secondColor << "    "; this->getCard(1).displayCard(); cout << endl;
         cout << firstColor << "┌─────────┐   " << secondColor << "┌─────────┐    \n";
         cout << firstColor <<"│"<<this->getCard(0).getNum()<< string(1-this->getCard(0).getNum()/10, space)<<"       │   " << secondColor << "│"<< this->getCard(1).getNum() << string(1-this->getCard(1).getNum()/10, space) <<"       │   \n";
         cout << firstColor <<"│         │   " << secondColor << "│         │    \n";

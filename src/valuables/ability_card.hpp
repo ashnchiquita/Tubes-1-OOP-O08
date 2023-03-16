@@ -28,5 +28,8 @@ class AbilityCard {
         void displayAbility() const;
         string abilityString() const;
         bool operator==(const AbilityCard& other) const;
+        bool isAbilityKilled() {
+    return this->type == AbilityType::NULLABILITY && this->status == false;
+}
 };
 #endif 

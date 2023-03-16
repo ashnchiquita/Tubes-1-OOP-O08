@@ -29,8 +29,12 @@ class PlayerPoker : public PlayerABC<pair<Card, Card>> {
     PlayerPoker& operator<<(const Card& card) override;
     PlayerPoker& operator>>(Card* card) override;
 
-    void PlayerPoker::print() override;
-    void PlayerPoker::PlayerASCII();
+    void print() override;
+    void PlayerASCII();
+
+    bool operator<(const PlayerPoker& other) const {
+  return this->point < other.point;
+}
 };
 
 #endif

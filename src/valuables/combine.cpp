@@ -1,7 +1,7 @@
 #include "combine.hpp"
 #include "combo.hpp"
 
-Combine::Combine(TableCard table, PlayersList players) {
+Combine::Combine(TableCard table, PlayersList<PlayerPoker> players) {
     this->tableCard = table;
     this->playersList = players;
 }
@@ -74,7 +74,7 @@ int Combine::evaluate() {
         }
     } while (next_permutation(tableCard.begin(), tableCard.end()));
     
-    Player& winningPlayer = this->playersList.getPlayerAt(winningPlayerIdx);
+    PlayerPoker& winningPlayer = this->playersList.getPlayerAt(winningPlayerIdx);
 
     /* DEBUG */
     cout << "Combo " << winningPlayer.getName() << ": " << endl;

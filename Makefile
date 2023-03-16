@@ -537,30 +537,6 @@ src/inventory_holder/deck.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/deck.cpp.s
 .PHONY : src/inventory_holder/deck.cpp.s
 
-src/inventory_holder/player.o: src/inventory_holder/player.cpp.o
-.PHONY : src/inventory_holder/player.o
-
-# target to build an object file
-src/inventory_holder/player.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.o
-.PHONY : src/inventory_holder/player.cpp.o
-
-src/inventory_holder/player.i: src/inventory_holder/player.cpp.i
-.PHONY : src/inventory_holder/player.i
-
-# target to preprocess a source file
-src/inventory_holder/player.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.i
-.PHONY : src/inventory_holder/player.cpp.i
-
-src/inventory_holder/player.s: src/inventory_holder/player.cpp.s
-.PHONY : src/inventory_holder/player.s
-
-# target to generate assembly for a file
-src/inventory_holder/player.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Tubes-1-OOP-O08.dir/build.make CMakeFiles/Tubes-1-OOP-O08.dir/src/inventory_holder/player.cpp.s
-.PHONY : src/inventory_holder/player.cpp.s
-
 src/inventory_holder/player_poker.o: src/inventory_holder/player_poker.cpp.o
 .PHONY : src/inventory_holder/player_poker.o
 
@@ -789,9 +765,6 @@ help:
 	@echo "... src/inventory_holder/deck.o"
 	@echo "... src/inventory_holder/deck.i"
 	@echo "... src/inventory_holder/deck.s"
-	@echo "... src/inventory_holder/player.o"
-	@echo "... src/inventory_holder/player.i"
-	@echo "... src/inventory_holder/player.s"
 	@echo "... src/inventory_holder/player_poker.o"
 	@echo "... src/inventory_holder/player_poker.i"
 	@echo "... src/inventory_holder/player_poker.s"

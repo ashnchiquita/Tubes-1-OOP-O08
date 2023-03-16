@@ -167,7 +167,7 @@ void GamePoker::runTurn() {
       cmd = optionHandler.getInput();
       valid = true;
     }
-    catch (CommandCardUsedException& cardused){
+    catch (CommandCardUsedException& e){
       cout << e.what() << '\n';
       cmd = "NEXT";
       valid = true;

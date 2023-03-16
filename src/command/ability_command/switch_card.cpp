@@ -14,9 +14,9 @@ void SwitchCard::execute() {
   cout << "\033[1m\033[36m \n";
   cout << this->game->getCurrPlayerRef().getName() << " melakukan SWITCH!" << endl;
 
-  PlayersList optionList;
+  PlayersList<PlayerPoker> optionList;
   int option;
-  Player& currPlayer = this->game->getCurrPlayerRef();
+  PlayerPoker& currPlayer = this->game->getCurrPlayerRef();
 
   Card firstCard, secondCard;
   firstCard = currPlayer.getCard(0);
@@ -46,7 +46,7 @@ void SwitchCard::execute() {
   } while (!valid);
 
   // Swapping Cards
-  Player& targetPlayer = 
+  PlayerPoker& targetPlayer = 
     this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
   targetPlayer.setCard(0, firstCard);
   targetPlayer.setCard(1, secondCard);
