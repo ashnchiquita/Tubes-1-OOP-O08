@@ -17,7 +17,7 @@ class PlayerCangkul : public PlayerABC< vector<Card> > {
     PlayerCangkul& operator>>(Card* card) override;
 
     bool operator<(const PlayerCangkul& other) const;
-    void clearCards() {} 
+    void clearCards() override;
     void print() {}
     int getCardCount() const;
 };

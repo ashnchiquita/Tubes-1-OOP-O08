@@ -37,3 +37,7 @@ bool PlayerCangkul::operator<(const PlayerCangkul& other) const {
 int PlayerCangkul::getCardCount() const {
   return this->bufferCard.size();
 }
+
+void PlayerCangkul::clearCards() {
+  return this->bufferCard.clear();
+} 
