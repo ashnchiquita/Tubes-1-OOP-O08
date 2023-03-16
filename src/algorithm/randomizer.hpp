@@ -53,7 +53,7 @@ T Algos::pickRandom(T array[]){
 template<typename T>
 T maxValue(vector <T> array) {
     T temp = *array->begin();
-    vector <T>::iterator it;
+    typename vector <T>::iterator it;
     for (it = array.begin(); it != array.end(); ++it) {
         if (it > temp){
             temp = it;

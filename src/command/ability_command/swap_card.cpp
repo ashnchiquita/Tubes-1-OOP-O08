@@ -12,7 +12,7 @@ SwapCard::~SwapCard(){}
 void SwapCard::execute() {
   // Menukar kartu pemain lain
 
-  PlayersList optionList, optionList2;
+  PlayersList<PlayerPoker> optionList, optionList2;
   // Picking Options
   int firstOption, secondOption;
   int firstCard, secondCard;
@@ -56,8 +56,8 @@ void SwapCard::execute() {
     }
   } while (!valid);
 
-  Player& firstPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption));
-  Player& secondPlayer = this->game->getPlayersListRef().findPlayer(optionList2.getPlayerAt(secondOption));
+  PlayerPoker& firstPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(firstOption));
+  PlayerPoker& secondPlayer = this->game->getPlayersListRef().findPlayer(optionList2.getPlayerAt(secondOption));
 
   // Swapping Cards
   Card tempCard;

@@ -1,4 +1,3 @@
-
 #ifndef COMMAND_EXCEPTION_H
 #define COMMAND_EXCEPTION_H
 
@@ -41,7 +40,7 @@ class CommandDisabledException : public CommandException{
 class CommandCardUsedException : public CommandException{
     private:
         const std::string messageSnippet1 = "Oops, kartu ability ";
-        const std::string messageSnippet2 = "-mu telah digunakan, giliranmu terbuang sia-sia.";
+        const std::string messageSnippet2 = "mu telah digunakan, gerakanmu terbuang sia - sia.";
         std::string cardString;
     public:
         CommandCardUsedException(std::string card) : cardString(card){};

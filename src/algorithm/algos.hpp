@@ -61,7 +61,7 @@ T Algos::maxValue(T* array) {
     while(iterate != array->end()){
         iterate++;
         T temp = *iterate;
-        if(max =)
+        // if(max =)
     }
     return max;
 } 

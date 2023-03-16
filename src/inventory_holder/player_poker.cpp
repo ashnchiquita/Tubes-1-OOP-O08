@@ -1,70 +1,31 @@
-#include "player.hpp"
-
-#include <map>
+#include "./player_poker.hpp"
 using namespace std;
 
-int Player::totalPlayer = 0;
+PlayerPoker::PlayerPoker(): PlayerABC() {}
 
-Player::Player() : InventoryHolder<pair<Card, Card> >(2) {
-  this->name = "";
-  this->point = 0;
-  Player::totalPlayer++;
-}
+PlayerPoker::PlayerPoker(string name): PlayerABC(name) {};
 
-Player::Player(string name)
-    : InventoryHolder<pair<Card, Card> >(2) {
-  this->name = name;
-  this->point = 0;
-  Player::totalPlayer++;
-}
+PlayerPoker::PlayerPoker(string name, long int point): PlayerABC(name, point) {};
 
-Player::Player(string name, long int point)
-    : InventoryHolder<pair<Card, Card> >(2) {
-  this->name = name;
-  this->point = point;
-  Player::totalPlayer++;
-}
-
-Player::Player(const Player& other) : InventoryHolder<pair<Card, Card> >(2) {
-  this->inventoryLimit = other.inventoryLimit;
+PlayerPoker::PlayerPoker(const PlayerPoker& other) : PlayerABC(other) {
   this->bufferCard.first = other.bufferCard.first;
   this->bufferCard.second = other.bufferCard.second;
 
-  this->name = other.name;
-  this->point = other.point;
   this->abilityCard = other.abilityCard;
 }
 
-Player& Player::operator=(const Player& other) {
-  this->inventoryLimit = other.inventoryLimit;
-  this->bufferCard.first = other.bufferCard.first;
-  this->bufferCard.second = other.bufferCard.second;
-
-  this->name = other.name;
-  this->point = other.point;
-  this->abilityCard = other.abilityCard;
-
-  return *this;
-}
-
-void Player::clearCards(){
+void PlayerPoker::clearCards(){
   Card temp;
   *this >> &temp;
   *this >> &temp;
 }
 
-string Player::getName() const { return this->name; }
-void Player::setName(string name) { this->name = name; }
-long int Player::getPoint() const { return this->point; }
-void Player::setPoint(long int point) { this->point = point; }
-void Player::addPoint(long int point) { this->point += point; };
+AbilityCard& PlayerPoker::getAbilityRef() { return this->abilityCard;}
 
-/* ABILITY CARD */
-AbilityCard& Player::getAbilityRef() { return this->abilityCard;}
+AbilityCard PlayerPoker::getAbility() const { return this->abilityCard;}
 
-AbilityCard Player::getAbility() const { return this->abilityCard; }
-
-Card Player::getCard(int idx) {
+// IDX 0 for LeftCard, IDX 1 for RightCard
+Card PlayerPoker::getCard(int idx) {
   if (idx == 0) {
     return this->bufferCard.first;
   } else { // idx == 1
@@ -72,7 +33,7 @@ Card Player::getCard(int idx) {
   } // TODO : kalo mo pasang if 0 else if 1, pake else terus throw exception out of bounds
 }
 
-void Player::setCard(int idx, Card card) {
+void PlayerPoker::setCard(int idx, Card card) {
   if (idx == 0) {
     bufferCard.first = card;
   } else if (idx == 1) {
@@ -80,26 +41,27 @@ void Player::setCard(int idx, Card card) {
   }
 }
 
-vector<Card> Player::getAllCards() const {
+vector<Card> PlayerPoker::getAllCards() const {
   vector<Card> output;
   output.push_back(this->bufferCard.first);
   output.push_back(this->bufferCard.second);
   return output;
 }
 
-Player& Player::operator<<(const Card& card) {
+// operator
+PlayerPoker& PlayerPoker::operator<<(const Card& card) {
   if (!this->bufferCard.first.isValidCard()) {
     this->bufferCard.first = card;
   } else if (!this->bufferCard.second.isValidCard()) {
     this->bufferCard.second = card;
   } else { // TODO: pake exception
-    cout << "Player hand is full\n";
+    std::cout << "Player hand is full\n";
   }
 
   return *this;
 }
 
-Player& Player::operator>>(Card* card) {
+PlayerPoker& PlayerPoker::operator>>(Card* card) {
   if (this->bufferCard.second.isValidCard()) {
     *card = this->bufferCard.second;
     this->bufferCard.second = Card();
@@ -107,45 +69,33 @@ Player& Player::operator>>(Card* card) {
     *card = this->bufferCard.first;
     this->bufferCard.first = Card(); 
   } else { 
-    cout << "Player hand is empty\n";
+    std::cout << "Player hand is empty\n";
   }
 
   return *this;
 }
 
-bool Player::operator<(const Player& other) const {
-  return this->point < other.point;
-}
-
-bool Player::operator>(const Player& other) const {
-  return this->point > other.point;
-}
-
-bool Player::operator==(const Player& other) const {
-  return this->bufferCard == other.bufferCard && this->point == other.point && this->name == other.name && this->abilityCard == other.abilityCard;
-}
-
-void Player::print() {
+void PlayerPoker::print() {
   char space = ' ';
   char dash = '_';
   int num = 45;
   /* DEBUG */
   // cout << "Name: " << this->name << endl;
-  cout << string(num, dash) << endl << endl;
-  cout << " Point    : " << this->point << ""<< endl;
+  std::cout << string(num, dash) << endl << endl;
+  std::cout << " Point    : " << this->point << ""<< endl;
  
-  cout << " Ability  : ";
+  std::cout << " Ability  : ";
   this->getAbility().displayAbility();
-  cout << endl;
-  cout << " Cards    : ";
+  std::cout << endl;
+  std::cout << " Cards    : ";
   this->bufferCard.first.displayCard();
-  cout << ", ";
+  std::cout << ", ";
   this->bufferCard.second.displayCard();
-  cout << endl;
-  cout << string(num, dash) << endl;
+  std::cout << endl;
+  std::cout << string(num, dash) << endl;
 }
 
-void Player::PlayerASCII() {
+void PlayerPoker::PlayerASCII() {
   string firstColor, secondColor;
   CardColor card1 = this->getCard(0).getColor();
   if (card1== CardColor::GREEN ){ firstColor = "\033[32m";}

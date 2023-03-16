@@ -17,7 +17,7 @@ void Abilityless::execute() {
   if (!this->game->getPlayersList().hasAbility()) {
     cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Yah, pengunaan kartu ini sia-sia :(" << endl;
   } else {
-    PlayersList optionList;
+    PlayersList<PlayerPoker> optionList;
     // Picking Options
     int option;
     cout << this->game->getCurrPlayerRef().getName()
@@ -42,7 +42,7 @@ void Abilityless::execute() {
       }
     } while (!valid);
 
-    Player& targetPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
+    PlayerPoker& targetPlayer = this->game->getPlayersListRef().findPlayer(optionList.getPlayerAt(option));
     
     if (!targetPlayer.getAbility().getAbilityCardStatus()) {
       cout << "Kartu ability " << targetPlayer.getName()

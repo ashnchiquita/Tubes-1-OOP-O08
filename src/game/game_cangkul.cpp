@@ -18,5 +18,25 @@ GameCangkul::GameCangkul(): GameABC(4) {
 }
 
 bool GameCangkul::isFinished() {
+  for(int i = 0; i < 4; i++) {
+    if(this->playersList.getPlayerAt(i).getCardCount() == 0) {
+      return true;
+    }
+  }
+}
 
+void GameCangkul::runGame() {
+  int maxPlayerIdx = 0;
+  do {
+    int input;
+
+    cout << "Pilih kartu:\n";
+    for(int i = 0; i < this->playersList.getPlayerAt(maxPlayerIdx).getCardCount(); i++) {
+      cout << i+1 << ". ";
+      this->playersList.getPlayerAt(maxPlayerIdx).getCard(i).displayCard();
+    }
+    cin >> input;
+
+
+  } while (!this->isFinished());
 }
