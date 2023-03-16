@@ -104,7 +104,7 @@ void GamePoker::resetGame() {
     this->playersList.getPlayerAt(i).getAbilityRef().giveAbility(abilityList[i]);
   } 
   /* DEBUG */
-  this->printGameState();
+  // this->printGameState();
 }
 
 bool GamePoker::isFinished() { return this->playersList.hasWinner(); }
@@ -112,7 +112,7 @@ bool GamePoker::isFinished() { return this->playersList.hasWinner(); }
 void GamePoker::runGame() {
   do {
     /* DEBUG */
-    printGameState();
+    // printGameState();
     runTurn();
   } while (!this->playersList.isComplete());
 

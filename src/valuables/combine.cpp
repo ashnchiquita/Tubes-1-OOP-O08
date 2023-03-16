@@ -77,7 +77,7 @@ int Combine::evaluate() {
     PlayerPoker& winningPlayer = this->playersList.getPlayerAt(winningPlayerIdx);
 
     /* DEBUG */
-    cout << "Combo " << winningPlayer.getName() << ": " << endl;
+    // cout << "Combo " << winningPlayer.getName() << ": " << endl;
     for (int i = 0; i < 5; i++) {
         maxComboCards[i].displayCard();
         cout << endl;
